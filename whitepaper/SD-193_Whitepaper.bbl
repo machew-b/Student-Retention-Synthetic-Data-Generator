@@ -1,0 +1,164 @@
+\begin{thebibliography}{21}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Aldaba et~al.(2024)Aldaba, Sescon, and Alconis]{pids2024}
+Fernando Aldaba, Joselito Sescon, and Karl~Eli Alconis.
+\newblock Strengthening {CHED}'s developmental and regulatory capacity.
+\newblock Technical Report 2024-41, Philippine Institute for Development
+  Studies, 2024.
+\newblock URL
+  \url{https://www.pids.gov.ph/publication/discussion-papers/strengthening-ched-s-developmental-and-regulatory-capacity}.
+
+\bibitem[Bean and Metzner(1985)]{bean1985}
+John~P. Bean and Barbara~S. Metzner.
+\newblock A conceptual model of nontraditional undergraduate student attrition.
+\newblock \emph{Review of Educational Research}, 55\penalty0 (4):\penalty0
+  485--540, 1985.
+\newblock \doi{10.3102/00346543055004485}.
+
+\bibitem[Cahilog et~al.(2025)Cahilog, Sarong, Melgo, Tadlip, and {Arcila
+  Jr.}]{cahilog2025}
+D.~T. Cahilog, J.~S. Sarong, M.~D. Melgo, R.~S. Tadlip, and F.~E. {Arcila Jr.}
+\newblock Lived experiences of student dropout: A phenomenological study in a
+  free higher education institution in the {Philippines}.
+\newblock \emph{AIDE Interdisciplinary Research Journal}, 13\penalty0
+  (1):\penalty0 171--192, 2025.
+\newblock \doi{10.56648/aide-irj.v13i1.204}.
+
+\bibitem[Chi(2023)]{chi2023pandemic}
+Cristina Chi.
+\newblock Pandemic doubled attrition rate of college students --- {CHED} data.
+\newblock Philstar.com, 23 August, 2023.
+\newblock URL
+  \url{https://www.philstar.com/headlines/2023/08/23/2290834/pandemic-doubled-attrition-rate-college-students-ched-data}.
+
+\bibitem[{Commission on Higher Education}(2025)]{ched2025presentation}
+{Commission on Higher Education}.
+\newblock Budget hearing on the proposed {FY} 2026 budget of the {Commission on
+  Higher Education} ({CHED}).
+\newblock Presentation to the House Committee on Appropriations, 11 September,
+  2025.
+\newblock URL
+  \url{https://docs.congress.hrep.online/download/cso/Revised+CHED+FY+2026+Budget+Presentation.pdf}.
+
+\bibitem[{CPBRD}(2025)]{cpbrd2026}
+{CPBRD}.
+\newblock {CHED} agency budget notes {FY} 2026, 2025.
+\newblock URL
+  \url{https://docs.congress.hrep.online/download/CSO/CHED+ABN+FY+2026.pdf}.
+\newblock Document no.\ ABN2025-22, Congressional Policy and Budget Research
+  Department, House of Representatives. Landing page:
+  \url{https://cpbrd.congress.gov.ph/abn2025-22-commission-on-higher-education-fy-2026/}.
+
+\bibitem[{EDCOM~II}(2024)]{edcom2024}
+{EDCOM~II}.
+\newblock Miseducation: The failed system of {Philippine} education (year one
+  report), 2024.
+\newblock URL
+  \url{https://edcom2.gov.ph/media/2024/02/EDCOM-II-Year-One-Report-PDF-022924.pdf}.
+
+\bibitem[{EDCOM~II}(2025)]{edcom2025y2}
+{EDCOM~II}.
+\newblock Fixing the foundations: A matter of national survival ({Y}ear {T}wo
+  {R}eport), 2025.
+\newblock URL
+  \url{https://edcom2.gov.ph/media/2025/01/EDCOM-2-Year-2-Report-Fixing-the-Foundations-2025.pdf}.
+
+\bibitem[Gelman et~al.(2013)Gelman, Carlin, Stern, Dunson, Vehtari, and
+  Rubin]{gelman2013bda}
+Andrew Gelman, John~B. Carlin, Hal~S. Stern, David~B. Dunson, Aki Vehtari, and
+  Donald~B. Rubin.
+\newblock \emph{Bayesian Data Analysis}.
+\newblock CRC Press, Boca Raton, FL, 3rd edition, 2013.
+
+\bibitem[Gelman et~al.(2020)Gelman, Hill, and Vehtari]{gelman2020ros}
+Andrew Gelman, Jennifer Hill, and Aki Vehtari.
+\newblock \emph{Regression and Other Stories}.
+\newblock Cambridge University Press, Cambridge, U.K., 2020.
+
+\bibitem[James et~al.(2013)James, Witten, Hastie, and Tibshirani]{james2013}
+Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani.
+\newblock \emph{An Introduction to Statistical Learning with Applications in
+  R}.
+\newblock Springer, New York, NY, 2013.
+
+\bibitem[Law(2015)]{law2015}
+Averill~M. Law.
+\newblock \emph{Simulation Modeling and Analysis}.
+\newblock McGraw-Hill, New York, NY, 5th edition, 2015.
+
+\bibitem[Lopez-Mu{\~n}oz et~al.(2026)Lopez-Mu{\~n}oz, Gonzalez~Serrano, and
+  Sanchez-Ferreira]{dropout2026review}
+Gloria~L. Lopez-Mu{\~n}oz, Carolina Gonzalez~Serrano, and Camilo
+  Sanchez-Ferreira.
+\newblock Student dropout prediction in higher education: A systematic review
+  of machine learning methods and risk factors.
+\newblock \emph{Journal of Information Technology Education: Research},
+  25:\penalty0 Article 20, 2026.
+\newblock \doi{10.28945/5776}.
+
+\bibitem[McElreath(2020)]{mcelreath2020}
+Richard McElreath.
+\newblock \emph{Statistical Rethinking: A Bayesian Course with Examples in R
+  and Stan}.
+\newblock CRC Press, Boca Raton, FL, 2nd edition, 2020.
+
+\bibitem[Naz(2024)]{socioeconomic2024}
+Graham~M. Naz.
+\newblock Correlating reasons for student dropouts and socioeconomic factors at
+  a state university from a rural province in the {Philippines}.
+\newblock \emph{Journal of Multidisciplinary in Social Sciences}, 20\penalty0
+  (1):\penalty0 29--39, 2024.
+\newblock URL
+  \url{https://so03.tci-thaijo.org/index.php/sduhs/article/view/276992}.
+\newblock Sorsogon State University -- Bulan Campus.
+
+\bibitem[Peters et~al.(2017)Peters, Janzing, and Sch{\"o}lkopf]{peters2017}
+Jonas Peters, Dominik Janzing, and Bernhard Sch{\"o}lkopf.
+\newblock \emph{Elements of Causal Inference: Foundations and Learning
+  Algorithms}.
+\newblock MIT Press, Cambridge, MA, 2017.
+
+\bibitem[Rose and Bowen(2021)]{rose2021careerstart}
+Roderick Rose and Natasha~K. Bowen.
+\newblock The effect on high school drop-out of a middle school relevance
+  intervention.
+\newblock \emph{The Journal of Educational Research}, 114\penalty0
+  (6):\penalty0 526--536, 2021.
+\newblock \doi{10.1080/00220671.2021.1993123}.
+
+\bibitem[Smith and Chimedza(2021)]{smith2021}
+Bevan~I. Smith and Charles Chimedza.
+\newblock Predicting treatment effects from observational studies using machine
+  learning methods: A simulation study, 2021.
+\newblock arXiv:2112.12083.
+
+\bibitem[Smith et~al.(2020)Smith, Chimedza, and B{\"u}hrmann]{smith2020global}
+Bevan~I. Smith, Charles Chimedza, and Jacoba~H. B{\"u}hrmann.
+\newblock Global and individual treatment effects using machine learning
+  methods.
+\newblock \emph{International Journal of Artificial Intelligence in Education},
+  30\penalty0 (3):\penalty0 431--458, 2020.
+
+\bibitem[Tinto(1975)]{tinto1975}
+Vincent Tinto.
+\newblock Dropout from higher education: A theoretical synthesis of recent
+  research.
+\newblock \emph{Review of Educational Research}, 45\penalty0 (1):\penalty0
+  89--125, 1975.
+\newblock \doi{10.3102/00346543045001089}.
+
+\bibitem[Wang(2024)]{wang2024meta}
+Qing Wang.
+\newblock The effectiveness of dropout intervention programs among {K-12}
+  students: A meta-analysis.
+\newblock \emph{Journal of Education for Students Placed at Risk (JESPAR)},
+  30\penalty0 (3):\penalty0 193--223, 2024.
+\newblock \doi{10.1080/10824669.2024.2342779}.
+\newblock Published online 2 May 2024.
+
+\end{thebibliography}
