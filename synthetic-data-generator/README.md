@@ -1,8 +1,8 @@
-# SD-193 — Synthetic Student-Retention Dataset (Philippine Higher Education)
+# Synthetic Student-Retention Dataset (Philippine Higher Education)
 
 > ⚠️ **All data produced here is synthetic.** It describes the behaviour of a generative model calibrated to cited *aggregate* statistics. It is **not** a measurement of any real student or population. Do not report any number derived from it as an empirical finding.
 
-**Project:** SD-193 · Eskwelabs Innovation Fellowship, Data Innovation Track
+**Project:** Eskwelabs Innovation Fellowship, Data Innovation Track
 **Implements:** *A Two-Layer Synthetic Data Generator for Studying Student Retention Early-Warning Systems in Philippine Higher Education* (whitepaper v17, Appendix A reference instantiation)
 **Generator version:** 1.0.0
 
@@ -11,8 +11,8 @@ A generator for a synthetic student cohort in which a **hidden** state (baseline
 
 ## Quick start
 1. `pip install numpy pandas scipy statsmodels matplotlib jupyter`
-2. Open `SD-193_Deliverable2_Generator.ipynb`, edit the `CONFIG` cell (`N_STUDENTS`, `MASTER_SEED`, …), and **Run All**.
-3. ≈ 50 s at N = 50,000 (≈ 10 s with `RECALIBRATE=False`). Outputs land in `sd193_output/`.
+2. Open `student-retention-data-generator.ipynb`, edit the `CONFIG` cell (`N_STUDENTS`, `MASTER_SEED`, …), and **Run All**.
+3. ≈ 50 s at N = 50,000 (≈ 10 s with `RECALIBRATE=False`). Outputs land in `output/`.
 
 | Setting | Meaning |
 |---|---|
@@ -58,7 +58,7 @@ Other outputs: `metadata.json` (seed, versions, row counts, SHA-256 of every tab
 | Parameter traceability | 56 parameters: 47 ASSUMED, 6 CALIBRATED, 3 LOCKED → PASS |
 
 ## Known limitations (full list: notebook §10)
-* **Realized targeting does not match the §8 design targets — decided, not re-fitted.** Only ≈ 6 % of student-terms are supported, so sensitivity is ≈ 16 % (capped near 21 % at a 30 % "high-vulnerability" prevalence), not 70 %. A scan (notebook §7.4) shows the 70 %/25 % pair is not jointly reachable here, so re-fitting would be ill-posed. Appendix A defaults are kept; weaker-targeting settings are reserved for Deliverable-3 sensitivity analysis. See `SD-193_Whitepaper_Errata_v17.md`.
+* **Realized targeting does not match the §8 design targets — decided, not re-fitted.** Only ≈ 6 % of student-terms are supported, so sensitivity is ≈ 16 % (capped near 21 % at a 30 % "high-vulnerability" prevalence), not 70 %. A scan (notebook §7.4) shows the 70 %/25 % pair is not jointly reachable here, so re-fitting would be ill-posed. Appendix A defaults are kept; weaker-targeting settings are reserved for Deliverable-3 sensitivity analysis.
 * **The held-out check is fragile** and the structural reason is spec-level (OF-2).
 * **IPW is unreliable here**: four reasonable variants give −14 % to +74 % on identical data (OF-12).
 * The 47 `ASSUMED` parameters — including all non-core attribute forms — are not empirically grounded; they are the candidate list for sensitivity analysis.
