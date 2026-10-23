@@ -7,7 +7,7 @@ section: box positions/sizes, colours, text, fonts and arrows.
 Coordinates are in "canvas pixels": origin top-left, x to the right, y DOWN,
 canvas 1300 x 919 (same aspect ratio as the 2658 x 1880 PNG in the paper).
 
-Run:   python fig1_pipeline.py            -> figures/fig1_pipeline.png (+ .pdf, .svg)
+Run:   python fig1_pipeline.py            -> figures/fig1_pipeline.png
 """
 import os
 import matplotlib
@@ -135,6 +135,6 @@ def build():
 if __name__ == "__main__":
     os.makedirs(OUT_DIR, exist_ok=True)
     fig = build()
-    for ext in ("png", "pdf", "svg"):
-        fig.savefig(os.path.join(OUT_DIR, f"{OUT_NAME}.{ext}"), dpi=DPI, facecolor="white")
-    print("saved", os.path.join(OUT_DIR, OUT_NAME + ".png"))
+    output_path = os.path.join(OUT_DIR, OUT_NAME + ".png")
+    fig.savefig(output_path, dpi=DPI, facecolor="white")
+    print("saved", output_path)

@@ -8,7 +8,7 @@ colours, and the EDGES list (each edge is a cubic Bezier you can reshape).
 Coordinates are "canvas pixels": origin top-left, x right, y DOWN,
 canvas 1050 x 1153 (same aspect ratio as the 2400 x 2635 PNG in the paper).
 
-Run:   python fig2_dag.py            -> figures/fig2_dag.png (+ .pdf, .svg)
+Run:   python fig2_dag.py            -> figures/fig2_dag.png
 """
 import os
 import matplotlib
@@ -219,6 +219,6 @@ def build():
 if __name__ == "__main__":
     os.makedirs(OUT_DIR, exist_ok=True)
     fig = build()
-    for ext in ("png", "pdf", "svg"):
-        fig.savefig(os.path.join(OUT_DIR, f"{OUT_NAME}.{ext}"), dpi=DPI, facecolor="white")
-    print("saved", os.path.join(OUT_DIR, OUT_NAME + ".png"))
+    output_path = os.path.join(OUT_DIR, OUT_NAME + ".png")
+    fig.savefig(output_path, dpi=DPI, facecolor="white")
+    print("saved", output_path)
