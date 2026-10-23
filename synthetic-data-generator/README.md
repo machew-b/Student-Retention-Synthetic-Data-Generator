@@ -9,16 +9,28 @@
 ## What this is
 A generator for a synthetic student cohort in which a **hidden** state (baseline vulnerability + per-term acute shocks) drives both the **recorded** institutional data (grades, attendance, financial holds, support) and the eventual dropout — mirroring what a Student Success Analyst can and cannot see. Support is assigned using prior-term records only, so a naive treated-vs-untreated comparison is **confounded**; the true support effect is fixed by design (30 % relative hazard reduction) so analyses can be scored against a known answer.
 
+## Folder layout
+```
+synthetic-data-generator/
+├── README.md
+├── student-retention-data-generator.ipynb   # the generator — run this
+└── output/                                  # everything the notebook writes
+    ├── Regions.csv … PersistenceOutcomes.csv    # the eight tables
+    ├── metadata.json  parameter_log.csv  validation_scorecard.csv
+    ├── diagnostics.png
+    └── DATASET_NOTICE.txt
+```
+
 ## Quick start
 1. `pip install numpy pandas scipy statsmodels matplotlib jupyter`
 2. Open `student-retention-data-generator.ipynb`, edit the `CONFIG` cell (`N_STUDENTS`, `MASTER_SEED`, …), and **Run All**.
-3. ≈ 50 s at N = 50,000 (≈ 10 s with `RECALIBRATE=False`). Outputs land in `output/`.
+3. About 30–50 s at N = 50,000 (about 15–30 s with `RECALIBRATE=False`), depending on hardware. Outputs are written to `output/` inside this folder (`synthetic-data-generator/output/`), even if Jupyter is launched from the repository root.
 
 | Setting | Meaning |
 |---|---|
 | `N_STUDENTS` | Students generated (default 50,000 → ≈ 298k rows per panel table). Tolerances were designed at 50,000; small N widens sampling noise. |
 | `MASTER_SEED` | One integer seed; independent named streams per variable. |
-| `RECALIBRATE` | Re-fit the hazard intercept γ₀ and tier shift δ for this N/seed, or reuse `FROZEN_CALIBRATION`. |
+| `RECALIBRATE` | Re-fit the hazard intercept γ₀ and tier shift δ for this N/seed, or reuse `FROZEN_CALIBRATION` (full-precision values fitted at N = 50,000, seed 193; reproduces the default dataset exactly on the same platform and library versions). |
 | `WRITE_AUDIT_LATENT` | Leave `False`. The latent state is never exported; `True` writes a *private* audit copy. |
 
 ## The eight tables
