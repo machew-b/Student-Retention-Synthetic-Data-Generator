@@ -1,0 +1,57 @@
+parameter,value,tag,basis
+T_MAX,8,LOCKED,1 term = 1 semester; 8 terms per 4-year cohort (WP Table 4)
+intervention_effect,0.3,LOCKED,"True relative hazard reduction (Eq. 3); internal ground truth, NOT an empirical claim (WP §9)"
+tol_pp,0.03,LOCKED,±3 pp Empirical-Fidelity tolerance (WP §3). Not tagged explicitly in WP -> treated as design-fixed; see open flag OF-5
+target_high_2022,0.671,CALIBRATED,"Mean of BARMM 93.4, Reg VII 60.7, Reg IX 59.5, CAR 54.9 = 67.1% (CPBRD 2025, Class-of-2022 column; EDCOM II 2025)"
+target_typical_2022,0.459,CALIBRATED,"Enrollment-weighted mean of the 13 remaining regions, Class of 2022 = 45.9% (CPBRD 2025)"
+national_2023_level,0.294,CALIBRATED,CHED national total read as Class of 2023 (CPBRD 2025; CHED FY2026 budget presentation: 29.39%). Held-out level only
+observed_ratio_2023,1.37,CALIBRATED,"Class-of-2023 high/typical ratio on the 3 high-tier regions with data (CAR, VII, IX): 35.7/26.0 (WP §11)"
+delta,1.033024124801159,CALIBRATED,Tier shift in baseline vulnerability; fitted by Phase 5b to the high-tier target (WP App. A.1)
+gamma0,-2.67315408286656,CALIBRATED,Hazard intercept (Eq. 3); fitted by Phase 5b to the typical-tier target (WP App. A.1)
+tier_share,0.15,ASSUMED,Share of students in high-attrition tier; within CPBRD-implied 14.1–18% range (WP Table 4)
+work_share,0.35,ASSUMED,Working-student prevalence; directionally supported only (WP Table 4)
+shock_prob,0.08,ASSUMED,Per-term acute-shock probability (WP Table 4)
+vuln_work,0.5,ASSUMED,v = δ·tier + 0.5·work − 0.4·inc + 0.8·ε (WP A.1)
+vuln_inc,-0.4,ASSUMED,Higher income proxy -> lower vulnerability (WP A.1)
+vuln_eps,0.8,ASSUMED,Idiosyncratic vulnerability noise (WP A.1)
+grade_intercept,72.0,ASSUMED,grade = 72 − 7v − 7·shock + 8ε (WP A.1)
+grade_v,-7.0,ASSUMED,WP A.1
+grade_shock,-7.0,ASSUMED,WP A.1
+grade_noise,8.0,ASSUMED,WP A.1
+att_intercept,0.88,ASSUMED,attendance = 0.88 − 0.06v − 0.08·shock + 0.08ε (WP A.1)
+att_v,-0.06,ASSUMED,WP A.1
+att_shock,-0.08,ASSUMED,WP A.1
+att_noise,0.08,ASSUMED,WP A.1
+hold_intercept,-2.2,ASSUMED,hold ~ Bernoulli(σ(−2.2 + 0.9v + 1.2·shock)) (WP A.1)
+hold_v,0.9,ASSUMED,WP A.1
+hold_shock,1.2,ASSUMED,WP A.1
+tau_g,60.0,ASSUMED,Low-grade cutoff on 0–100 scale (WP Table 4)
+tau_a,0.75,ASSUMED,Low-attendance cutoff (WP Table 4)
+beta0,-9.0,ASSUMED,Eq. 1 intercept; chosen jointly with beta under illustrative submodel; NOT fitted to pilot population (WP Table 3/4)
+beta,6.0,ASSUMED,"Eq. 1 shared weight beta1=beta2=beta3 (equal-weight symmetry assumption, WP §8)"
+design_sensitivity,0.7,ASSUMED,Design target: share of genuinely high-vulnerability student-terms offered support (WP §8)
+design_false_flag,0.25,ASSUMED,Design target: share of supported student-terms with genuinely low vulnerability (WP §8)
+gamma1,0.8,ASSUMED,Hazard slope on standardized vulnerability (WP A.1)
+gamma2,1.5,ASSUMED,Hazard slope on shock indicator (WP A.1)
+heldout_refit_tol,0.01,ASSUMED,Held-out refit: pooled attrition within 1 pp of 29.4% (WP §11)
+heldout_band_lo,1.2,ASSUMED,"Held-out tier-ratio band, lower edge (WP §11)"
+heldout_band_hi,1.7,ASSUMED,"Held-out tier-ratio band, upper edge (WP §11)"
+recov_abs_window,0.05,ASSUMED,"Recoverability: point estimate within max(5 pp, 2·SD across runs) (WP Table 5)"
+edge_min_share,0.01,ASSUMED,'Non-trivial' edge-case rate: >= 1% of the relevant event set. WP does not define 'non-trivial' (open flag OF-6)
+edge_min_count,100,ASSUMED,'Non-trivial' edge-case rate: >= 100 student-terms (OF-6)
+targeting_high_current_quantile,0.7,ASSUMED,Diagnostic only: top 30% of hazard linear predictor = 'genuinely high current vulnerability' (matches WP Table 3 illustrative 30% split)
+entry_year,2018,ASSUMED,Single calibrated cohort: Class of 2022 = entered AY 2018–19. Constant by design (OF-3)
+program_shares,"{""Business & Management"": 0.22, ""Education"": 0.14, ""Engineering & IT"": 0.24, ""Health Sciences"": 0.12, ""Arts, Sciences & Social Sci."": 0.2, ""Other"": 0.08}",ASSUMED,Programme mix; causally inert in this version (affects course load only)
+program_courses,"{""Business & Management"": 6.0, ""Education"": 6.0, ""Engineering & IT"": 6.5, ""Health Sciences"": 7.0, ""Arts, Sciences & Social Sci."": 6.0, ""Other"": 6.0}",ASSUMED,Mean courses per term by programme; 3 units per course
+course_noise_sd,0.8,ASSUMED,SD of per-term course-count noise (counts clipped to 3–9)
+pass_midpoint,62.0,ASSUMED,P(pass course) = σ((grade − 62)/4)
+pass_scale,4.0,ASSUMED,see above
+dist_median_km,8.0,ASSUMED,distance_km = 8·exp(0.35·tier + 0.10·v + 0.8z)
+dist_tier,0.35,ASSUMED,High-tier students live further out on average
+dist_v,0.1,ASSUMED,Weak link between distance and latent vulnerability (permitted by App. B.2 leakage rule)
+dist_sigma,0.8,ASSUMED,Log-scale spread of distance
+subsidy_by_bracket,"{""1"": 0.45, ""2"": 0.35, ""3"": 0.2, ""4"": 0.1, ""5"": 0.05}",ASSUMED,P(subsidy at entry | income bracket 1=lowest)
+subsidy_lapse_prob,0.25,ASSUMED,Per-term P(permanent subsidy lapse) when the term grade < tau_g
+overdue_median_php,5000.0,ASSUMED,Median overdue amount (PHP) when a hold is active
+overdue_v,0.15,ASSUMED,Overdue amount rises mildly with vulnerability
+overdue_sigma,0.6,ASSUMED,Log-scale spread of overdue amount

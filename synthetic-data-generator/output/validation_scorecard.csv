@@ -1,0 +1,11 @@
+measure,measured,benchmark,verdict
+National attrition (derived blend),49.1%,49.1% ± 3%,PASS
+Tier attrition — high,67.1%,67.1% ± 3%,PASS
+Tier attrition — typical,45.9%,45.9% ± 3%,PASS
+Held-out Class of 2023 — tier ratio (main run),"1.673 (γ0 -2.67→-3.47; high 44.6%, typical 26.7%)","in [1.2, 1.7]; observed 1.37",PASS (fragile)
+Held-out — replicate distribution (diagnostic),1.692 ± 0.025; 60% of 20 runs in band,"informational (WP pilot: 1.71 ± 0.04, 12% in band)",INFO
+Confounding presence,naive -57.7% (95% CI -64.6% to -50.6%),CI excludes true 30%,PASS
+Recoverability — Mantel–Haenszel,32.2% (95% CI 24.3% to 39.3%),"CI ∋ 30%; |err| ≤ 8.6% (=max(5pp, 2×SD 4.3%))",PASS
+Recoverability — Poisson (cluster-robust),33.6% (95% CI 25.1% to 41.2%),"CI ∋ 30%; |err| ≤ 8.6% (=max(5pp, 2×SD 4.3%))",PASS
+Parameter traceability,"56 parameters; tags: ASSUMED=47, CALIBRATED=6, LOCKED=3",every parameter has exactly one tag,PASS
+Edge-case presence (both cases),"2,937 and 774 student-terms",each ≥ 100 and ≥ 1% of its event set,PASS
