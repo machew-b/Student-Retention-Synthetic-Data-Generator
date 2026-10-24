@@ -1,5 +1,5 @@
 """
-Figure 1 -- End-to-end synthetic cohort generation pipeline (SD-193 whitepaper).
+Figure 1 -- End-to-end synthetic cohort generation pipeline.
 
 Rebuilt with matplotlib. Everything you are likely to edit is in the CONFIG
 section: box positions/sizes, colours, text, fonts and arrows.
