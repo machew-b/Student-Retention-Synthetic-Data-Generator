@@ -1,12 +1,12 @@
 # output/
 
-Everything `../student-retention-data-generator.ipynb` writes is stored in this folder (default run: N = 50,000 students, seed 193).
+This folder holds everything that `../student-retention-data-generator.ipynb` writes. The files here come from the default run (N = 50,000 students, seed 193).
 
 > ⚠️ **All data here is synthetic.** It describes the behaviour of a generative model, not any real student or population.
 
 | File | Contents |
 |---|---|
-| `Regions.csv` | Two regional tiers: share, calibration target, source |
+| `Regions.csv` | Two regional tiers: share, calibration target and source |
 | `Students.csv` | One row per student (50,000) |
 | `Enrollments.csv`, `CourseGrades.csv`, `AttendanceRecords.csv`, `FinancialHolds.csv`, `SupportInterventions.csv`, `PersistenceOutcomes.csv` | Student × term panels (297,739 rows each) |
 | `metadata.json` | Seed, calibrated parameters, library versions, row counts and the SHA-256 of every table |
@@ -15,4 +15,4 @@ Everything `../student-retention-data-generator.ipynb` writes is stored in this 
 | `diagnostics.png` | Diagnostic figure |
 | `DATASET_NOTICE.txt` | Synthetic-data notice |
 
-To regenerate, run the notebook; the table hashes in `metadata.json` let you check that a regenerated copy is identical (same platform and library versions).
+To regenerate these files, run the notebook. The table hashes in `metadata.json` let you check that a regenerated copy is identical (same platform and library versions).
