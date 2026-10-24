@@ -1,6 +1,6 @@
 """
 Figure 2 -- Latent and observed causal structure (PGM / DAG) of the generative
-model, SD-193 whitepaper.
+model.
 
 Rebuilt with matplotlib. Edit the CONFIG section: node positions/sizes, labels,
 colours, and the EDGES list (each edge is a cubic Bezier you can reshape).
