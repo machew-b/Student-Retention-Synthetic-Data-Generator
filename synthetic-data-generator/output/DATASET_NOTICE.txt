@@ -1,2 +1,2 @@
-SYNTHETIC DATA — produced by this generative model. Not real students; not a measurement of any real population.
+SYNTHETIC DATA: produced by this generative model. Not real students; not a measurement of any real population.
 The latent state (baseline vulnerability, shocks, hazard) is not included.

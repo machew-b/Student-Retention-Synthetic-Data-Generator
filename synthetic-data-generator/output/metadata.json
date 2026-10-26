@@ -1,7 +1,7 @@
 {
-  "notice": "SYNTHETIC DATA \u2014 produced by this generative model. Not real students; not a measurement of any real population.",
+  "notice": "SYNTHETIC DATA: produced by this generative model. Not real students; not a measurement of any real population.",
   "spec_version": "whitepaper v17",
-  "generator_version": "1.0.0",
+  "generator_version": "1.0.1",
   "master_seed": 193,
   "n_students": 50000,
   "recalibrated": true,
