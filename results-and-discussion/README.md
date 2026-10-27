@@ -18,6 +18,8 @@ I use the Deliverable 2 dataset the way a Student Success Analyst would, and I u
 | 9 | Who is flagged, who is missed, what do false flags cost? | 63.7 % of dropout events occur in terms with a clean record and no support. At equal capacity a model-ranked list would avert an expected 18 % more dropouts than the actual rule, and still only 66 % of an unattainable oracle. |
 | 10 | How robust is this? | Eleven recalibrated scenarios. Mantel–Haenszel stays near 30 %. IPW only stabilises once all signal cells contain both arms. The predictable part of dropout is capped by baseline vulnerability, not by shocks. |
 
+The slide deck in `slides/` presents the same chain of evidence in 17 slides (plus two backup slides). Its figures are redrawn at slide size from the executed notebook, and its tables are generated from the notebook's outputs.
+
 Section 11 turns this into eight recommendations about how to build and evaluate a retention programme. Section 12 lists every limitation and open flag.
 
 ## Folder layout
@@ -27,6 +29,10 @@ results-and-discussion/
 ├── requirements.txt                       # library versions I tested with
 ├── student-retention-analytics.ipynb      # the analysis (committed with outputs cleared; run it to regenerate everything)
 ├── student-retention-analytics.html       # an executed copy, so the results can be read without running anything
+├── slides/
+│   ├── student-retention-results-slides.tex   # Beamer source (pdflatex, run twice)
+│   ├── student-retention-results-slides.pdf   # the 17-slide deck plus 2 backup slides
+│   └── figures/                               # vector figures and generated tables used by the slides
 └── figures/
     └── fig1_descriptive.png … fig7_sensitivity.png
 ```

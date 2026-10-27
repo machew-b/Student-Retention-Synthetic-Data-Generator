@@ -1,0 +1,12 @@
+\setlength{\tabcolsep}{5pt}\begin{tabular}{@{}lccccc@{}}\toprule
+Model & AUC & PR-AUC & Top 5\% & Top 10\% & Top 20\% \\
+\midrule
+Signal-count rule & 0.567 & 0.104 & 8.2\% & 15.3\% & 29.9\% \\
+Logistic hazard & 0.654 & 0.139 & 12.1\% & 21.1\% & 36.7\% \\
+Boosted trees & 0.655 & 0.140 & 12.2\% & 21.4\% & 36.9\% \\
+\midrule
+\textit{Leaky: + current-term signals (not deployable)} & 0.680 & 0.163 & 14.6\% & 24.8\% & 40.4\% \\
+\textit{Ceiling B: knows baseline vulnerability} & 0.683 & 0.159 & 13.9\% & 24.2\% & 40.8\% \\
+\textit{Ceiling A: true hazard} & 0.722 & 0.219 & 19.7\% & 31.1\% & 47.4\% \\
+\bottomrule
+\end{tabular}
