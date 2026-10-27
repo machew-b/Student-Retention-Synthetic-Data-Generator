@@ -1,0 +1,35 @@
+# Results and Discussion: track only the deliverables, not build or editor artefacts.
+# Same allow-list approach as the whitepaper rules in the root .gitignore:
+# ignore everything, then re-include only what belongs in the repository.
+*
+!*/
+!/.gitignore
+!/README.md
+!/requirements.txt
+!*.ipynb
+!*.html
+!*.tex
+!*.bib
+!*.pdf
+!/figures/**
+
+# Build and editor artefacts are never tracked, even where a rule above would allow them
+.ipynb_checkpoints/
+__pycache__/
+_*.ipynb
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+.DS_Store
+Thumbs.db
