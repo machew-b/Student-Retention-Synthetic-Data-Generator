@@ -26,7 +26,7 @@ whitepaper/
 ## Section guide
 The generator and Deliverable 3 documents cite the paper by section, so here is the map.
 
-| § | Title | | § | Title |
+| Sec. | Title | | Sec. | Title |
 |---|---|---|---|---|
 | 1 | Introduction | | 10 | Calibration Parameter Design (sources, Table 4) |
 | 2 | Related Work and Theoretical Foundation | | 11 | Validation Measures and Success Benchmarks (Table 5) |

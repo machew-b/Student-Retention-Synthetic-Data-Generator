@@ -1,11 +1,11 @@
 parameter,value,tag,basis
 T_MAX,8,LOCKED,1 term = 1 semester; 8 terms per 4-year cohort (WP Table 4)
-intervention_effect,0.3,LOCKED,"True relative hazard reduction (Eq. 3); internal ground truth, NOT an empirical claim (WP §9)"
-tol_pp,0.03,LOCKED,±3 pp Empirical-Fidelity tolerance (WP §3). Not tagged explicitly in WP -> treated as design-fixed; see open flag OF-5
+intervention_effect,0.3,LOCKED,"True relative hazard reduction (Eq. 3); internal ground truth, NOT an empirical claim (WP Sec. 9)"
+tol_pp,0.03,LOCKED,±3 pp Empirical-Fidelity tolerance (WP Sec. 3). Not tagged explicitly in WP -> treated as design-fixed; see open flag OF-5
 target_high_2022,0.671,CALIBRATED,"Mean of BARMM 93.4, Reg VII 60.7, Reg IX 59.5, CAR 54.9 = 67.1% (CPBRD 2025, Class-of-2022 column; EDCOM II 2025)"
 target_typical_2022,0.459,CALIBRATED,"Enrollment-weighted mean of the 13 remaining regions, Class of 2022 = 45.9% (CPBRD 2025)"
 national_2023_level,0.294,CALIBRATED,CHED national total read as Class of 2023 (CPBRD 2025; CHED FY2026 budget presentation: 29.39%). Held-out level only
-observed_ratio_2023,1.37,CALIBRATED,"Class-of-2023 high/typical ratio on the 3 high-tier regions with data (CAR, VII, IX): 35.7/26.0 (WP §11)"
+observed_ratio_2023,1.37,CALIBRATED,"Class-of-2023 high/typical ratio on the 3 high-tier regions with data (CAR, VII, IX): 35.7/26.0 (WP Sec. 11)"
 delta,1.033024124801159,CALIBRATED,Tier shift in baseline vulnerability; fitted by Phase 5b to the high-tier target (WP App. A.1)
 gamma0,-2.67315408286656,CALIBRATED,Hazard intercept (Eq. 3); fitted by Phase 5b to the typical-tier target (WP App. A.1)
 tier_share,0.15,ASSUMED,Share of students in high-attrition tier; within CPBRD-implied 14.1–18% range (WP Table 4)
@@ -28,14 +28,14 @@ hold_shock,1.2,ASSUMED,WP A.1
 tau_g,60.0,ASSUMED,Low-grade cutoff on 0–100 scale (WP Table 4)
 tau_a,0.75,ASSUMED,Low-attendance cutoff (WP Table 4)
 beta0,-9.0,ASSUMED,Eq. 1 intercept; chosen jointly with beta under illustrative submodel; NOT fitted to pilot population (WP Table 3/4)
-beta,6.0,ASSUMED,"Eq. 1 shared weight beta1=beta2=beta3 (equal-weight symmetry assumption, WP §8)"
-design_sensitivity,0.7,ASSUMED,Design target: share of genuinely high-vulnerability student-terms offered support (WP §8)
-design_false_flag,0.25,ASSUMED,Design target: share of supported student-terms with genuinely low vulnerability (WP §8)
+beta,6.0,ASSUMED,"Eq. 1 shared weight beta1=beta2=beta3 (equal-weight symmetry assumption, WP Sec. 8)"
+design_sensitivity,0.7,ASSUMED,Design target: share of genuinely high-vulnerability student-terms offered support (WP Sec. 8)
+design_false_flag,0.25,ASSUMED,Design target: share of supported student-terms with genuinely low vulnerability (WP Sec. 8)
 gamma1,0.8,ASSUMED,Hazard slope on standardized vulnerability (WP A.1)
 gamma2,1.5,ASSUMED,Hazard slope on shock indicator (WP A.1)
-heldout_refit_tol,0.01,ASSUMED,Held-out refit: pooled attrition within 1 pp of 29.4% (WP §11)
-heldout_band_lo,1.2,ASSUMED,"Held-out tier-ratio band, lower edge (WP §11)"
-heldout_band_hi,1.7,ASSUMED,"Held-out tier-ratio band, upper edge (WP §11)"
+heldout_refit_tol,0.01,ASSUMED,Held-out refit: pooled attrition within 1 pp of 29.4% (WP Sec. 11)
+heldout_band_lo,1.2,ASSUMED,"Held-out tier-ratio band, lower edge (WP Sec. 11)"
+heldout_band_hi,1.7,ASSUMED,"Held-out tier-ratio band, upper edge (WP Sec. 11)"
 recov_abs_window,0.05,ASSUMED,"Recoverability: point estimate within max(5 pp, 2·SD across runs) (WP Table 5)"
 edge_min_share,0.01,ASSUMED,'Non-trivial' edge-case rate: >= 1% of the relevant event set. WP does not define 'non-trivial' (open flag OF-6)
 edge_min_count,100,ASSUMED,'Non-trivial' edge-case rate: >= 100 student-terms (OF-6)
