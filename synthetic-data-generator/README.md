@@ -53,7 +53,7 @@ Panel tables have one row per student per term, for terms 1…Tᵢ only (no rows
 
 Other outputs: `metadata.json` (seed, versions, row counts, SHA-256 of every table), `parameter_log.csv` (every parameter with its tag), `validation_scorecard.csv`, `diagnostics.png` and `DATASET_NOTICE.txt`.
 
-**Deliberately absent:** I never export baseline vulnerability, shock indicators or the hazard. No individual-level table carries a region name, only the two-tier label (whitepaper §13.3). The `Regions` table names the source regions only inside its `target_source` citation text.
+**Deliberately absent:** I never export baseline vulnerability, shock indicators or the hazard. No individual-level table carries a region name, only the two-tier label (whitepaper Sec. 13.3). The `Regions` table names the source regions only inside its `target_source` citation text.
 
 ## What you can analyze
 1. **Dropout prediction.** Classify the per-term `dropout_flag`. The observables only reveal the hidden state noisily, so there is a ceiling on achievable accuracy.
@@ -73,8 +73,8 @@ Other outputs: `metadata.json` (seed, versions, row counts, SHA-256 of every tab
 | Edge cases from the mechanism | 2,937 unflagged shock-driven dropouts and 774 falsely flagged students → PASS |
 | Parameter traceability | 60 parameters: 51 ASSUMED, 6 CALIBRATED, 3 LOCKED → PASS |
 
-## Known limitations (full list: notebook §10)
-* **Realized targeting does not match the §8 design targets, and I decided not to re-fit.** Only about 6 % of student-terms are supported, so sensitivity is about 16 % (capped near 21 % at a 30 % "high-vulnerability" prevalence), not 70 %. My scan (notebook §7.4) shows that the 70 % / 25 % pair is not jointly reachable here, so re-fitting would be ill-posed. I kept the Appendix A defaults and reserve weaker-targeting settings for the sensitivity analysis in Deliverable 3.
+## Known limitations (full list: notebook Sec. 10)
+* **Realized targeting does not match the Sec. 8 design targets, and I decided not to re-fit.** Only about 6 % of student-terms are supported, so sensitivity is about 16 % (capped near 21 % at a 30 % "high-vulnerability" prevalence), not 70 %. My scan (notebook Sec. 7.4) shows that the 70 % / 25 % pair is not jointly reachable here, so re-fitting would be ill-posed. I kept the Appendix A defaults and reserve weaker-targeting settings for the sensitivity analysis in Deliverable 3.
 * **The held-out check is fragile**, and the structural reason lies in the specification itself (OF-2).
 * **IPW is unreliable here.** Four reasonable variants give −14 % to +74 % on identical data (OF-12).
 * The 51 `ASSUMED` parameters, including all non-core attribute forms, are not empirically grounded. They are my candidate list for sensitivity analysis.
@@ -83,4 +83,4 @@ Other outputs: `metadata.json` (seed, versions, row counts, SHA-256 of every tab
 * Bitwise reproducibility holds only on the same platform and library versions.
 
 ## Citations used by the generator's calibration
-CPBRD (2025) *CHED Agency Budget Notes FY 2026* (regional attrition table); EDCOM II (2025) *Year Two Report*; CHED (2025) FY2026 budget presentation. See whitepaper §10 for the full provenance trace and cohort reasoning. Methods: Law (2015); Gelman, Hill & Vehtari (2020); Peters, Janzing & Schölkopf (2017); McElreath (2020).
+CPBRD (2025) *CHED Agency Budget Notes FY 2026* (regional attrition table); EDCOM II (2025) *Year Two Report*; CHED (2025) FY2026 budget presentation. See whitepaper Sec. 10 for the full provenance trace and cohort reasoning. Methods: Law (2015); Gelman, Hill & Vehtari (2020); Peters, Janzing & Schölkopf (2017); McElreath (2020).
