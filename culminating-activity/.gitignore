@@ -1,0 +1,25 @@
+# Culminating Activity: track only the deliverables, not build or editor artefacts.
+# Same allow-list approach as the whitepaper and results-and-discussion folders:
+# ignore everything, then re-include only what belongs in the repository.
+*
+!*/
+!/.gitignore
+!/README.md
+!*.tex
+!*.bib
+!*.pdf
+
+# Build and editor artefacts are never tracked, even where a rule above would allow them
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+.DS_Store
+Thumbs.db
