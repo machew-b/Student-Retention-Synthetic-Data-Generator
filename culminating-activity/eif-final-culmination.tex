@@ -1,468 +1,847 @@
-\documentclass[11pt]{article}
-\usepackage[utf8]{inputenc}
+%% ============================================================================
+%%  EIF FINAL CULMINATION: slide deck
+%% ----------------------------------------------------------------------------
+%%  Built on the STAT 121-style Beamer template (section tab in the header,
+%%  three-part footer, rounded key-box, shadowed title block, one divider at the
+%%  start of each section) and restyled with the Eskwelabs website gradient:
+%%  sage-mint at the top, through teal and deep teal, to a muted indigo.
+%%
+%%  Build with:  pdflatex eif-final-culmination.tex
+%%               bibtex   eif-final-culmination
+%%               pdflatex eif-final-culmination.tex
+%%               pdflatex eif-final-culmination.tex
+%%  Three figures are loaded from the sibling folders of this repository
+%%  (../whitepaper, ../synthetic-data-generator, ../results-and-discussion),
+%%  so build with the repository layout intact.
+%% ============================================================================
+\documentclass[aspectratio=169,11pt,t]{beamer}
+
+%% ---------------------------------------------------------------------------
+%% 1. PACKAGES
+%% ---------------------------------------------------------------------------
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage[margin=1in]{geometry}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{amssymb}
+\usepackage{lmodern}                 % Latin Modern Sans, the Beamer default
+\usepackage{amsmath,amssymb}
 \usepackage{booktabs}
 \usepackage{array}
-\usepackage{enumitem}
-\usepackage{tcolorbox}
-\usepackage{titlesec}
-\usepackage{placeins}
-\usepackage{fancyhdr}
+\usepackage{graphicx}
 \usepackage{microtype}
 \usepackage{tikz}
+\usepackage[most]{tcolorbox}         % rounded key-box, shadowed title block
 \usepackage[round,authoryear]{natbib}
-\usepackage[colorlinks=true,linkcolor=paperblue,citecolor=paperblue,urlcolor=paperblue]{hyperref}
-\tcbuselibrary{skins}
-\usetikzlibrary{arrows.meta,positioning}
+\usetikzlibrary{arrows.meta,positioning,calc}
 
-% ============================================================
-%  EIF Final Culmination: portfolio, reflection and story of my work
-%  Build with:  pdflatex eif-final-culmination.tex && bibtex eif-final-culmination
-%               && pdflatex eif-final-culmination.tex && pdflatex eif-final-culmination.tex
-%  Figures are reused from the other folders of this repository
-%  (../whitepaper, ../synthetic-data-generator, ../results-and-discussion),
-%  so build with the repository layout intact.
-% ============================================================
-
-% ---- colours shared with the whitepaper and the Deliverable 3 slides ----
-\definecolor{paperblue}{RGB}{59,103,190}
-\definecolor{titlebox}{RGB}{248,247,253}
+%% ---------------------------------------------------------------------------
+%% 2. COLOURS (Eskwelabs gradient sampled from the website, plus brand accents)
+%% ---------------------------------------------------------------------------
+\definecolor{eskmint}{HTML}{9CC7A5}     % top of the website gradient
+\definecolor{eskteal}{HTML}{2F8A86}     % middle; also the wordmark teal
+\definecolor{eskdeep}{HTML}{1F5560}     % deep teal
+\definecolor{eskindigo}{HTML}{3B3A5C}   % bottom of the gradient
+\definecolor{eskorange}{HTML}{E07B50}   % brand orange (alerts)
+\definecolor{eskblue}{HTML}{2A44A8}     % brand blue (key results)
 \definecolor{good}{RGB}{30,132,73}
 \definecolor{bad}{RGB}{192,57,43}
 \definecolor{ink}{RGB}{35,40,52}
 \definecolor{softgray}{RGB}{110,116,128}
+\definecolor{paleteal}{HTML}{EEF6F4}
 
-% ---- headings ----
-\titleformat{\section}{\normalfont\sffamily\bfseries\large\color{paperblue}}{\thesection}{0.6em}{}
-\titleformat{\subsection}{\normalfont\sffamily\bfseries}{\thesubsection}{0.6em}{}
-\titlespacing*{\section}{0pt}{1.4em}{0.7em}
-\titlespacing*{\subsection}{0pt}{1.1em}{0.5em}
-\renewcommand{\bibsection}{\section*{Sources}}
-\setlength{\bibsep}{3pt}
-\setlength{\emergencystretch}{2em}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{5pt}
+\setbeamercolor{normal text}{fg=ink}
+\setbeamercolor{structure}{fg=eskteal}
+\setbeamercolor{alerted text}{fg=eskorange}
+\setbeamercolor{frametitle}{fg=eskdeep,bg=white}
+\setbeamercolor{item projected}{bg=eskteal,fg=white}
+\colorlet{keyresult}{eskblue}
+\hypersetup{colorlinks=true,urlcolor=eskteal,linkcolor=eskteal,citecolor=eskteal,
+  pdftitle={EIF Final Culmination: The Story of My Student Retention Synthetic Dataset Project},
+  pdfauthor={Matthew C. Batitay},
+  pdfsubject={Eskwelabs Innovation Fellowship, Data Innovation Track},
+  pdfkeywords={portfolio, reflection, synthetic data, student retention, Eskwelabs Innovation Fellowship}}
 
-% ---- float placement ----
-\renewcommand{\topfraction}{0.9}
-\renewcommand{\textfraction}{0.07}
-\renewcommand{\floatpagefraction}{0.7}
+%% ---------------------------------------------------------------------------
+%% 3. THE GRADIENT (three seamless bands, light at the top, indigo at the bottom)
+%% ---------------------------------------------------------------------------
+\newcommand{\eskbg}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \shade[top color=eskmint,bottom color=eskteal]
+      (current page.north west) rectangle ($(current page.north east)+(0,-0.42\paperheight)$);
+    \shade[top color=eskteal,bottom color=eskdeep]
+      ($(current page.north west)+(0,-0.42\paperheight)$) rectangle ($(current page.south east)+(0,0.30\paperheight)$);
+    \shade[top color=eskdeep,bottom color=eskindigo]
+      ($(current page.south west)+(0,0.30\paperheight)$) rectangle (current page.south east);
+  \end{tikzpicture}}
 
-% ---- footer: the synthetic-data notice is on every page ----
-\pagestyle{fancy}
-\fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\fancyfoot[L]{\color{softgray}\sffamily\scriptsize Batitay \,$\cdot$\, EIF Final Culmination}
-\fancyfoot[C]{\color{bad}\sffamily\bfseries\scriptsize SYNTHETIC DATA: not real students}
-\fancyfoot[R]{\color{softgray}\sffamily\scriptsize\thepage}
-\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}
-  \fancyfoot[L]{\color{softgray}\sffamily\scriptsize Batitay \,$\cdot$\, EIF Final Culmination}
-  \fancyfoot[C]{\color{bad}\sffamily\bfseries\scriptsize SYNTHETIC DATA: not real students}
-  \fancyfoot[R]{\color{softgray}\sffamily\scriptsize\thepage}}
+% Content slides: white page with a slim gradient strip at the top
+\setbeamertemplate{background}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \shade[left color=eskmint,right color=eskteal,middle color=eskteal!85!eskmint]
+      (current page.north west) rectangle ($(current page.north east)+(0,-0.42cm)$);
+  \end{tikzpicture}}
 
-% ---- small helpers ----
-\newcommand{\key}[1]{\textcolor{paperblue}{\textbf{#1}}}
-\newcommand{\ptag}[1]{\texttt{\small #1}}
-\newcommand{\pfield}[1]{\par\vspace{3pt}\noindent{\sffamily\bfseries\color{paperblue}#1}\par\nopagebreak\vspace{-2pt}}
-\newcommand{\repo}{https://github.com/machew-b/Student-Retention-Synthetic-Data-Generator}
-\newcommand{\gh}[2]{\href{\repo/#1}{#2}}
+%% ---------------------------------------------------------------------------
+%% 4. THEME (layout)
+%% ---------------------------------------------------------------------------
+\usetheme{default}
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=0.9cm,text margin right=0.9cm}
+\setbeamertemplate{itemize item}[triangle]
+\setbeamertemplate{itemize subitem}[circle]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{blocks}[default]
+\setbeamertemplate{bibliography item}{}
+\setbeamerfont{itemize/enumerate body}{size=\small}
+\setbeamerfont{itemize/enumerate subbody}{size=\footnotesize}
+\renewcommand{\bibsection}{}
 
-% A deliverable header bar
-\newtcolorbox{deliverable}[1]{enhanced,colback=titlebox,colframe=paperblue!60,boxrule=0.6pt,arc=2mm,
-  left=3mm,right=3mm,top=1.5mm,bottom=1.5mm,fonttitle=\sffamily\bfseries,coltitle=white,colbacktitle=paperblue,
-  title={#1},attach boxed title to top left={yshift=-2mm,xshift=3mm},boxed title style={arc=1.5mm,boxrule=0pt}}
+% Header: section name on the gradient strip (the section "tab")
+\setbeamertemplate{headline}{%
+  \leavevmode\vbox to 0.42cm{\vss
+    \hbox to \paperwidth{\hspace{0.9cm}{\color{white}\sffamily\bfseries\scriptsize\insertsectionhead}%
+      \hfill{\color{white}\sffamily\scriptsize Eskwelabs Innovation Fellowship}\hspace{0.9cm}}\vss}}
 
+% Frame title: deep teal, with a short gradient accent bar
+\setbeamertemplate{frametitle}{%
+  \vskip1.6mm\leavevmode
+  {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle}\par
+  \vskip0.4mm
+  \begin{tikzpicture}
+    \shade[left color=eskmint,right color=eskteal] (0,0) rectangle (2.4cm,0.07cm);
+    \fill[eskteal!25] (2.4cm,0.015cm) rectangle (\textwidth,0.055cm);
+  \end{tikzpicture}\par}
+\setbeamerfont{frametitle}{family=\sffamily\bfseries,size=\large}
+
+% Footer: author | synthetic-data notice | n / N  (the notice is on every slide)
+\setbeamertemplate{footline}{%
+  \leavevmode\hbox to\paperwidth{%
+    \hspace{0.9cm}{\color{softgray}\sffamily\scriptsize Batitay \,$\cdot$\, EIF Final Culmination}%
+    \hfill{\color{bad}\sffamily\bfseries\scriptsize SYNTHETIC DATA: not real students}%
+    \hfill{\color{softgray}\sffamily\scriptsize\insertframenumber\,/\,\inserttotalframenumber}\hspace{0.9cm}}%
+  \vskip3mm}
+
+%% ---------------------------------------------------------------------------
+%% 5. HELPERS
+%% ---------------------------------------------------------------------------
+% Rounded key-box (the template's gray box, in teal)
+\newtcolorbox{keybox}[1][]{enhanced,arc=1.5mm,boxrule=1pt,colframe=eskteal,colback=paleteal,
+  left=3mm,right=3mm,top=1.2mm,bottom=1.2mm,width=\linewidth,#1}
+% Warning box
+\newtcolorbox{noticebox}{enhanced,arc=1.5mm,boxrule=1pt,colframe=bad,colback=white,
+  left=3mm,right=3mm,top=1.5mm,bottom=1.5mm,width=\linewidth}
 % Four-quadrant boxes
-\newtcolorbox{qbox}[3]{height=#3,valign=top,colback=white,colframe=#1,boxrule=0.8pt,arc=2mm,left=2.5mm,right=2.5mm,top=1.5mm,bottom=1.5mm,
-  title={#2},fonttitle=\sffamily\bfseries\small,coltitle=white,colbacktitle=#1,
+\newtcolorbox{qbox}[3]{enhanced,arc=1.5mm,boxrule=0.8pt,colframe=#1,colback=white,
+  left=2.5mm,right=2.5mm,top=1mm,bottom=1mm,height=#3,valign=top,
+  title={#2},fonttitle=\sffamily\bfseries\footnotesize,coltitle=white,colbacktitle=#1,
   before upper={\footnotesize\setlength{\parskip}{2pt}}}
 
-\hypersetup{pdftitle={EIF Final Culmination: The Story of My Student Retention Synthetic Dataset Project},pdfauthor={Matthew C. Batitay},pdfsubject={Eskwelabs Innovation Fellowship, Data Innovation Track},pdfkeywords={portfolio, reflection, synthetic data, student retention, Eskwelabs Innovation Fellowship}}
+\newcommand{\key}[1]{\textcolor{keyresult}{\textbf{#1}}}
+\newcommand{\ptag}[1]{\texttt{\small #1}}
+\newcommand{\pfield}[1]{{\sffamily\bfseries\color{eskteal}#1}}
+\newcommand{\repo}{https://github.com/machew-b/Student-Retention-Synthetic-Data-Generator}
+\newcommand{\gh}[2]{\href{\repo/#1}{#2}}
+\newcommand{\boxedans}[1]{\boxed{#1}}
 
+% Section divider: gradient page, big number, the five sections with the current one lit
+\newcommand{\sectiondivider}[2]{%
+  {\usebackgroundtemplate{\eskbg}
+  \begin{frame}[plain,c]
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[anchor=west,white,font=\sffamily\fontsize{64}{64}\selectfont\bfseries]
+        at ([xshift=1.3cm,yshift=0.2cm]current page.west) {#1};
+      \node[anchor=west,white,font=\sffamily\Large\bfseries,text width=6.2cm]
+        at ([xshift=3.6cm,yshift=0.2cm]current page.west) {#2};
+      \foreach \i/\nm in {1/About me,2/My EIF journey,3/Project portfolio,4/Reflection,5/What is next}{%
+        \ifnum\i=#1 \def\opc{1}\def\wt{\bfseries}\else \def\opc{0.5}\def\wt{\mdseries}\fi
+        \node[anchor=west,text=white,text opacity=\opc,font=\sffamily\small\wt]
+          at ([xshift=-4.7cm,yshift={1.5cm-\i*0.75cm}]current page.east) {\i\quad\nm};}
+    \end{tikzpicture}
+  \end{frame}}}
+
+%% ---------------------------------------------------------------------------
+%% 6. DOCUMENT
+%% ---------------------------------------------------------------------------
 \begin{document}
 
-% ============================================================ title box
-\begin{tcolorbox}[colback=titlebox,colframe=titlebox,arc=4mm,boxrule=0pt,left=10mm,right=10mm,top=6mm,bottom=6mm]
-\begin{center}
-{\sffamily\bfseries\LARGE EIF Final Culmination:\\[3pt] The Story of My Student Retention\\[3pt] Synthetic Dataset Project}\\[10pt]
-{\large Matthew C. Batitay}\\[2pt]
-{\itshape Eskwelabs Innovation Fellowship, Data Innovation Track}\\[2pt]
-{\small November 2026}
-\end{center}
-\vspace{6pt}
+% ---- Title (gradient page, shadowed white title block) ----
+{\usebackgroundtemplate{\eskbg}
+\begin{frame}[plain,c]
+  \centering
+  \begin{tcolorbox}[enhanced,colback=white,colframe=white,arc=4mm,boxrule=0pt,drop fuzzy shadow,
+      width=0.88\textwidth,left=6mm,right=6mm,top=5mm,bottom=5mm]
+    \centering
+    {\color{eskteal}\sffamily\bfseries\scriptsize\textls[200]{ESKWELABS INNOVATION FELLOWSHIP}}\\[1pt]{\color{softgray}\sffamily\scriptsize Data Innovation Track}\\[8pt]
+    {\color{eskdeep}\sffamily\bfseries\LARGE EIF Final Culmination}\\[3pt]
+    {\color{eskdeep}\sffamily\large The Story of My Student Retention\\ Synthetic Dataset Project}\\[9pt]
+    {\color{eskteal}\rule{2.4cm}{1.2pt}}\\[8pt]
+    {\large\textbf{Matthew C. Batitay}}\\[2pt]
+    {\small November 2026}
+  \end{tcolorbox}
+\end{frame}}
 
-\noindent\textbf{Projects $\to$ Portfolio $\to$ Story.} This document gathers my fellowship work into one place and asks the question the Final Culmination is built around: what did I do, and what does it say about me? My EIF work is a single Synthetic Dataset project delivered in three parts: a whitepaper that specifies a two-layer model of student dropout in Philippine higher education, a generator and a 50,000-student dataset built from that specification, and an analysis of the dataset that grades common analytics methods against a known true effect. Below I say who I am, how the work unfolded, what each deliverable contains and what I did in it, what I learned, and what I would do next. It is a reflection on work that already exists and a map to its files. It is not a new project, and it makes no claim of being perfect.
-\end{tcolorbox}
+%% ======================= OPENING ==========================================
+\begin{frame}{What this deck is}
+  \begin{keybox}
+    \centering\sffamily\bfseries\color{eskdeep}
+    ``What did I do, and what does it say about me?''
+  \end{keybox}
+  \medskip
 
-\vspace{4pt}
-\begin{tcolorbox}[colback=white,colframe=bad,boxrule=0.8pt,arc=2mm,left=3mm,right=3mm,top=1.5mm,bottom=1.5mm]
-\small\textbf{\textcolor{bad}{Everything numerical in this document is synthetic.}} Each figure below describes the behaviour of a generative model calibrated to cited \emph{aggregate} statistics. None of it measures any real Philippine student or institution, and no number here should be reported as an empirical finding. The only real numbers are the model inputs tagged \ptag{CALIBRATED} with a citation. Parameters carry one of three tags throughout: \ptag{LOCKED} (fixed by design), \ptag{CALIBRATED} (set to reproduce a cited statistic) or \ptag{ASSUMED} (a stated modelling choice without a citation).
-\end{tcolorbox}
+  \textbf{Projects $\to$ Portfolio $\to$ Story.} My EIF work is a single
+  Synthetic Dataset project, delivered in three parts:
+  \begin{enumerate}
+    \item[\textbf{D1}] a \textbf{whitepaper} that specifies a two-layer model of student dropout,
+    \item[\textbf{D2}] a \textbf{generator} and a 50,000-student dataset built from it,
+    \item[\textbf{D3}] an \textbf{analysis} that grades common methods against a known true effect.
+  \end{enumerate}
+  \medskip
 
-\vspace{2pt}
-\noindent{\sffamily\bfseries\color{paperblue}How this document is organised.}\quad
-\textbf{1}~About me \,$\cdot$\, \textbf{2}~My EIF journey \,$\cdot$\, \textbf{3}~Project portfolio \,$\cdot$\, \textbf{4}~Reflection \,$\cdot$\, \textbf{5}~What is next
+  {\small This deck is a reflection on work that already exists and a map to its
+  files. It is not a new project, and it makes no claim of being perfect.}
+  \medskip
 
-% ============================================================ 1 ABOUT ME
-\FloatBarrier
-\section{About Me}
-\label{sec:about}
+  \begin{center}
+  \begin{tikzpicture}[chip/.style={rounded corners=2pt,fill=eskteal,text=white,font=\sffamily\scriptsize\bfseries,inner sep=4pt,minimum width=2.4cm}]
+    \node[chip] (a) {1\quad About me};
+    \node[chip,right=0.15cm of a] (b) {2\quad My EIF journey};
+    \node[chip,right=0.15cm of b] (c) {3\quad Project portfolio};
+    \node[chip,right=0.15cm of c,fill=eskdeep] (d) {4\quad Reflection};
+    \node[chip,right=0.15cm of d,fill=eskindigo] (e) {5\quad What is next};
+  \end{tikzpicture}
+  \end{center}
+\end{frame}
 
-I am Matthew C. Batitay, a Fellow in the Eskwelabs Innovation Fellowship (EIF), Data Innovation Track. My work lives on GitHub as \href{https://github.com/machew-b}{\texttt{machew-b}}, and everything described here is in one public repository: \gh{}{Student Retention Synthetic Data Generator}.
+\begin{frame}{Everything numerical here is synthetic}
+  \begin{noticebox}
+    \small\textbf{\textcolor{bad}{Synthetic data notice.}} Each figure in this deck describes the
+    behaviour of a generative model calibrated to cited \emph{aggregate} statistics.
+    None of it measures any real Philippine student or institution, and no number
+    should be reported as an empirical finding. The only real numbers are model
+    inputs tagged \ptag{CALIBRATED} with a citation.
+  \end{noticebox}
+  \medskip
 
-In the fellowship I took on a Synthetic Dataset project: model a real-world system, encode its variables and relationships mathematically, and generate data that reproduces realistic correlations, drop-off and edge cases. I chose student retention in Philippine higher education, a setting where published attrition figures exist only in aggregate, and where records show what a student does but not why a student leaves.
+  Every parameter carries one of three provenance tags:
+  \medskip
 
-\subsection{How I work}
-Four habits run through all three deliverables, and each can be checked in the repository rather than taken on my word.
-\begin{itemize}[topsep=2pt,itemsep=2pt,parsep=0pt]
-\item \key{Write every assumption down.} All 60 generator parameters carry a provenance tag and are logged in a file. Nothing enters the model untagged.
-\item \key{Build in a known answer.} I fixed the true effect of the support programme by design, so any analysis can be scored against the truth rather than only judged plausible.
-\item \key{Separate what matched by construction from what was independently checked.} Fitting to a target shows only that a loop converged. I keep that apart from checks that have independent content.
-\item \key{Say what the work is not.} The dataset ships with a usage notice, every output carries a synthetic-data banner, and the deck has a slide titled ``what these results are not''.
-\end{itemize}
+  \begin{center}
+  \begin{tikzpicture}
+    \node[draw=eskdeep,rounded corners=2pt,text width=3.9cm,align=center,inner sep=5pt,font=\sffamily\small] (l) {\textbf{LOCKED}\\[1pt]\footnotesize fixed by design};
+    \node[draw=eskteal,rounded corners=2pt,text width=3.9cm,align=center,inner sep=5pt,font=\sffamily\small,right=0.3cm of l] (c) {\textbf{CALIBRATED}\\[1pt]\footnotesize set to reproduce a cited statistic};
+    \node[draw=eskorange,rounded corners=2pt,text width=3.9cm,align=center,inner sep=5pt,font=\sffamily\small,right=0.3cm of c] (a) {\textbf{ASSUMED}\\[1pt]\footnotesize a stated modelling choice, no citation};
+  \end{tikzpicture}
+  \end{center}
+\end{frame}
 
-\subsection{Skills snapshot}
-\begin{center}
-\small
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.43\textwidth}>{\raggedright\arraybackslash}p{0.21\textwidth}@{}}
-\toprule
-\textbf{Area} & \textbf{What I did with it} & \textbf{Where to see it}\\
-\midrule
-Statistical modelling and simulation & Latent-variable panel model, discrete-time hazard, nested-bisection calibration with common random numbers & Whitepaper; generator\\
-Causal inference & Confounded assignment, Mantel--Haenszel, cluster-robust Poisson, inverse-probability weighting, adjustment-set ladder, DAG & Analytics notebook, Sec.~8\\
-Predictive modelling and evaluation & Student-grouped cross-validation, logistic hazard, boosted trees, leakage guard, performance ceilings & Analytics notebook, Sec.~6\\
-Python data stack & numpy, pandas, SciPy, statsmodels, scikit-learn, matplotlib & Both notebooks\\
-Reproducibility & Seeded independent random streams, SHA-256 fingerprints of every table, pinned requirements, hash-parity tests & Generator; analytics Sec.~3\\
-Research and sourcing & Traced national and regional attrition figures to their original reports and cohorts & Whitepaper Sec.~10\\
-Technical writing and communication & 29-page whitepaper, folder READMEs, 19-page LaTeX slide deck & All three folders\\
-Responsible data practice & Synthetic-data notice, no region names in individual-level tables, regional tier kept out of the flagging model & Whitepaper Sec.~13\\
-\bottomrule
-\end{tabular}
-\end{center}
+%% ======================= SECTION 1 =========================================
+\section{1~~About Me}
+\sectiondivider{1}{About me}
 
-% ============================================================ 2 JOURNEY
-\section{My EIF Journey}
-\label{sec:journey}
+\begin{frame}{Who I am}
+  \begin{itemize}
+    \item I am \textbf{Matthew C. Batitay}, a Fellow in the \textbf{Eskwelabs
+          Innovation Fellowship (EIF)}, Data Innovation Track.
+    \item My work lives on GitHub as
+          \href{https://github.com/machew-b}{\texttt{machew-b}}, in one public
+          repository: \gh{}{Student Retention Synthetic Data Generator}.
+    \item In the fellowship I took on a \textbf{Synthetic Dataset} project: model a
+          real-world system, encode its variables and relationships
+          mathematically, and generate data with realistic correlations,
+          drop-off and edge cases.
+    \item I chose \alert{student retention in Philippine higher education}: published
+          attrition figures exist only in aggregate, and records show what a
+          student does but not why a student leaves.
+  \end{itemize}
+\end{frame}
 
-\subsection{The track, the brief and what ``done'' meant}
-The Data Innovation Track's Synthetic Dataset project has three deliverables. I met each with one artefact, and the table below also records what the programme's definition of done required and how I answered it.
+\begin{frame}{How I work}
+  \small
+  Four habits run through all three deliverables, and each can be checked in
+  the repository rather than taken on my word.
+  \medskip
 
-\begin{center}
-\small
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.07\textwidth}>{\raggedright\arraybackslash}p{0.38\textwidth}>{\raggedright\arraybackslash}p{0.47\textwidth}@{}}
-\toprule
- & \textbf{Deliverable asked for} & \textbf{What I delivered}\\
-\midrule
-D1 & Data model document with 5+ tables and latent and observed relationships & Whitepaper (v17), 8 tables, hidden and recorded layers, 29 pages\\
-D2 & Notebook that generates a customisable number of rows across the tables & Generator notebook v1.0.1 and the 50,000-student dataset it produced\\
-D3 & Notebook and/or presentation showcasing analytics on the dataset & Analytics notebook (85 cells), executed HTML export and a 19-page slide deck\\
-\bottomrule
-\end{tabular}
-\end{center}
+  \begin{itemize}
+    \item \key{Write every assumption down.} All 60 generator parameters carry a
+          provenance tag and are logged in a file. Nothing enters the model untagged.
+    \item \key{Build in a known answer.} I fixed the true effect of the support
+          programme by design, so any analysis can be scored against the truth
+          rather than only judged plausible.
+    \item \key{Separate what matched by construction from what was independently
+          checked.} Fitting to a target shows only that a loop converged. I keep
+          that apart from checks with independent content.
+    \item \key{Say what the work is not.} The dataset ships with a usage notice,
+          every output carries a synthetic-data banner, and the deck has a slide
+          titled ``what these results are not''.
+  \end{itemize}
+\end{frame}
 
-\begin{center}
-\small
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.36\textwidth}>{\raggedright\arraybackslash}p{0.57\textwidth}@{}}
-\toprule
-\textbf{Definition of done} & \textbf{How I met it}\\
-\midrule
-Notebook runs end to end from a clean environment & Library versions are pinned in a \texttt{requirements.txt} in each notebook folder. The generator runs in about 30 to 50 seconds at 50,000 students, and the analysis in about 10 to 15 minutes.\\
-Every assumption and distribution choice is written down & 60 generator parameters (51 \ptag{ASSUMED}, 6 \ptag{CALIBRATED}, 3 \ptag{LOCKED}) in \texttt{parameter\_log.csv}; the analysis adds its own tagged registry; limitations are logged as open flags OF-1 to OF-12 and DF-1 to DF-9.\\
-Data survives a sanity check, with at least two deliberate edge cases & 29 integrity checks plus a correlation test; two engineered edge cases (2,937 and 774 student-terms).\\
-A short README states what a user could analyse & The generator README lists five uses, from dropout prediction to estimator-choice exercises.\\
-\bottomrule
-\end{tabular}
-\end{center}
+\begin{frame}{Skills snapshot}
+  \centering\scriptsize
+  \renewcommand{\arraystretch}{1.05}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.4cm}>{\raggedright\arraybackslash}p{7.2cm}>{\raggedright\arraybackslash}p{2.6cm}@{}}
+    \toprule
+    \textbf{Area} & \textbf{What I did with it} & \textbf{Where to see it}\\
+    \midrule
+    Modelling and simulation & Latent-variable panel model, discrete-time hazard, nested-bisection calibration & Whitepaper; generator\\
+    Causal inference & Mantel--Haenszel, cluster-robust Poisson, inverse-probability weighting, DAG & Analytics, Sec.~8\\
+    Predictive modelling & Grouped cross-validation, logistic hazard, boosted trees, leakage guard & Analytics, Sec.~6\\
+    Python data stack & numpy, pandas, SciPy, statsmodels, scikit-learn, matplotlib & Both notebooks\\
+    Reproducibility & Seeded random streams, SHA-256 of every table, pinned requirements & Generator; analytics Sec.~3\\
+    Research and sourcing & Traced attrition figures to their original reports and cohorts & Whitepaper, Sec.~10\\
+    Technical writing & 29-page whitepaper, READMEs, 19-page LaTeX slide deck & All three folders\\
+    Responsible data practice & Synthetic notice, no region names, regional tier kept out of the flagging model & Whitepaper, Sec.~13\\
+    \bottomrule
+  \end{tabular}
+\end{frame}
 
-\subsection{The path through the work}
-The work did not run in a straight line. The specification came first, the generator exposed where the specification and its implementation disagreed, and the analysis then stress-tested those disagreements instead of hiding them.
+%% ======================= SECTION 2 =========================================
+\section{2~~My EIF Journey}
+\sectiondivider{2}{My EIF journey}
 
-\begin{center}
-\begin{tikzpicture}[
-  box/.style={rounded corners=3pt,draw=paperblue,fill=titlebox,align=center,text width=2.55cm,minimum height=2.3cm,inner sep=3pt,font=\sffamily\scriptsize,text=ink},
-  arr/.style={-{Latex[length=2mm]},paperblue,thick}]
-\node[box] (a) {\textbf{\normalsize 1}\\[1pt]\textbf{Choose the system}\\Why students leave, and what records miss};
-\node[box,right=0.62cm of a] (b) {\textbf{\normalsize 2}\\[1pt]\textbf{Whitepaper v17}\\Eight tables, Eqs.~1--4, tagged parameters, validation plan};
-\node[box,right=0.62cm of b] (c) {\textbf{\normalsize 3}\\[1pt]\textbf{Generator v1.0.1}\\50,000-student dataset, 29 checks, scorecard};
-\node[box,right=0.62cm of c] (d) {\textbf{\normalsize 4}\\[1pt]\textbf{Analytics}\\85-cell notebook, HTML, 19-page deck, 11 scenarios};
-\node[box,right=0.62cm of d,fill=paperblue,text=white,draw=paperblue] (e) {\textbf{\normalsize 5}\\[1pt]\textbf{Final Culmination}\\This portfolio: story, reflection, next steps};
-\draw[arr] (a)--(b); \draw[arr] (b)--(c); \draw[arr] (c)--(d); \draw[arr] (d)--(e);
-\draw[dashed,softgray,-{Latex[length=2mm]},thick] (c.south) to[out=-90,in=-90,looseness=0.7]
-  node[midway,below=1pt,font=\sffamily\scriptsize,text=softgray,align=center]{realised targeting differed from the design (OF-1): documented, then tested in step 4} (d.south);
-\end{tikzpicture}
-\end{center}
-\vspace{10pt}
+\begin{frame}{The track, the brief, and my three deliverables}
+  \small
+  The Data Innovation Track's Synthetic Dataset project has three deliverables.
+  I met each with one artefact.
+  \medskip
 
-\subsection{The good, the bad, the old, the new}
-\label{sec:gbon}
-\begin{minipage}[t]{0.485\textwidth}
-\begin{qbox}{good}{The good}{4.6cm}
-The analysis notebook carries a verbatim copy of the generator engine and regenerates all eight tables bit for bit. Seven of seven comparable scorecard rows re-derive identically from the CSV files.
+  \centering\footnotesize
+  \renewcommand{\arraystretch}{1.25}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.8cm}>{\raggedright\arraybackslash}p{5.6cm}>{\raggedright\arraybackslash}p{7.1cm}@{}}
+    \toprule
+     & \textbf{Deliverable asked for} & \textbf{What I delivered}\\
+    \midrule
+    \key{D1} & Data model document with 5+ tables and latent and observed relationships & Whitepaper (v17), 8 tables, hidden and recorded layers, 29 pages\\
+    \key{D2} & Notebook that generates a customisable number of rows across the tables & Generator notebook v1.0.1 and the 50,000-student dataset it produced\\
+    \key{D3} & Notebook and/or presentation showcasing analytics on the dataset & Analytics notebook (85 cells), executed HTML export and a 19-page slide deck\\
+    \bottomrule
+  \end{tabular}
+\end{frame}
 
-Because the true effect is known (30\%), methods can be graded. The naive comparison says support \emph{raises} dropout by 57.7\%, while Mantel--Haenszel gives a 32.2\% reduction (95\% CI 24.3\% to 39.3\%).
-\end{qbox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.485\textwidth}
-\begin{qbox}{bad}{The bad}{4.6cm}
-The whitepaper's design targeting (70\% sensitivity, 25\% false flags) is not what the generator realises (about 16\% and 22\%). I did not re-fit the assignment parameters to force a match (OF-1).
+\begin{frame}{What ``done'' meant, and how I met it}
+  \centering\scriptsize
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.0cm}>{\raggedright\arraybackslash}p{9.0cm}@{}}
+    \toprule
+    \textbf{Definition of done} & \textbf{How I met it}\\
+    \midrule
+    Notebook runs end to end from a clean environment & Library versions are pinned in a \texttt{requirements.txt} in each notebook folder. The generator runs in about 30 to 50 seconds at 50,000 students, and the analysis in about 10 to 15 minutes.\\
+    Every assumption and distribution choice is written down & 60 generator parameters (51 \ptag{ASSUMED}, 6 \ptag{CALIBRATED}, 3 \ptag{LOCKED}) in \texttt{parameter\_log.csv}; the analysis adds its own tagged registry; limitations are logged as open flags OF-1 to OF-12 and DF-1 to DF-9.\\
+    Data survives a sanity check, with at least two deliberate edge cases & 29 integrity checks plus a correlation test; two engineered edge cases (2,937 and 774 student-terms).\\
+    A short README states what a user could analyse & The generator README lists five uses, from dropout prediction to estimator-choice exercises.\\
+    \bottomrule
+  \end{tabular}
+\end{frame}
 
-The held-out check passes only narrowly: 1.673 against a band of 1.2 to 1.7, with about 60\% of 20 replicate populations inside the band. Inverse-probability weighting swings from $-47\%$ to $+72\%$ across populations.
-\end{qbox}
-\end{minipage}
+\begin{frame}{The path through the work}
+  \small
+  The work did not run in a straight line. The specification came first, the
+  generator exposed where the specification and its implementation disagreed,
+  and the analysis then stress-tested those disagreements instead of hiding them.
+  \bigskip
 
-\vspace{5pt}
-\begin{minipage}[t]{0.485\textwidth}
-\begin{qbox}{softgray}{The old}{3.1cm}
-The whitepaper's Appendix A reports a \emph{pilot} implementation (Mantel--Haenszel 25.5\%, held-out ratio 1.72, not passed). Generator v1.0.0 kept its frozen calibration constants rounded and left some structural counts untagged.
-\end{qbox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.485\textwidth}
-\begin{qbox}{paperblue}{The new}{3.1cm}
-Version 1.0.1 stores the calibration at full precision and tags every number. The released dataset's numbers supersede the pilot's. The analysis adds eleven recalibrated sensitivity scenarios, which answer the question OF-1 left open, and a plain statement of what the results are not.
-\end{qbox}
-\end{minipage}
+  \centering
+  \begin{tikzpicture}[
+    box/.style={rounded corners=3pt,draw=eskteal,fill=paleteal,align=center,text width=2.2cm,minimum height=2.2cm,inner sep=3pt,font=\sffamily\scriptsize,text=ink},
+    arr/.style={-{Latex[length=2mm]},eskteal,thick}]
+    \node[box] (a) {\textbf{\normalsize 1}\\[1pt]\textbf{Choose the system}\\Why students leave, and what records miss};
+    \node[box,right=0.4cm of a] (b) {\textbf{\normalsize 2}\\[1pt]\textbf{Whitepaper v17}\\Eight tables, Eqs.~1--4, tagged parameters, validation plan};
+    \node[box,right=0.4cm of b] (c) {\textbf{\normalsize 3}\\[1pt]\textbf{Generator v1.0.1}\\50,000-student dataset, 29 checks, scorecard};
+    \node[box,right=0.4cm of c] (d) {\textbf{\normalsize 4}\\[1pt]\textbf{Analytics}\\85-cell notebook, HTML, 19-page deck, 11 scenarios};
+    \node[box,right=0.4cm of d,fill=eskteal,text=white,draw=eskteal] (e) {\textbf{\normalsize 5}\\[1pt]\textbf{Final Culmination}\\This deck: story, reflection, next steps};
+    \draw[arr] (a)--(b); \draw[arr] (b)--(c); \draw[arr] (c)--(d); \draw[arr] (d)--(e);
+    \draw[dashed,softgray,-{Latex[length=2mm]},thick] (c.south) to[out=-90,in=-90,looseness=0.7]
+      node[midway,below=1pt,font=\sffamily\scriptsize,text=softgray,align=center]{realised targeting differed from the design (OF-1): documented, then tested in step 4} (d.south);
+  \end{tikzpicture}
+\end{frame}
 
-% ============================================================ 3 PORTFOLIO
-\section{Project Portfolio}
-\label{sec:portfolio}
+\begin{frame}{The good and the bad}
+  \begin{minipage}[t]{0.485\textwidth}
+  \begin{qbox}{good}{The good}{5.2cm}
+    \footnotesize
+    The analysis notebook carries a verbatim copy of the generator engine and
+    regenerates all eight tables bit for bit. Seven of seven comparable scorecard
+    rows re-derive identically from the CSV files.
 
-My EIF work is one project with three deliverables. Each is presented the same way: the problem or context, my role and contributions, the output, and the skills it demonstrated. The aim is that a reader who has seen nothing else can tell what I actually did.
+    The true effect is known (30\%), so methods can be graded: the naive comparison
+    says support \emph{raises} dropout by 57.7\%, while Mantel--Haenszel gives a
+    32.2\% reduction (95\% CI 24.3\% to 39.3\%).
+  \end{qbox}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.485\textwidth}
+  \begin{qbox}{bad}{The bad}{5.2cm}
+    \footnotesize
+    The whitepaper's design targeting (70\% sensitivity, 25\% false flags) is not
+    what the generator realises (about 16\% and 22\%). I did not re-fit the
+    assignment parameters to force a match (OF-1).
 
-\subsection{The project at a glance}
-\pfield{Problem / Context}
-Philippine tertiary records show what a student does (grades, attendance, financial-account status) but not why a student leaves, and no public dataset links the two at the individual level. National and regional attrition figures exist, but they are aggregates and do not all trace to the same cohort. Retention early-warning systems also tend to base support on the same signals that predict dropout, so the effect of a support programme cannot be read off a naive comparison. Reviews of the dropout-prediction literature describe this as an actionability gap: strong predictive accuracy but little evidence that predictions become interventions that work \citep{dropout2026review}.
+    The held-out check passes only narrowly: 1.673 against a band of 1.2 to 1.7,
+    with about 60\% of 20 replicate populations inside the band. Inverse-probability
+    weighting swings from $-47\%$ to $+72\%$.
+  \end{qbox}
+  \end{minipage}
+\end{frame}
 
-\pfield{The idea}
-I treated the gap between recorded and true state as the thing to model. A hidden layer (a student's baseline vulnerability $v_i$ and a per-term acute shock) drives both the recorded data and the dropout, and is never exported. Support is assigned from \emph{prior-term} signals, and the true effect is fixed at a risk ratio of exactly 0.70 (\ptag{LOCKED}, a design constant and not an empirical estimate). With $\sigma$ the logistic function, the two mechanisms that matter most are
-\begin{align}
-\text{risk}_{it} &= \sigma\bigl(\beta_0 + \beta\,k_{it}\bigr), \qquad k_{it} = \mathbb 1(\text{grade}_{i,t-1}<\tau_g) + \mathbb 1(\text{attend}_{i,t-1}<\tau_a) + \text{hold}_{i,t-1},\\
-h_{it} &= \sigma\bigl(\gamma_0 + \gamma_1 v_i + \gamma_2\,\text{shock}_{it}\bigr)\times\bigl(1 - 0.30\cdot\text{support}_{it}\bigr),
-\end{align}
-Here $k_{it}$ counts the prior-term signals that fire. Support is drawn as $\text{Bernoulli}(\text{risk}_{it})$ from term 2 onward, so it depends on observed signals that also predict dropout, and dropout is drawn as $\text{Bernoulli}(h_{it})$ with the true effect built into the second line. Everything downstream is a test of whether an analyst can recover that effect.
+\begin{frame}{The old and the new}
+  \begin{minipage}[t]{0.485\textwidth}
+  \begin{qbox}{softgray}{The old}{4.6cm}
+    \footnotesize
+    The whitepaper's Appendix A reports a \emph{pilot} implementation
+    (Mantel--Haenszel 25.5\%, held-out ratio 1.72, not passed).
+
+    Generator v1.0.0 kept its frozen calibration constants rounded and left some
+    structural counts untagged.
+  \end{qbox}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.485\textwidth}
+  \begin{qbox}{eskteal}{The new}{4.6cm}
+    \footnotesize
+    Version 1.0.1 stores the calibration at full precision and tags every number.
+    The released dataset's numbers supersede the pilot's.
+
+    The analysis adds eleven recalibrated sensitivity scenarios, which answer the
+    question OF-1 left open, and a plain statement of what the results are not.
+  \end{qbox}
+  \end{minipage}
+\end{frame}
+
+%% ======================= SECTION 3 =========================================
+\section{3~~Project Portfolio}
+\sectiondivider{3}{Project portfolio}
+
+\begin{frame}{The project at a glance: the problem}
+  \small
+  My EIF work is one project with three deliverables. Each is shown the same way:
+  \pfield{Problem / Context}, \pfield{My role and contributions}, \pfield{Output},
+  and \pfield{Skills demonstrated}.
+  \medskip
+
+  \pfield{Problem / Context}
+  \begin{itemize}
+    \item Philippine tertiary records show what a student does (grades, attendance,
+          financial-account status) but not why a student leaves, and no public
+          dataset links the two at the individual level.
+    \item National and regional attrition figures exist, but they are aggregates
+          and do not all trace to the same cohort.
+    \item Early-warning systems tend to base support on the same signals that
+          predict dropout, so the effect of a programme cannot be read off a naive
+          comparison. Reviews call this the \alert{actionability gap}
+          \citep{dropout2026review}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The project at a glance: the idea}
+  \small
+  I treated the gap between recorded and true state as the thing to model. A
+  \textbf{hidden layer} (baseline vulnerability $v_i$ and a per-term acute shock)
+  drives both the recorded data and the dropout, and is never exported. Support
+  is assigned from \emph{prior-term} signals, and the true effect is fixed at a
+  risk ratio of exactly 0.70 (\ptag{LOCKED}, a design constant, not an empirical
+  estimate). With $\sigma$ the logistic function:
+  \begin{align*}
+    \text{risk}_{it} &= \sigma\bigl(\beta_0 + \beta\,k_{it}\bigr),
+      \quad k_{it} = \mathbb 1(\text{grade}_{i,t-1}<\tau_g) + \mathbb 1(\text{attend}_{i,t-1}<\tau_a) + \text{hold}_{i,t-1},\\
+    h_{it} &= \sigma\bigl(\gamma_0 + \gamma_1 v_i + \gamma_2\,\text{shock}_{it}\bigr)\times\bigl(1 - 0.30\cdot\text{support}_{it}\bigr).
+  \end{align*}
+  \vspace{-4pt}
+  Here $k_{it}$ counts the prior-term signals that fire. Support is drawn as
+  $\text{Bernoulli}(\text{risk}_{it})$ from term 2 onward, so it depends on observed
+  signals that also predict dropout; dropout is drawn as
+  $\text{Bernoulli}(h_{it})$ with the true effect built into the second line.
+  \medskip
+
+  \begin{keybox}\centering\small
+    Everything downstream is a test of whether an analyst can \key{recover that effect}.
+  \end{keybox}
+\end{frame}
 
 % ---------------------------------------------------------------- D1
-\subsection{Deliverable 1: The whitepaper (data model)}
-\begin{deliverable}{Deliverable 1 \quad Whitepaper: the data model}
-\small \emph{A Two-Layer Synthetic Data Generator for Studying Student Retention Early-Warning Systems in Philippine Higher Education}. 29 pages, version 17, in \gh{tree/main/whitepaper}{\texttt{whitepaper/}}
-\end{deliverable}
+\begin{frame}{Deliverable 1, Whitepaper (1/2): context and my role}
+  \footnotesize
+  {\itshape A Two-Layer Synthetic Data Generator for Studying Student Retention
+  Early-Warning Systems in Philippine Higher Education.} 29 pages, version 17.
+  \smallskip
 
-\pfield{Problem / Context}
-Deliverable 1 asks for a data model with at least five tables and an explicit relationship between latent and observed variables. The difficulty is specific: published attrition figures disagree, no individual-level mechanism data is public, and a model that cannot be checked against anything is just a story.
+  \pfield{Problem / Context.} A data model with at least five tables and an explicit
+  latent-to-observed relationship. Published attrition figures disagree, no
+  individual-level mechanism data is public, and a model that cannot be checked is
+  just a story.
+  \vspace{1pt}
 
-\pfield{My role and contributions}
-\begin{itemize}[topsep=1pt,itemsep=2pt,parsep=0pt]
-\item Designed the eight-table schema (\texttt{Regions}, \texttt{Students} and six student-by-term panel tables) and a five-phase generation pipeline for 50,000 students over up to eight terms (\ptag{LOCKED}).
-\item Wrote the generative forms, including the confounded assignment rule and the fixed 30\% effect, so that the model has a built-in answer key.
-\item Traced the calibration targets to their sources \citep{cpbrd2026,edcom2025y2,ched2025presentation,pids2024}. I calibrated to the Class-of-2022 tier rates (67.1\% high tier, 45.9\% typical tier, \ptag{CALIBRATED}) and held a separate national figure of 29.4\% out for an independent check.
-\item Wrote the validation plan so that calibration-until-convergence is kept distinct from checks with independent content, following the verification-and-validation practice in \citet{law2015}: a held-out check, a confounding check and a recoverability check.
-\item Specified two deliberate edge cases (an unflagged high-risk student and a falsely flagged student) and a responsible-use section covering misrepresentation risk and regional framing.
-\item Added a field-level schema, integrity rules and a reproducibility policy as Appendix B, which the generator is later checked against.
-\end{itemize}
+  \pfield{My role and contributions}
+  \begin{itemize}\setlength\itemsep{1pt}
+    \item Designed the eight-table schema (\texttt{Regions}, \texttt{Students}, six
+          student-by-term panel tables) and a five-phase pipeline for 50,000
+          students over up to eight terms (\ptag{LOCKED}).
+    \item Wrote the generative forms, including the confounded assignment rule and
+          the fixed 30\% effect: a built-in answer key.
+    \item Traced the calibration targets to their sources
+          \citep{cpbrd2026,edcom2025y2,ched2025presentation,pids2024}. Calibrated
+          to the Class-of-2022 tier rates (67.1\% high, 45.9\% typical,
+          \ptag{CALIBRATED}) and held a 29.4\% national figure out for an
+          independent check.
+  \end{itemize}
+\end{frame}
 
-\pfield{Output}
-The \gh{blob/main/whitepaper/student-retention-data-generator-model.pdf}{whitepaper PDF}, its \gh{blob/main/whitepaper/student-retention-data-generator-model.tex}{LaTeX source} and bibliography, and two figure scripts. Figure~\ref{fig:pipeline} shows the pipeline.
+\begin{frame}{Deliverable 1, Whitepaper (2/2): the rest, output and skills}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{../whitepaper/figures/fig1_pipeline.png}\\[-1pt]
+      {\tiny The end-to-end pipeline (whitepaper Figure 1). Batch validation (5b)
+      feeds back into calibration (dashed arrow).}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \scriptsize
+      \pfield{More of my role}
+      \begin{itemize}\setlength\itemsep{1pt}
+        \item Wrote a validation plan that keeps calibration-until-convergence apart
+              from independent checks \citep{law2015}: held-out, confounding,
+              recoverability.
+        \item Specified two deliberate edge cases, a responsible-use section, and a
+              field-level schema with integrity rules (Appendix B).
+      \end{itemize}
+      \pfield{Output}\\
+      \gh{blob/main/whitepaper/student-retention-data-generator-model.pdf}{Whitepaper PDF}
+      and \gh{blob/main/whitepaper/student-retention-data-generator-model.tex}{LaTeX source}
+      in \gh{tree/main/whitepaper}{\texttt{whitepaper/}}.
+      \smallskip
 
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=4.0in]{../whitepaper/figures/fig1_pipeline.png}
-\caption{The end-to-end pipeline from the whitepaper. Phases 1 to 4 and the per-term outcome draw (5a) repeat for each student and term; batch validation (5b) runs once on the full cohort and feeds back into the calibration (dashed arrow). Whitepaper Figure 1.}
-\label{fig:pipeline}
-\end{figure}
-
-\pfield{Skills demonstrated}
-Data modelling and schema design; latent-variable and hazard modelling; reading and tracing primary sources; designing validation that distinguishes calibration from testing \citep{law2015,gelman2020ros}; technical writing in LaTeX; research ethics for synthetic data.
+      \pfield{Skills demonstrated}\\
+      Schema and hazard modelling; tracing sources; validation design
+      \citep{law2015,gelman2020ros}; LaTeX writing; research ethics.
+    \end{column}
+  \end{columns}
+\end{frame}
 
 % ---------------------------------------------------------------- D2
-\subsection{Deliverable 2: The generator and the dataset}
-\begin{deliverable}{Deliverable 2 \quad Generator v1.0.1 and the dataset}
-\small One notebook (36 cells), eight tables, 297,739 rows in each panel table \,$\cdot$\, \gh{tree/main/synthetic-data-generator}{\texttt{synthetic-data-generator/}}
-\end{deliverable}
+\begin{frame}{Deliverable 2, Generator (1/3): context and my role}
+  \small
+  {\itshape Generator v1.0.1.} One notebook (36 cells), eight tables, 297,739 rows in each panel table.
+  \medskip
 
-\pfield{Problem / Context}
-A specification only counts if it can be run. Deliverable 2 asks for a notebook that generates a customisable number of rows across the tables, and the programme's definition of done also asks for written assumptions, a sanity check and at least two edge cases. The practical problem is that the calibration targets are cohort-level, so the generator has to find its own hazard parameters.
+  \pfield{Problem / Context.} A specification only counts if it can be run. D2 asks for a
+  notebook that generates a customisable number of rows across the tables. The
+  calibration targets are cohort-level, so the generator has to find its own hazard
+  parameters.
+  \medskip
 
-\pfield{My role and contributions}
-\begin{itemize}[topsep=1pt,itemsep=2pt,parsep=0pt]
-\item Implemented the generator from the whitepaper. A single configuration cell sets the number of students, the master seed, whether to recalibrate and the output folder.
-\item Built a parameter registry in which every number is read through one function and carries a tag. The registry is exported as a log: 60 parameters, 51 \ptag{ASSUMED}, 6 \ptag{CALIBRATED}, 3 \ptag{LOCKED}.
-\item Drew every random quantity from its own named random stream under one master seed, and used common random numbers so that the calibration loop is stable. A nested bisection fits the tier shift and the hazard intercept to the two tier targets.
-\item Wrote 29 integrity checks and a correlation test, a scorecard for every check in the whitepaper's validation table, an audit of the two edge cases, and an assumptions log with open flags OF-1 to OF-12.
-\item Shipped version 1.0.1 after finding that v1.0.0 kept its frozen calibration rounded and left some structural counts untagged, so that the default dataset reproduces exactly and no number is untagged.
-\item Withheld the hidden state: baseline vulnerability, shocks and the hazard are never exported, and no individual-level table carries a region name.
-\end{itemize}
+  \pfield{My role and contributions}
+  \begin{itemize}\setlength\itemsep{2pt}
+    \item Implemented the generator from the whitepaper. One configuration cell sets
+          the number of students, the master seed, recalibration and the output folder.
+    \item Built a parameter registry: every number is read through one function and
+          carries a tag (60 parameters: 51 \ptag{ASSUMED}, 6 \ptag{CALIBRATED}, 3 \ptag{LOCKED}).
+    \item Drew every random quantity from its own named stream under one master seed,
+          with common random numbers so the calibration loop is stable. A nested
+          bisection fits the tier shift and hazard intercept to the two tier targets.
+  \end{itemize}
+\end{frame}
 
-\pfield{Output}
-Eight CSV tables (\texttt{Regions} 2 rows, \texttt{Students} 50{,}000, six panel tables of 297{,}739 rows), \texttt{metadata.json} with the SHA-256 of every table, the parameter log, the validation scorecard, a dataset notice and a diagnostics figure (Figure~\ref{fig:diag}). Table~\ref{tab:score} summarises the scorecard.
+\begin{frame}{Deliverable 2, Generator (2/3): the rest, output and skills}
+  \small
+  \pfield{More of my role}
+  \begin{itemize}\setlength\itemsep{2pt}
+    \item Wrote 29 integrity checks and a correlation test, a scorecard for every check
+          in the whitepaper's validation table, an edge-case audit, and open flags OF-1 to OF-12.
+    \item Shipped v1.0.1 after finding that v1.0.0 kept its frozen calibration rounded
+          and left some counts untagged, so the default dataset reproduces exactly.
+    \item Withheld the hidden state: baseline vulnerability, shocks and hazard are never
+          exported, and no individual-level table carries a region name.
+  \end{itemize}
+  \medskip
 
-\begin{table}[htbp]
-\caption{Validation scorecard of the released dataset (synthetic; model behaviour, not reality). The first two rows are calibration, not independent validation.}
-\label{tab:score}
-\centering\small
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.34\textwidth}>{\raggedright\arraybackslash}p{0.48\textwidth}>{\raggedright\arraybackslash}p{0.12\textwidth}@{}}
-\toprule
-\textbf{Check} & \textbf{Result} & \textbf{Verdict}\\
-\midrule
-Tier attrition, high / typical & 67.1\% / 45.9\% (calibrated targets) & Pass\\
-Pooled attrition (derived) & 49.1\% & Pass\\
-Held-out tier ratio, band 1.2 to 1.7 & 1.673; over 20 populations $1.692 \pm 0.025$, about 60\% in band & Pass (fragile)\\
-Confounding present & Naive estimate $-57.7\%$ (CI $-64.6\%$ to $-50.6\%$) excludes the true 30\% & Pass\\
-Effect recoverable & Mantel--Haenszel 32.2\% (CI 24.3\% to 39.3\%); Poisson 33.6\% (CI 25.1\% to 41.2\%) & Pass\\
-Parameter traceability & 60 parameters, none untagged & Pass\\
-Edge cases present & 2,937 and 774 student-terms & Pass\\
-\bottomrule
-\end{tabular}
-\end{table}
+  \pfield{Output.} Eight CSV tables, \texttt{metadata.json} with the SHA-256 of every
+  table, the parameter log, the validation scorecard, a dataset notice and diagnostics,
+  in \gh{tree/main/synthetic-data-generator}{\texttt{synthetic-data-generator/}}.
+  \medskip
 
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=5.2in]{../synthetic-data-generator/output/diagnostics.png}
-\caption{Generator diagnostics (synthetic). (a) Cumulative attrition by term against the calibration targets. (b) Estimated relative hazard reduction by method against the true 30\%. (c) Assignment is near-deterministic when no signal or at least two signals fire. (d) The Mantel--Haenszel estimate over 20 independent populations.}
-\label{fig:diag}
-\end{figure}
+  \pfield{Skills demonstrated.} Simulation engineering in Python; calibration by nested
+  root-finding; reproducibility (named streams, common random numbers, content hashes);
+  automated data validation; documenting assumptions and limits; privacy-aware dataset design.
+\end{frame}
 
-\pfield{Skills demonstrated}
-Simulation engineering in Python (numpy, pandas, SciPy, statsmodels); calibration by nested root-finding; reproducibility practice (named random streams, common random numbers, content hashes, pinned versions); automated data validation; documenting assumptions and open limitations; privacy-aware dataset design.
+\begin{frame}{Deliverable 2, Generator (3/3): the scorecard}
+  \scriptsize
+  The released dataset (synthetic; model behaviour, not reality). The first two rows are
+  calibration, not independent validation.
+  \medskip
+
+  \centering
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.2cm}>{\raggedright\arraybackslash}p{7.0cm}>{\raggedright\arraybackslash}p{2.0cm}@{}}
+    \toprule
+    \textbf{Check} & \textbf{Result} & \textbf{Verdict}\\
+    \midrule
+    Tier attrition, high / typical & 67.1\% / 45.9\% (calibrated targets) & Pass\\
+    Pooled attrition (derived) & 49.1\% & Pass\\
+    Held-out tier ratio, band 1.2 to 1.7 & 1.673; over 20 populations $1.692 \pm 0.025$, about 60\% in band & \alert{Pass (fragile)}\\
+    Confounding present & Naive estimate $-57.7\%$ (CI $-64.6\%$ to $-50.6\%$) excludes the true 30\% & Pass\\
+    Effect recoverable & Mantel--Haenszel 32.2\% (CI 24.3\% to 39.3\%); Poisson 33.6\% (CI 25.1\% to 41.2\%) & Pass\\
+    Parameter traceability & 60 parameters, none untagged & Pass\\
+    Edge cases present & 2,937 and 774 student-terms & Pass\\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+\begin{frame}{Deliverable 2, Generator: the diagnostics figure}
+  \begin{columns}[T]
+    \begin{column}{0.60\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{../synthetic-data-generator/output/diagnostics.png}
+    \end{column}
+    \begin{column}{0.37\textwidth}
+      \footnotesize
+      \pfield{Reading the four panels (synthetic)}
+      \begin{itemize}\setlength\itemsep{2pt}
+        \item[(a)] Cumulative attrition by term against the calibration targets.
+        \item[(b)] Each estimator against the true 30\%.
+        \item[(c)] Assignment is near-deterministic when no signal or at least two
+                   signals fire.
+        \item[(d)] The Mantel--Haenszel estimate over 20 independent populations.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
 
 % ---------------------------------------------------------------- D3
-\subsection{Deliverable 3: The analytics and the deck}
-\begin{deliverable}{Deliverable 3 \quad Analytics notebook and slide deck}
-\small 85-cell notebook, executed HTML export, 19-page slide deck (17 slides and 2 backup) \,$\cdot$\, \gh{tree/main/results-and-discussion}{\texttt{results-and-discussion/}}
-\end{deliverable}
+\begin{frame}{Deliverable 3, Analytics (1/3): context and my role}
+  \small
+  {\itshape Analytics notebook and slide deck.} 85-cell notebook, executed HTML export,
+  19-page deck (17 slides and 2 backup).
+  \medskip
 
-\pfield{Problem / Context}
-Deliverable 3 asks for analytics on the dataset. I wanted more than a tour of charts. Because I know the truth behind the data, I could ask whether the workflow a Student Success Analyst would normally follow reaches the right conclusion, and where it does not.
+  \pfield{Problem / Context.} D3 asks for analytics on the dataset. I wanted more than a
+  tour of charts: because I know the truth behind the data, I could ask whether the
+  workflow a Student Success Analyst would normally follow reaches the right
+  conclusion, and where it does not.
+  \medskip
 
-\pfield{My role and contributions}
-\begin{itemize}[topsep=1pt,itemsep=2pt,parsep=0pt]
-\item Wrote the analysis so that it sees only what an analyst would see. The hidden state is used only in labelled places, always to \emph{grade} a result.
-\item Copied the generator engine unchanged into the notebook and proved the copy faithful: it regenerates all eight tables with matching hashes and recovers the recorded calibration.
-\item Built the prediction work with a leakage guard (features from earlier terms only), student-grouped five-fold cross-validation with the same folds for every model, fixed hyperparameters, and two ceilings that show how much of dropout is predictable at all. I excluded the regional tier from the flagging model on ethical grounds, and an ablation shows it adds almost nothing (AUC 0.656 with it, 0.655 without).
-\item Ran the causal analysis with several estimators over 20 independent populations, an adjustment-set ladder and weight diagnostics, using \citet{peters2017} and \citet{gelman2020ros} to justify what can and cannot be concluded.
-\item Audited targeting (who is flagged, who is missed, what false flags cost) and ran a sensitivity grid of 11 scenarios, each recalibrated to the same tier targets.
-\item Turned the results into eight recommendations, a log of the limitations (DF-1 to DF-9), and a 19-page Beamer deck whose figures I redrew at slide size.
-\end{itemize}
+  \pfield{My role and contributions}
+  \begin{itemize}\setlength\itemsep{2pt}
+    \item Wrote the analysis so it sees only what an analyst would see. The hidden state
+          is used only in labelled places, always to \emph{grade} a result.
+    \item Copied the generator engine unchanged into the notebook and proved the copy
+          faithful: it regenerates all eight tables with matching hashes.
+    \item Built the prediction work with a leakage guard, student-grouped five-fold
+          cross-validation, fixed hyperparameters, and two ceilings.
+  \end{itemize}
+\end{frame}
 
-\pfield{Output}
-The \gh{blob/main/results-and-discussion/student-retention-analytics.ipynb}{analysis notebook}, an executed \gh{blob/main/results-and-discussion/student-retention-analytics.html}{HTML export}, and the \gh{blob/main/results-and-discussion/student-retention-results-slides.pdf}{slide deck} with its LaTeX source. Table~\ref{tab:d3} gives the headline answer to each question, and Figure~\ref{fig:gap} shows the central one.
+\begin{frame}{Deliverable 3, Analytics (2/3): the rest, output and skills}
+  \small
+  \pfield{More of my role}
+  \begin{itemize}\setlength\itemsep{2pt}
+    \item Kept the regional tier out of the flagging model on ethical grounds; an
+          ablation shows it adds almost nothing (AUC 0.656 with it, 0.655 without).
+    \item Ran the causal analysis with several estimators over 20 independent
+          populations, an adjustment-set ladder and weight diagnostics
+          \citep{peters2017,gelman2020ros}.
+    \item Audited targeting and ran 11 recalibrated sensitivity scenarios. Wrote eight
+          recommendations, a limitations log (DF-1 to DF-9) and the deck.
+  \end{itemize}
+  \medskip
 
-\begin{table}[htbp]
-\caption{What the analysis found (synthetic; properties of the generator, not of real students).}
-\label{tab:d3}
-\centering\small
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.30\textwidth}>{\raggedright\arraybackslash}p{0.63\textwidth}@{}}
-\toprule
-\textbf{Question} & \textbf{Headline}\\
-\midrule
-Is the generator valid? & Seven of seven comparable scorecard rows re-derive identically from the CSV files.\\
-Can dropout be predicted? & Out-of-fold AUC 0.655 for boosted trees against 0.567 for a signal-count rule. A predictor that knew every student's hidden vulnerability would reach 0.683. A further 19.4\% of dropouts happen in term 1, before any prior record exists.\\
-Does a good predictor say whether support works? & No. Raw comparison: support appears to raise dropout by 58\%. Stratifying on the model's risk score: $+7.4\%$. Stratifying on the assignment signals: $+32.2\%$ against a true 30\%.\\
-Does the programme work? & Mantel--Haenszel and Poisson recover about 30\% (SD about 4 points over 20 populations). Inverse-probability weighting ranges from $-47\%$ to $+72\%$.\\
-Who is missed? & 63.7\% of dropout events fall in terms with a clean record and no support. A model-ranked list would avert about 18\% more dropouts than the actual rule at equal capacity.\\
-Is it robust? & Across 11 recalibrated scenarios the Mantel--Haenszel estimate stays near 30\%.\\
-\bottomrule
-\end{tabular}
-\end{table}
+  \pfield{Output.}
+  \gh{blob/main/results-and-discussion/student-retention-analytics.ipynb}{Analysis notebook},
+  executed \gh{blob/main/results-and-discussion/student-retention-analytics.html}{HTML export},
+  and the \gh{blob/main/results-and-discussion/student-retention-results-slides.pdf}{slide deck}
+  with its LaTeX source, in \gh{tree/main/results-and-discussion}{\texttt{results-and-discussion/}}.
+  \medskip
 
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=6.0in]{../results-and-discussion/figures/fig3_actionability_gap.png}
-\caption{The actionability gap (synthetic). (a) Five ways of estimating the programme's effect, against the true 30\%. (b) Dropout rate by model risk octile and support status.}
-\label{fig:gap}
-\end{figure}
+  \pfield{Skills demonstrated.} Applied causal inference; predictive modelling with leakage
+  control \citep{james2013}; sensitivity analysis; reproducible notebooks; storytelling for
+  two audiences; stating limits plainly.
+\end{frame}
 
-\pfield{Skills demonstrated}
-Applied causal inference and estimator diagnostics; predictive modelling with leakage control and honest evaluation \citep{james2013}; sensitivity analysis; reproducible notebooks; data storytelling for two audiences (a full notebook and a short deck); stating limits plainly.
+\begin{frame}{Deliverable 3, Analytics (3/3): what it found}
+  \scriptsize
+  Synthetic; properties of the generator, not of real students.
+  \smallskip
 
-% ============================================================ 4 REFLECTION
-\FloatBarrier
-\section{Reflection}
-\label{sec:reflection}
+  \centering
+  \renewcommand{\arraystretch}{1.08}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.7cm}>{\raggedright\arraybackslash}p{9.8cm}@{}}
+    \toprule
+    \textbf{Question} & \textbf{Headline}\\
+    \midrule
+    Is the generator valid? & Seven of seven comparable scorecard rows re-derive identically from the CSV files.\\
+    Can dropout be predicted? & Out-of-fold AUC 0.655 for boosted trees against 0.567 for a signal-count rule. A predictor that knew every student's hidden vulnerability would reach 0.683. A further 19.4\% of dropouts happen in term 1, before any prior record exists.\\
+    Does a good predictor say whether support works? & No. Raw comparison: support appears to raise dropout by 58\%. Stratifying on the model's risk score: $+7.4\%$. Stratifying on the assignment signals: $+32.2\%$ against a true 30\%.\\
+    Does the programme work? & Mantel--Haenszel and Poisson recover about 30\% (SD about 4 points over 20 populations). Inverse-probability weighting ranges from $-47\%$ to $+72\%$.\\
+    Who is missed? & 63.7\% of dropout events fall in terms with a clean record and no support. A model-ranked list would avert about 18\% more dropouts than the actual rule at equal capacity.\\
+    Is it robust? & Across 11 recalibrated scenarios the Mantel--Haenszel estimate stays near 30\%.\\
+    \bottomrule
+  \end{tabular}
+\end{frame}
 
-\subsection{What did I learn?}
-\begin{itemize}[topsep=1pt,itemsep=3pt,parsep=0pt]
-\item \key{Matching a target is not validating a model.} Fitting two parameters to the tier rates shows only that the calibration loop converged. The checks with independent content are the correlation structure, the confounding check and the recoverability check, and I learned to report them separately.
-\item \key{A good predictor is not a verdict on a programme.} The boosted model has a modest but real AUC of 0.655, yet stratifying on its own risk score gives $+7.4\%$ where the truth is 30\%. Knowing the assignment rule is what makes the comparison honest.
-\item \key{Estimator choice can matter more than sample size.} With 50,000 students and the true propensity supplied, inverse-probability weighting still ranged from $-47\%$ to $+72\%$, because assignment is near-deterministic in some groups. Methods that borrow strength across groups had a standard deviation of about 4 points.
-\item \key{An assumptions list is a design tool.} Having 51 parameters tagged \ptag{ASSUMED} turned into a ready-made agenda for sensitivity analysis.
-\end{itemize}
+\begin{frame}{Deliverable 3, Analytics: the actionability gap}
+  \centering
+  \includegraphics[width=0.70\linewidth]{../results-and-discussion/figures/fig3_actionability_gap.png}\\[1pt]
+  {\scriptsize (a) Five ways of estimating the programme's effect, against the true 30\%.
+  (b) Dropout rate by model risk octile and support status. Synthetic.}
+  \smallskip
 
-\subsection{What challenged me?}
-\begin{itemize}[topsep=1pt,itemsep=3pt,parsep=0pt]
-\item \key{Results that did not match my own design.} The whitepaper states 70\% targeting precision and a 25\% false-flag rate; the generator realises about 16\% and 22\%. My scan showed that the pair is not jointly reachable under the chosen rule. The temptation was to tune the assignment parameters until the numbers matched. I held to the rule that a pre-specified quantity is not changed to make a check pass: I disclosed the difference, labelled it, and moved the question to the sensitivity analysis.
-\item \key{A check that passes by a hair.} The held-out tier ratio sits at the upper edge of its band, so I labelled it ``pass (fragile)'' rather than ``pass''.
-\item \key{Sources that disagree.} National attrition figures of roughly three and four in ten do not trace to the same cohort. Working out the provenance took real effort, and one reading (that a 29.4\% figure belongs to the Class of 2023) is still an inference from a table layout that I have flagged as open (OF-7).
-\item \key{Keeping synthetic data from being mistaken for findings.} Every output carries a banner, individual-level tables carry no region names, and the recommendations end with a plain instruction not to act on these numbers.
-\end{itemize}
+  \begin{keybox}\centering\small
+    The raw comparison says support \alert{hurts} ($-58\%$). Stratifying on the model's own score
+    gives $+7\%$. Stratifying on the \key{assignment signals} recovers $+32\%$, against a true $+30\%$.
+  \end{keybox}
+\end{frame}
 
-\subsection{What am I proud of?}
-\begin{itemize}[topsep=1pt,itemsep=3pt,parsep=0pt]
-\item The project can be checked. A reader can regenerate all eight tables bit for bit, re-derive the scorecard from the CSV files, and see where each number came from.
-\item The deliverables form one argument: the whitepaper states a model, the generator realises it, and the analysis tests what a standard workflow would conclude from its output.
-\item The limitations are in the open. Twelve generator flags and nine analysis flags are logged with a status, including the ones that remain unresolved.
-\item The analysis is written from an analyst's point of view and only then graded against the truth, which is the discipline I wanted a retention analyst to have.
-\end{itemize}
+%% ======================= SECTION 4 =========================================
+\section{4~~Reflection}
+\sectiondivider{4}{Reflection}
 
-\subsection{What would I improve?}
-\begin{itemize}[topsep=1pt,itemsep=3pt,parsep=0pt]
-\item \key{Bring the whitepaper in line with the generator.} Its targeting figures (Sec.~8 and Table~4) should describe the realised behaviour, the appendix should say that the near-determinism follows from the chosen parameters, the title page should carry a version line, and the pilot script that Appendix A mentions should either be added or the sentence reworded.
-\item \key{Close the sourcing question} on the 29.4\% figure against CHED's underlying data, if it can be obtained (OF-7).
-\item \key{Make the slide figures reproducible} by adding the script that draws them to the repository.
-\item \key{Loosen the generator's simplifications.} The model has a single homogeneous effect, no carry-over from support into later grades, and no unmeasured assignment confounders, so the causal problem here is easier than a real one.
-\end{itemize}
+\begin{frame}{What did I learn?}
+  \small
+  \begin{itemize}\setlength\itemsep{2pt}
+    \item \key{Matching a target is not validating a model.} Fitting two parameters
+          to the tier rates shows only that the calibration loop converged. The checks
+          with independent content are the correlation structure, the confounding
+          check and the recoverability check, and I report them separately.
+    \item \key{A good predictor is not a verdict on a programme.} The boosted model
+          has a modest but real AUC of 0.655, yet stratifying on its own risk score
+          gives $+7.4\%$ where the truth is 30\%. Knowing the assignment rule is what
+          makes the comparison honest.
+    \item \key{Estimator choice can matter more than sample size.} With 50,000
+          students and the true propensity supplied, inverse-probability weighting
+          still ranged from $-47\%$ to $+72\%$, because assignment is
+          near-deterministic in some groups. Methods that borrow strength across
+          groups had a standard deviation of about 4 points.
+    \item \key{An assumptions list is a design tool.} The 51 parameters tagged
+          \ptag{ASSUMED} became a ready-made agenda for sensitivity analysis.
+  \end{itemize}
+\end{frame}
 
-% ============================================================ 5 WHAT'S NEXT
-\section{What Is Next}
-\label{sec:next}
+\begin{frame}{What challenged me?}
+  \small
+  \begin{itemize}\setlength\itemsep{2pt}
+    \item \key{Results that did not match my own design.} The whitepaper states 70\%
+          targeting precision and a 25\% false-flag rate; the generator realises
+          about 16\% and 22\%. The pair is not jointly reachable under the chosen rule.
+          The temptation was to tune until the numbers matched. I held to the rule that
+          a pre-specified quantity is not changed to make a check pass: I disclosed it,
+          labelled it, and moved the question to the sensitivity analysis.
+    \item \key{A check that passes by a hair.} The held-out tier ratio sits at the
+          upper edge of its band, so I labelled it ``pass (fragile)''.
+    \item \key{Sources that disagree.} National attrition figures of roughly three and
+          four in ten do not trace to the same cohort. One reading (that a 29.4\%
+          figure belongs to the Class of 2023) is still an inference from a table
+          layout, flagged as open (OF-7).
+    \item \key{Keeping synthetic data from being mistaken for findings.} Every output
+          carries a banner, individual-level tables carry no region names, and the
+          recommendations end with a plain instruction not to act on these numbers.
+  \end{itemize}
+\end{frame}
 
-\subsection{Finishing this project}
-The first thing I would do is publish a whitepaper v18 that fixes the inconsistencies listed above. After that I would resolve OF-7, add the figure script, and re-run the held-out check that the analysis did not repeat.
+\begin{frame}{What am I proud of?}
+  \begin{itemize}\setlength\itemsep{6pt}
+    \item The project \alert{can be checked}. A reader can regenerate all eight tables
+          bit for bit, re-derive the scorecard from the CSV files, and see where each
+          number came from.
+    \item The deliverables form \alert{one argument}: the whitepaper states a model,
+          the generator realises it, and the analysis tests what a standard workflow
+          would conclude from its output.
+    \item The limitations are \alert{in the open}. Twelve generator flags and nine
+          analysis flags are logged with a status, including the ones that remain
+          unresolved.
+    \item The analysis is written from an analyst's point of view and only then graded
+          against the truth, the discipline I wanted a retention analyst to have.
+  \end{itemize}
+\end{frame}
 
-\subsection{Extending the science}
-The analysis notebook already names the open questions:
-\begin{itemize}[topsep=1pt,itemsep=2pt,parsep=0pt]
-\item \textbf{Heterogeneous effects.} Allow the support effect to differ by student, which breaks the assumption that ranking by risk is optimal.
-\item \textbf{The cost of building overlap into a rollout.} The analysis recommends a small randomised share of referrals so that every signal group has both treated and untreated students. I did not measure what that costs in support slots.
-\item \textbf{The boosted model across scenarios.} The sensitivity grid recomputed the signal-count rule and the ceilings, but not the boosted model's accuracy (DF-5).
-\item \textbf{Why stratifying on the model's score is biased.} I observed the bias but did not investigate its mechanism (DF-7, open).
-\end{itemize}
+\begin{frame}{What would I improve?}
+  \small
+  \begin{itemize}\setlength\itemsep{5pt}
+    \item \key{Bring the whitepaper in line with the generator.} Its targeting figures
+          (Sec.~8 and Table~4) should describe the realised behaviour, the appendix
+          should say the near-determinism follows from the chosen parameters, the title
+          page should carry a version line, and the pilot script that Appendix A mentions
+          should be added or the sentence reworded.
+    \item \key{Close the sourcing question} on the 29.4\% figure against CHED's
+          underlying data, if it can be obtained (OF-7).
+    \item \key{Make the slide figures reproducible} by adding the script that draws
+          them to the repository.
+    \item \key{Loosen the generator's simplifications.} A single homogeneous effect, no
+          carry-over from support into later grades, and no unmeasured assignment
+          confounders make the causal problem easier than a real one.
+  \end{itemize}
+\end{frame}
 
-\subsection{What real use would require}
-Nothing in this repository should drive a decision about real students. A real programme would need permissioned administrative data, ethical review, and a head-to-head pilot of model-based allocation with a randomised share of referrals. That is the point at which the recommendations in Deliverable 3 stop being conclusions within a model and start being hypotheses.
+%% ======================= SECTION 5 =========================================
+\section{5~~What Is Next}
+\sectiondivider{5}{What is next}
 
-\subsection{Where to find everything}
-\begin{center}
-\small
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.30\textwidth}>{\raggedright\arraybackslash}p{0.62\textwidth}@{}}
-\toprule
-\textbf{Item} & \textbf{Location in the repository}\\
-\midrule
-Repository overview & \gh{blob/main/README.md}{\texttt{README.md}}\\
-D1 whitepaper & \gh{blob/main/whitepaper/student-retention-data-generator-model.pdf}{\texttt{whitepaper/student-retention-data-generator-model.pdf}}\\
-D2 generator and dataset & \gh{tree/main/synthetic-data-generator}{\texttt{synthetic-data-generator/}}\\
-D3 notebook, HTML, slide deck & \gh{tree/main/results-and-discussion}{\texttt{results-and-discussion/}}\\
-This portfolio & \gh{tree/main/culminating-activity}{\texttt{culminating-activity/}}\\
-\bottomrule
-\end{tabular}
-\end{center}
+\begin{frame}{Finishing this project, and extending the science}
+  \small
+  \pfield{Finishing.} The first thing I would do is publish a whitepaper v18 that fixes
+  the inconsistencies listed above. After that I would resolve OF-7, add the figure
+  script, and re-run the held-out check that the analysis did not repeat.
+  \medskip
 
-\vspace{4pt}
-\begin{tcolorbox}[colback=titlebox,colframe=titlebox,arc=3mm,boxrule=0pt,left=6mm,right=6mm,top=3mm,bottom=3mm]
-\centering\sffamily\bfseries\color{paperblue}
-This is the story of my work. The work is imperfect, the imperfections are documented, and all of it is visible.
-\end{tcolorbox}
+  \pfield{Extending.} The analysis notebook already names the open questions:
+  \begin{itemize}\setlength\itemsep{1pt}
+    \item \textbf{Heterogeneous effects.} Let the support effect differ by student,
+          which breaks the assumption that ranking by risk is optimal.
+    \item \textbf{The cost of building overlap into a rollout.} I recommend a small
+          randomised share of referrals so every signal group has both arms, but I did
+          not measure what that costs in support slots.
+    \item \textbf{The boosted model across scenarios.} The sensitivity grid recomputed
+          the rule and the ceilings, but not the boosted model's accuracy (DF-5).
+    \item \textbf{Why stratifying on the model's score is biased.} I observed the bias
+          but did not investigate its mechanism (DF-7, open).
+  \end{itemize}
+\end{frame}
 
-\bibliographystyle{plainnat}
-\bibliography{references}
+\begin{frame}{What real use would require}
+  \begin{noticebox}
+    \small\textbf{\textcolor{bad}{Nothing in this repository should drive a decision about real students.}}
+  \end{noticebox}
+  \medskip
+
+  A real programme would need:
+  \begin{itemize}
+    \item permissioned administrative data,
+    \item ethical review, and
+    \item a head-to-head pilot of model-based allocation, with a randomised share of referrals.
+  \end{itemize}
+  \medskip
+
+  That is the point at which the recommendations in Deliverable 3 stop being
+  \key{conclusions within a model} and start being \key{hypotheses}.
+\end{frame}
+
+\begin{frame}{Where to find everything}
+  \centering\scriptsize
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.9cm}>{\raggedright\arraybackslash}p{9.4cm}@{}}
+    \toprule
+    \textbf{Item} & \textbf{Location in the repository}\\
+    \midrule
+    Repository overview & \gh{blob/main/README.md}{\texttt{README.md}}\\
+    D1 whitepaper & \gh{blob/main/whitepaper/student-retention-data-generator-model.pdf}{\texttt{whitepaper/student-retention-data-generator-model.pdf}}\\
+    D2 generator and dataset & \gh{tree/main/synthetic-data-generator}{\texttt{synthetic-data-generator/}}\\
+    D3 notebook, HTML, slide deck & \gh{tree/main/results-and-discussion}{\texttt{results-and-discussion/}}\\
+    This deck & \gh{tree/main/culminating-activity}{\texttt{culminating-activity/}}\\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% ---- Closing (gradient page) ----
+{\usebackgroundtemplate{\eskbg}
+\begin{frame}[plain,c]
+  \centering
+  \begin{tcolorbox}[enhanced,colback=white,colframe=white,arc=4mm,boxrule=0pt,drop fuzzy shadow,
+      width=0.86\textwidth,left=6mm,right=6mm,top=6mm,bottom=6mm]
+    \centering\sffamily\bfseries\color{eskdeep}\Large
+    This is the story of my work.\\[6pt]
+    \normalsize The work is imperfect, the imperfections are documented,\\
+    and all of it is visible.
+  \end{tcolorbox}
+\end{frame}}
+
+% ---- Sources ----
+\begin{frame}[allowframebreaks]{Sources}
+  \scriptsize
+  \bibliographystyle{plainnat}
+  \bibliography{references}
+\end{frame}
 
 \end{document}
