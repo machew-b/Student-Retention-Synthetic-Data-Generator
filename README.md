@@ -14,13 +14,13 @@ Philippine higher-education records show what a student does (grades, attendance
 | [`whitepaper/`](whitepaper/) | The specification: a two-layer generative model with every parameter tagged `LOCKED`, `CALIBRATED` or `ASSUMED`. | `student-retention-data-generator-model.pdf` |
 | [`synthetic-data-generator/`](synthetic-data-generator/) | Deliverable 2: the generator (a notebook) and the dataset it produced: eight CSV tables, a validation scorecard, a parameter log and metadata. | `README.md`, then `output/` |
 | [`results-and-discussion/`](results-and-discussion/) | Deliverable 3: an analysis of the dataset as a Student Success Analyst would do it, using the hidden truth only to grade the results. Notebook, executed HTML, and a slide deck. | `student-retention-results-slides.pdf` |
-| [`culminating-activity/`](culminating-activity/) | My EIF Final Culmination: a portfolio of the three deliverables with my role in each, a reflection on what I learned, and what comes next. | `eif-final-culmination.pdf` |
+| [`culminating-activity/`](culminating-activity/) | My EIF Final Culmination, as a slide deck: a portfolio of the three deliverables with my role in each, a reflection on what I learned, and what comes next. | `eif-final-culmination.pdf` |
 
 ## Start here
 * **I want the argument in ten minutes:** open the slide deck, `results-and-discussion/student-retention-results-slides.pdf` (17 slides and 2 backup slides).
 * **I want the full results without running anything:** open `results-and-discussion/student-retention-analytics.html`.
 * **I want the data:** `synthetic-data-generator/output/` holds the eight tables. The generator README describes each table, `output/README.md` lists the files, and `output/DATASET_NOTICE.txt` is the usage notice.
-* **I want the story of the whole project and what I did in it:** open `culminating-activity/eif-final-culmination.pdf` (12 pages).
+* **I want the story of the whole project and what I did in it:** open the slide deck `culminating-activity/eif-final-culmination.pdf` (38 slides).
 * **I want the specification and its justification:** the whitepaper PDF. Its folder README maps the sections and reconciles the Appendix A pilot with the released generator.
 
 ## What the analysis found (synthetic data)
@@ -39,7 +39,7 @@ pip install -r results-and-discussion/requirements.txt
 ```
 1. **Regenerate the dataset (optional, about 30 to 50 seconds):** run `synthetic-data-generator/student-retention-data-generator.ipynb`. The committed dataset is already there.
 2. **Re-run the analysis (about 10 to 15 minutes):** run `results-and-discussion/student-retention-analytics.ipynb`. It reads the committed CSV files, so step 1 is not required.
-3. **Rebuild the PDFs (optional):** `pdflatex` in `results-and-discussion/` for the slides (run twice), and `pdflatex`, `bibtex`, `pdflatex`, `pdflatex` in `whitepaper/` for the paper and in `culminating-activity/` for the portfolio (the portfolio loads figures from the other folders, so keep the repository layout intact).
+3. **Rebuild the PDFs (optional):** `pdflatex` in `results-and-discussion/` for the slides (run twice), and `pdflatex`, `bibtex`, `pdflatex`, `pdflatex` in `whitepaper/` for the paper and in `culminating-activity/` for the Final Culmination deck (the deck loads three figures from the other folders, so keep the repository layout intact).
 
 I tested with Python 3.12.3, numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, statsmodels 0.15.0, matplotlib 3.10.8 and scikit-learn 1.8.0. Results are bitwise reproducible on the same platform and library versions, and statistically equivalent elsewhere. If a file hash check fails on your machine (often a line-ending effect on Windows), the notebooks say so and continue.
 
