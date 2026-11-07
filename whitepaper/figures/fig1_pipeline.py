@@ -7,7 +7,7 @@ section: box positions/sizes, colours, text, fonts and arrows.
 Coordinates are in "canvas pixels": origin top-left, x to the right, y DOWN,
 canvas 1300 x 919 (same aspect ratio as the 2658 x 1880 PNG in the paper).
 
-Run:   python fig1_pipeline.py            -> figures/fig1_pipeline.png
+Run:   python fig1_pipeline.py            -> fig1_pipeline.png (same folder)
 """
 import os
 import matplotlib
@@ -19,7 +19,6 @@ from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 W, H = 1300, 919                 # canvas size (px units)
 FIG_W_IN = 8.86                  # figure width in inches (height follows W:H)
 DPI = 300
-OUT_DIR = "figures"
 OUT_NAME = "fig1_pipeline"
 
 EDGE = "#333333"
@@ -133,8 +132,7 @@ def build():
 
 
 if __name__ == "__main__":
-    os.makedirs(OUT_DIR, exist_ok=True)
     fig = build()
-    output_path = os.path.join(OUT_DIR, OUT_NAME + ".png")
+    output_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), OUT_NAME + ".png")
     fig.savefig(output_path, dpi=DPI, facecolor="white")
     print("saved", output_path)
