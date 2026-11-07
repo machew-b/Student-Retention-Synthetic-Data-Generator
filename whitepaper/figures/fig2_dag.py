@@ -86,7 +86,7 @@ BLACK = DARK
 EDGES = [
     # exogenous -> baseline vulnerability
     ([(189, 120), (301, 163)], BLACK, 1.9, 4),
-    ([(386, 127), (380, 150)], BLACK, 1.9, 4),
+    ([(389, 115), (382, 162)], BLACK, 1.9, 4),          # income -> vulnerability (now reaches both nodes)
     ([(560, 121), (464, 163)], BLACK, 1.9, 4),
     # vulnerability -> shocks' neighbourhood (drawn to the shock ellipses)
     ([(365, 229), (330, 255), (243, 268)], BLACK, 1.6, 4),
@@ -98,26 +98,27 @@ EDGES = [
     # vulnerability -> term t observables
     ([(381, 236), (440, 360), (575, 364)], BLACK, 1.6, 4),
     ([(383, 236), (440, 330), (730, 365)], BLACK, 1.6, 4),
+    ([(398, 224), (560, 330), (780, 330), (830, 376)], BLACK, 1.6, 4),   # NEW: vulnerability -> Financial Hold (t)
     # vulnerability -> hazard (passes behind the risk score box)
-    ([(381, 236), (500, 340), (470, 540), (423, 652)], "#333333", 1.6, 2),
+    ([(381, 236), (500, 340), (470, 540), (421, 662)], "#333333", 1.6, 2),
     # shock t -> hazard (passes behind the risk score box)
-    ([(722, 317), (600, 400), (560, 560), (584, 643)], "#333333", 1.6, 2),
+    ([(722, 317), (600, 400), (560, 560), (600, 662)], "#333333", 1.6, 2),
     # shock t-1 -> its observables
     ([(180, 318), (137, 354)], BLACK, 1.6, 4),
-    ([(230, 318), (256, 352)], BLACK, 1.6, 4),
+    ([(230, 318), (258, 366)], BLACK, 1.6, 4),
     ([(276, 311), (330, 330), (388, 357)], BLACK, 1.6, 4),
     # shock t -> its observables
     ([(718, 317), (618, 360)], BLACK, 1.6, 4),
-    ([(752, 319), (746, 350)], BLACK, 1.6, 4),
+    ([(754, 319), (748, 366)], BLACK, 1.6, 4),
     ([(788, 316), (864, 360)], BLACK, 1.6, 4),
     # PRIOR-TERM-ONLY dependencies (red): term t-1 observables -> risk score
     ([(165, 405), (260, 445), (400, 459)], RED, 1.9, 4),
     ([(296, 408), (360, 435), (425, 459)], RED, 1.9, 4),
     ([(411, 413), (428, 436), (441, 459)], RED, 1.9, 4),
     # risk score -> intervention -> hazard -> dropout
-    ([(519, 541), (519, 550)], BLACK, 1.9, 4),
-    ([(519, 626), (519, 651)], BLACK, 1.9, 4),
-    ([(519, 750), (519, 782)], BLACK, 2.6, 4),
+    ([(519, 541), (519, 565)], BLACK, 1.9, 4),
+    ([(519, 627), (519, 662)], BLACK, 1.9, 4),
+    ([(519, 750), (519, 798)], BLACK, 2.6, 4),
 ]
 
 # small boxed label on the red edges
