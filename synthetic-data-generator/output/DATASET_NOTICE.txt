@@ -1,2 +1,3 @@
-SYNTHETIC DATA: produced by this generative model. Not real students; not a measurement of any real population.
+SYNTHETIC DATA: produced by a generative model. It contains no real students and is not a measurement of any real population.
 The latent state (baseline vulnerability, shocks, hazard) is not included.
+Do not report any number derived from this data as a finding about real Philippine students.
