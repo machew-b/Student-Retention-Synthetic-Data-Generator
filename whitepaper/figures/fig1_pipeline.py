@@ -1,9 +1,6 @@
 """
 Figure 1 -- End-to-end synthetic cohort generation pipeline.
 
-Rebuilt with matplotlib. Everything you are likely to edit is in the CONFIG
-section: box positions/sizes, colours, text, fonts and arrows.
-
 Coordinates are in "canvas pixels": origin top-left, x to the right, y DOWN,
 canvas 1300 x 919 (same aspect ratio as the 2658 x 1880 PNG in the paper).
 

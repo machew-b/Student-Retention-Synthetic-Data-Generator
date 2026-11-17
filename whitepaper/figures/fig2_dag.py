@@ -2,9 +2,6 @@
 Figure 2 -- Latent and observed causal structure (PGM / DAG) of the generative
 model.
 
-Rebuilt with matplotlib. Edit the CONFIG section: node positions/sizes, labels,
-colours, and the EDGES list (each edge is a cubic Bezier you can reshape).
-
 Coordinates are "canvas pixels": origin top-left, x right, y DOWN,
 canvas 1050 x 1153 (same aspect ratio as the 2400 x 2635 PNG in the paper).
 

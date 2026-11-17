@@ -2,14 +2,10 @@
 
 > ⚠️ **This paper specifies a synthetic data model.** Nothing in it, and nothing in the dataset built from it, measures any real Philippine student or institution.
 
-**Author:** Matthew C. Batitay
-**Project:** Eskwelabs Innovation Fellowship, Data Innovation Track
-**Cited as:** "whitepaper v17" in the generator and Deliverable 3 documents. The PDF itself does not print a version number.
-
 ## What this is
 The paper specifies a **two-layer generative model** for student retention. A hidden state (a student's structural vulnerability and exposure to acute shocks) drives both the observed institutional record (grades, attendance, financial holds, support) and the eventual dropout, and no downstream analyst can see it. Support is assigned from the same prior-term signals that predict dropout, so the effect of a support programme cannot be read off a naive comparison. Every generative parameter is tagged `LOCKED`, `CALIBRATED` (against cited Philippine statistics) or `ASSUMED`, and Section 11 says how the model is checked, including the difference between calibration and validation.
 
-The model is implemented in [`../synthetic-data-generator/`](../synthetic-data-generator/) and analysed in [`../results-and-discussion/`](../results-and-discussion/).
+The model is implemented in [synthetic-data-generator](../synthetic-data-generator/) and analysed in [results-and-discussion](../results-and-discussion/).
 
 ## Files
 ```
