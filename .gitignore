@@ -6,3 +6,5 @@
 !/whitepaper/**/*.tex
 !/whitepaper/**/*.bib
 !/whitepaper/**/*.pdf
+
+.venv/
