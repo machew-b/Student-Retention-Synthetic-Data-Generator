@@ -83,13 +83,13 @@
 \end{frame}
 
 % ------------------------------------------------------------ 2 setup
-\begin{frame}{I use the data like an analyst, and the hidden truth only to grade my work}
+\begin{frame}{I work from the exported tables, and the hidden truth only grades my work}
 \begin{columns}[T]
 \column{0.5\textwidth}
 \textbf{\sffamily The setup}
 \begin{figbul}
 \item A synthetic cohort of \key{50,000 students} over 8 terms, calibrated to cited Philippine attrition: \key{67.1\%} (high tier) and \key{45.9\%} (typical tier).
-\item A \key{hidden} state (baseline vulnerability, acute shocks) drives the records \emph{and} the dropouts. An analyst sees only eight exported tables.
+\item A \key{hidden} state (baseline vulnerability, acute shocks) drives the records \emph{and} the dropouts. The analysis sees only the eight exported tables.
 \item Support is assigned from prior-term signals, so it is \key{confounded}. The true effect is known: the dropout hazard is cut by \key{30\%}.
 \end{figbul}
 \column{0.5\textwidth}
@@ -303,7 +303,7 @@ Engine copy is faithful & All 8 tables regenerate with matching SHA-256; calibra
 \begin{frame}{What these results are not}
 \begin{itemize}\setlength\itemsep{2.5pt}
 \item \key{Everything is a property of the generator.} The prediction ceilings, the homogeneous 30\% effect and the form of the confounding are assumptions, not measurements.
-\item \key{The causal problem here is easier than a real one.} Support never changes later grades (no carry-over), assignment has no unobserved drivers or caseworker discretion, the analyst knows the thresholds, and IPW gets the true propensity.
+\item \key{The causal problem here is easier than a real one.} Support never changes later grades (no carry-over), assignment has no unobserved drivers or caseworker discretion, the referral thresholds are known, and IPW gets the true propensity.
 \item \key{The targeting gain is conditional.} The policy value assumes the same 30\% effect for everyone, so ranking by risk is optimal by construction.
 \item \key{The model comparison is narrow.} Two model families, fixed hyperparameters, one population; the sensitivity grid varies one parameter at a time with 10 replicates each.
 \item \key{Open items.} The generator's held-out check is fragile and was not re-run; the mechanism behind the biased score-stratified estimate is not investigated; term-1 dropouts (19.4\%) fall outside both analyses.
@@ -323,7 +323,7 @@ Engine copy is faithful & All 8 tables regenerate with matching SHA-256; calibra
 \end{tcolorbox}
 \vspace{2mm}
 \small
-\textbf{\sffamily Where to find it.} Notebook: \texttt{results-and-discussion/student-retention-analytics.ipynb} (executed copy: \texttt{.html}). It runs end to end from the exported CSVs, and every output carries a synthetic-data banner. Dataset and generator: \texttt{synthetic-data-generator/}. Specification: whitepaper v17.
+\textbf{\sffamily Where to find it.} Notebook: \texttt{results-and-discussion/student-retention-analytics.ipynb} (saved with its executed outputs). It runs end to end from the exported CSVs, and every output carries a synthetic-data banner. Dataset and generator: \texttt{synthetic-data-generator/}. Specification: whitepaper v17.
 \end{frame}
 
 % ------------------------------------------------------------ 17 references
