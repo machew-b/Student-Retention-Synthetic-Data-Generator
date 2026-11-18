@@ -47,8 +47,7 @@
 
 \setbeamertemplate{footline}{%
   \leavevmode\hbox to\paperwidth{%
-    \hspace{0.9cm}{\color{softgray}\sffamily\scriptsize Batitay \,$\cdot$\, Eskwelabs Fellowship \,$\cdot$\, Deliverable 3}%
-    \hfill{\color{bad}\sffamily\bfseries\scriptsize SYNTHETIC DATA: not real students}%
+    \hspace{0.9cm}{\color{softgray}\sffamily\scriptsize Batitay \,$\cdot$\, Eskwelabs Fellowship \,$\cdot$\, Results and Discussion}%
     \hfill{\color{softgray}\sffamily\scriptsize\insertframenumber\,/\,\inserttotalframenumber}\hspace{0.9cm}}%
   \vskip3mm}
 
@@ -71,7 +70,7 @@
 {\sffamily\bfseries\LARGE Does the Early-Warning System Work?\\[3pt] Prediction, Causation and Targeting in a Synthetic Student-Retention Cohort}\\[12pt]
 {\large Matthew C. Batitay}\\[2pt]
 {\itshape Eskwelabs Innovation Fellowship, Data Innovation Track}\\[8pt]
-{\sffamily\small Deliverable 3: Results and Discussion}
+{\sffamily\large Results and Discussion}
 \end{center}
 \end{tcolorbox}
 \vfill
@@ -103,7 +102,7 @@
 \end{columns}
 \vfill
 \begin{tcolorbox}[colback=titlebox,colframe=paperblue!40,boxrule=0.5pt,arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
-\small Because I know the answer, I can say whether each method gets the \emph{right} answer, not just whether it produces one.
+\small Because the answer is assumed to be known, I can say whether each method gets the \emph{right} answer, not just whether it produces one.
 \end{tcolorbox}
 \end{frame}
 
@@ -114,7 +113,7 @@
 \begin{tikzpicture}
 \node[q] at (0,0)    {{\sffamily\bfseries\textcolor{paperblue}{1. Is the generator valid?}}\\[2pt] 7 of 7 re-derived checks match the scorecard. The engine reproduces all 8 tables bit for bit.};
 \node[q] at (4.65,0)  {{\sffamily\bfseries\textcolor{paperblue}{2. What does the data show?}}\\[2pt] Attrition 67.1\% vs 45.9\% by tier, highest for low-income working students.};
-\node[q] at (9.3,0)  {{\sffamily\bfseries\textcolor{paperblue}{3. Can I predict dropout?}}\\[2pt] AUC \textbf{0.655} vs 0.567 for today's rule. Ceiling with perfect knowledge: 0.722.};
+\node[q] at (9.3,0)  {{\sffamily\bfseries\textcolor{paperblue}{3. Can I predict dropout?}}\\[2pt] AUC \textbf{0.655} vs 0.567 for the current signal-count rule. Ceiling with perfect knowledge: 0.722.};
 \node[q] at (0,-2.65)   {{\sffamily\bfseries\textcolor{paperblue}{4. Does support work?}}\\[2pt] The raw data say it \textbf{harms} ($-58\%$). Done right: \textbf{+32\%} against a true 30\%.};
 \node[q] at (4.65,-2.65) {{\sffamily\bfseries\textcolor{paperblue}{5. Who is missed?}}\\[2pt] \textbf{64\%} of dropouts occur with a clean record and no support.};
 \node[q] at (9.3,-2.65) {{\sffamily\bfseries\textcolor{paperblue}{6. How robust is this?}}\\[2pt] Holds across 11 recalibrated scenarios. IPW fails without overlap.};
@@ -138,7 +137,7 @@ Engine copy is faithful & All 8 tables regenerate with matching SHA-256; calibra
 \vspace{1mm}
 
 \begin{tcolorbox}[colback=titlebox,colframe=paperblue!40,boxrule=0.5pt,arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
-\scriptsize \textbf{What this does not show.} It does not show the generator resembles any real institution. Calibration to the two tier targets is a convergence check, not independent validation. I did not re-run the generator's held-out Class-of-2023 check, which it labels \emph{pass (fragile)}.
+\scriptsize \textbf{What this does not show.} It does not show the generator resembles any real institution. Calibration to the two tier targets is a convergence check, not independent validation. Note that the generator's separate held-out check against Class-of-2023 attrition, which it rates \emph{pass (fragile)}, is not re-run here.
 \end{tcolorbox}
 \end{frame}
 
@@ -148,7 +147,7 @@ Engine copy is faithful & All 8 tables regenerate with matching SHA-256; calibra
 \vspace{1mm}
 \begin{figbul}
 \item Per-term dropout \emph{falls} over time (high tier 15.4\% to 12.1\%): that is \key{selection}, since the most vulnerable leave first. It is not evidence that retention gets easier.
-\item Attrition runs from about \key{35\%} (non-working, top income bracket) to \key{67\%} (working, lowest). The gradient is built into the generator: a structure check, not a finding about the world.
+\item Attrition runs from about \key{35\%} (non-working, top income bracket) to \key{67\%} (working, lowest). The gradient is built into the generator as a structure check, and not a finding about the world.
 \end{figbul}
 \end{frame}
 
@@ -166,10 +165,12 @@ Engine copy is faithful & All 8 tables regenerate with matching SHA-256; calibra
 % ------------------------------------------------------------ 7 ceilings
 \begin{frame}{How good could any model be? The hidden truth sets the ceiling}
 \centering\footnotesize
-\input{figures/table_models.tex}\\[1mm]
-{\scriptsize Out-of-fold, 247,739 student-terms (terms 2 to 8), event rate 8.0\%. ``Top $x$\%'' = share of dropouts captured by reviewing the top $x$\% of student-terms.}
-\vspace{1.5mm}
+\input{figures/table_models.tex}\par
+\vspace{1mm}
 
+\raggedright
+{\scriptsize Out-of-fold, 247,739 student-terms (terms 2 to 8), event rate 8.0\%. ``Top $x$\%'' = share of dropouts captured by reviewing the top $x$\% of student-terms.}
+\vspace{-0.75em}
 \begin{columns}[T]
 \column{0.32\textwidth}
 \begin{tcolorbox}[colback=titlebox,colframe=paperblue!40,boxrule=0.5pt,arc=2mm,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm]
@@ -323,13 +324,16 @@ Engine copy is faithful & All 8 tables regenerate with matching SHA-256; calibra
 \end{tcolorbox}
 \vspace{2mm}
 \small
-\textbf{\sffamily Where to find it.} Notebook: \texttt{results-and-discussion/student-retention-analytics.ipynb} (saved with its executed outputs). It runs end to end from the exported CSVs, and every output carries a synthetic-data banner. Dataset and generator: \texttt{synthetic-data-generator/}. Specification: whitepaper v17.
+\textbf{\sffamily Where to find it.} Repository: \url{https://github.com/machew-b/Student-Retention-Synthetic-Data-Generator/tree/main} (analysis notebook in \texttt{results-and-discussion/}; dataset and generator in \texttt{synthetic-data-generator/}; whitepaper in \texttt{whitepaper/}).
 \end{frame}
 
 % ------------------------------------------------------------ 17 references
 \begin{frame}{References}
 \footnotesize
-\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+{%
+\setlength{\leftskip}{1.5em}%
+\setlength{\parindent}{-1.5em}%
+\setlength{\parskip}{4pt}%
 Gelman, A., Hill, J., and Vehtari, A. (2020). \emph{Regression and Other Stories}. Cambridge University Press, Cambridge, U.K.
 
 James, G., Witten, D., Hastie, T., and Tibshirani, R. (2013). \emph{An Introduction to Statistical Learning with Applications in R}. Springer, New York, NY.
@@ -338,7 +342,8 @@ Law, A. M. (2015). \emph{Simulation Modeling and Analysis}, 5th edition. McGraw-
 
 Lopez-Mu\~noz, G. L., Gonzalez Serrano, C., and Sanchez-Ferreira, C. (2026). Student Dropout Prediction in Higher Education: A Systematic Review of Machine Learning Methods and Risk Factors. \emph{Journal of Information Technology Education: Research}, 25, Article 20. \url{https://doi.org/10.28945/5776}
 
-Peters, J., Janzing, D., and Sch\"olkopf, B. (2017). \emph{Elements of Causal Inference: Foundations and Learning Algorithms}. MIT Press, Cambridge, MA.
+Peters, J., Janzing, D., and Sch\"olkopf, B. (2017). \emph{Elements of Causal Inference: Foundations and Learning Algorithms}. MIT Press, Cambridge, MA.\par
+}
 
 \vspace{2mm}
 {\scriptsize The generator's calibration sources (CPBRD 2025; EDCOM II 2025; CHED 2025) are traced in the whitepaper, Section 10.}
@@ -348,7 +353,10 @@ Peters, J., Janzing, D., and Sch\"olkopf, B. (2017). \emph{Elements of Causal In
 \appendix
 \begin{frame}{Backup A: policy values at equal capacity}
 \centering\footnotesize
-\input{figures/table_policy.tex}\\[2mm]
+\input{figures/table_policy.tex}\par
+\vspace{2mm}
+
+\raggedright
 {\footnotesize Expected values inside the model: a slot is worth $0.30\times$ the student-term's untreated hazard. Capacity is the number of supported student-terms in terms 2 to 8 (6.2\% of 247,739). Total avertable if every term were supported: 6,097 dropouts.}
 \vspace{3mm}
 

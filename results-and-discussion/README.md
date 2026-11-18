@@ -2,9 +2,6 @@
 
 > ⚠️ **Everything here is synthetic.** Every number describes the behaviour of a generative model calibrated to cited *aggregate* statistics. None of it measures any real Philippine student or institution, and none of it says what any real institution should do.
 
-**Project:** Eskwelabs Innovation Fellowship, Data Innovation Track
-**Builds on:** my whitepaper, *A Two-Layer Synthetic Data Generator for Studying Student Retention Early-Warning Systems in Philippine Higher Education* (v17), and the dataset from Deliverable 2 (`../synthetic-data-generator/`, generator v1.0.1)
-
 ## What this is
 I use the Deliverable 2 dataset the way a Student Success Analyst would, and I use the hidden ground truth only to grade the analysis. Because I know the support programme cuts the dropout hazard by exactly 30 %, I can say whether each method gets the right answer, not just whether it produces an answer. The notebook covers six questions:
 
