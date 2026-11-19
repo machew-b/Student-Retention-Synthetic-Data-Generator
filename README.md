@@ -12,10 +12,10 @@ Philippine higher-education records show what a student does (grades, attendance
 ## What is in the repository
 | Folder | What it is | Start with |
 |---|---|---|
-| [whitepaper](whitepaper/) | The specification: a two-layer generative model with every parameter tagged `LOCKED`, `CALIBRATED` or `ASSUMED`. | `student-retention-data-generator-model.pdf` |
-| [synthetic-data-generator](synthetic-data-generator/) | Deliverable 2: the generator (a notebook) and the dataset it produced: eight CSV tables, a validation scorecard, a parameter log and metadata. | `README.md`, then `output/` |
-| [results-and-discussion](results-and-discussion/) | Deliverable 3: an analysis of the dataset from its exported tables alone, using the hidden truth only to grade the results. Notebook and slide deck. | `student-retention-results-slides.pdf` |
-| [culminating-activity](culminating-activity/) | My EIF Final Culmination, as a slide deck: a portfolio of the three deliverables with my role in each, a reflection on what I learned, and what comes next. | `eif-final-culmination.pdf` |
+| [whitepaper](whitepaper/) | The specification: a two-layer generative model with every parameter tagged `LOCKED`, `CALIBRATED` or `ASSUMED`. | [student-retention-data-generator-model.pdf](whitepaper/student-retention-data-generator-model.pdf) |
+| [synthetic-data-generator](synthetic-data-generator/) | Deliverable 2: the generator (a notebook) and the dataset it produced: eight CSV tables, a validation scorecard, a parameter log and metadata. | [README.md](synthetic-data-generator/README.md), then [output](synthetic-data-generator/output/) |
+| [results-and-discussion](results-and-discussion/) | Deliverable 3: an analysis of the dataset from its exported tables alone, using the hidden truth only to grade the results. Notebook and slide deck. | [student-retention-results-slides.pdf](results-and-discussion/student-retention-results-slides.pdf) |
+| [culminating-activity](culminating-activity/) | My EIF Final Culmination, as a slide deck: a portfolio of the three deliverables with my role in each, a reflection on what I learned, and what comes next. | [eif-final-culmination.pdf](culminating-activity/eif-final-culmination.pdf) |
 
 ## Start here
 * **I want the argument in ten minutes:** open the slide deck, [student-retention-results-slides.pdf](results-and-discussion/student-retention-results-slides.pdf) (17 slides and 2 backup slides).
