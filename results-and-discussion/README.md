@@ -1,9 +1,9 @@
-# Results and Discussion: Student Retention Analytics (Deliverable 3)
+# Results and Discussion: Student Retention Analytics
 
 > ⚠️ **Everything here is synthetic.** Every number describes the behaviour of a generative model calibrated to cited *aggregate* statistics. None of it measures any real Philippine student or institution, and none of it says what any real institution should do.
 
 ## What this is
-I analyse the Deliverable 2 dataset from its exported tables only, and I use the hidden ground truth only to grade the analysis. Because I know the support programme cuts the dropout hazard by exactly 30 %, I can say whether each method gets the right answer, not just whether it produces an answer. The notebook covers six questions:
+I analyse the generated sythetic dataset from its exported tables only, and I use the hidden ground truth only to grade the analysis. Because I know the support programme cuts the dropout hazard by exactly 30 %, I can say whether each method gets the right answer, not just whether it produces an answer. The notebook covers six questions:
 
 | Sec. | Question | Headline (synthetic data) |
 |---|---|---|

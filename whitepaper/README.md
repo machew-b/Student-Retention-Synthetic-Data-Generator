@@ -45,9 +45,9 @@ pdflatex student-retention-data-generator-model.tex
 I rebuilt it this way from the committed source and got a 27-page PDF with the same text as the committed one. The two figures are regenerated with `python fig1_pipeline.py` and `python fig2_dag.py` from inside `figures/` (matplotlib only). Both reproduce the committed PNGs byte for byte.
 
 ## Appendix A (pilot) versus the production generator
-Appendix A reports a **pilot implementation** of one admissible instantiation of the specification. The paper is explicit that the pilot "is a feasibility check of the specification, not the production generator", and that it implements only the core mechanism (Phases 1 to 5) and omits the non-core attributes of Appendix B. The released dataset comes from the **production generator** (`synthetic-data-generator/`, version 1.0.1, seed 193), which implements the full schema. The two share the same forms and parameters, but they are separate runs, so their realised numbers differ.
+Appendix A reports a **pilot implementation** of one admissible instantiation of the specification. The paper is explicit that the pilot "is a feasibility check of the specification, not the production generator", and that it implements only the core mechanism (Phases 1 to 5) and omits the non-core attributes of Appendix B. The released dataset comes from the **production generator** (`synthetic-data-generator/`, seed 193), which implements the full schema. The two share the same forms and parameters, but they are separate runs, so their realised numbers differ.
 
-| Quantity | Appendix A pilot | Production generator v1.0.1 |
+| Quantity | Appendix A pilot | Production generator |
 |---|---|---|
 | Calibrated (δ, γ0) | (1.06, −2.67) | (1.033, −2.673) |
 | Tier attrition, high / typical / pooled | 67.1% / 45.9% / 49.1% | 67.1% / 45.9% / 49.1% |

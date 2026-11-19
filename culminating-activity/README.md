@@ -2,10 +2,6 @@
 
 > ⚠️ **Everything numerical in this folder is synthetic.** The numbers describe the behaviour of a generative model calibrated to cited *aggregate* statistics. None of them measures any real Philippine student or institution, and none should be reported as an empirical finding.
 
-**Author:** Matthew C. Batitay
-**Project:** Eskwelabs Innovation Fellowship, Data Innovation Track
-**Covers:** my Synthetic Dataset project and its three deliverables, in [`../whitepaper/`](../whitepaper/), [`../synthetic-data-generator/`](../synthetic-data-generator/) and [`../results-and-discussion/`](../results-and-discussion/)
-
 ## What this is
 The EIF Final Culmination is not a new project. It is a portfolio of my EIF work, a reflection on my growth, and a way to present my contributions, built around one question: *what did I do, and what does it say about me?* `eif-final-culmination.pdf` is that story as a **39-slide deck** (16:9). It has five parts, each opened by a divider slide:
 
@@ -32,9 +28,9 @@ There is no `figures/` folder on purpose. The deck reuses three figures that alr
 
 | Slide | Figure | File it loads |
 |---|---|---|
-| 19 | Generation pipeline | `../whitepaper/figures/fig1_pipeline.png` |
-| 23 | Generator diagnostics | `../synthetic-data-generator/output/diagnostics.png` |
-| 27 | The actionability gap | `../results-and-discussion/figures/fig3_actionability_gap.png` |
+| 19 | Generation pipeline | [fig1_pipeline.png](../whitepaper/figures/fig1_pipeline.png) |
+| 23 | Generator diagnostics | [diagnostics.png](../synthetic-data-generator/output/diagnostics.png) |
+| 27 | The actionability gap | [fig3_actionability_gap.png](../results-and-discussion/figures/fig3_actionability_gap.png) |
 
 The journey diagram and the provenance-tag chips are drawn in TikZ inside the `.tex`, so they need no image files.
 
@@ -64,6 +60,6 @@ It needs the packages `beamer`, `lmodern`, `tcolorbox`, `tikz`, `natbib`, `micro
 ## Conventions
 * **Synthetic status is stated on every slide**, in the footer, and in a notice near the start of the deck.
 * **Provenance tags** (`LOCKED`, `CALIBRATED`, `ASSUMED`) are used wherever a model parameter is quoted, as in the rest of the repository.
-* **Numbers are the generator's (seed 193), not the whitepaper pilot's.** See [`../whitepaper/README.md`](../whitepaper/README.md) for the reconciliation.
+* **Numbers are the generator's (seed 193), not the whitepaper pilot's.** See the [`overview`](../whitepaper/README.md) of the whitepaper for the reconciliation.
 * **Navigation.** The overview chips on the "What this deck is" slide and the section list on every divider slide are links: click a section to jump to it. The PDF bookmarks list the five sections too.
 * **Links** in the PDF point to files on the `main` branch of this repository.
