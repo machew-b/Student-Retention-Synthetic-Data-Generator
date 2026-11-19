@@ -20,8 +20,8 @@ Philippine higher-education records show what a student does (grades, attendance
 ## Start here
 * **I want the argument in ten minutes:** open the slide deck, [student-retention-results-slides.pdf](results-and-discussion/student-retention-results-slides.pdf) (17 slides and 2 backup slides).
 * **I want the full results without running anything:** open [results-and-discussion/student-retention-analytics.ipynb](results-and-discussion/student-retention-analytics.ipynb). It is saved with its outputs.
-* **I want the data:** The [outputs](synthetic-data-generator/output/) holds the eight tables. The generator README describes each table, [output README](synthetic-data-generator/output/README.md) lists the files, and [DATASET_NOTICE.txt](synthetic-data-generator/output/DATASET_NOTICE.txt) is the usage notice.
-* **I want the story of the whole project and what I did in it:** open the slide deck [culminating-activity/eif-final-culmination.pdf](culminating-activity/eif-final-culmination.pdf) (39 slides).
+* **I want the data:** The [output](synthetic-data-generator/output/) folder holds the eight tables. The generator README describes each table, [output README](synthetic-data-generator/output/README.md) lists the files, and [DATASET_NOTICE.txt](synthetic-data-generator/output/DATASET_NOTICE.txt) is the usage notice.
+* **I want the story of the whole project and what I did in it:** open the slide deck [eif-final-culmination.pdf](culminating-activity/eif-final-culmination.pdf) (39 slides).
 * **I want the specification and its justification:** the whitepaper PDF. Its folder README maps the sections and reconciles the Appendix A pilot with the released generator.
 
 ## What the analysis found (synthetic data)
@@ -32,7 +32,7 @@ Philippine higher-education records show what a student does (grades, attendance
 * **Most dropouts happen where the programme is not looking.** 63.7% of dropout events fall in terms with a clean record and no support.
 * **These conclusions survive what I varied:** eleven scenarios, each recalibrated to the same cited tier targets.
 
-The recommendations and the full list of limitations are in the Deliverable 3 notebook (Sections 11 and 12).
+The recommendations and the full list of limitations are in the results and discussion [notebook](results-and-discussion/student-retention-analytics.ipynb) (Sections 11 and 12).
 
 ## Reproduce it
 ```
