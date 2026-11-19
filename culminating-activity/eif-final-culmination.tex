@@ -138,11 +138,14 @@
 \newcommand{\repo}{https://github.com/machew-b/Student-Retention-Synthetic-Data-Generator}
 \newcommand{\gh}[2]{\href{\repo/#1}{#2}}
 \newcommand{\boxedans}[1]{\boxed{#1}}
+% Clickable overview chip: #1 = hypertarget name of the section divider, #2 = label
+\newcommand{\chiplink}[2]{\hyperlink{#1}{\makebox[2.4cm]{\color{white}\rule[-0.07cm]{0pt}{0.36cm}#2}}}
 
 % Section divider: gradient page, big number, the five sections with the current one lit
 \newcommand{\sectiondivider}[2]{%
   {\usebackgroundtemplate{\eskbg}
   \begin{frame}[plain,c]
+    \hypertarget{sec#1}{}% jump target for the overview chips and the list on the right
     \begin{tikzpicture}[remember picture,overlay]
       \node[anchor=west,white,font=\sffamily\fontsize{64}{64}\selectfont\bfseries]
         at ([xshift=1.3cm,yshift=0.2cm]current page.west) {#1};
@@ -151,7 +154,7 @@
       \foreach \i/\nm in {1/About me,2/My EIF journey,3/Project portfolio,4/Reflection,5/What is next}{%
         \ifnum\i=#1 \def\opc{1}\def\wt{\bfseries}\else \def\opc{0.5}\def\wt{\mdseries}\fi
         \node[anchor=west,text=white,text opacity=\opc,font=\sffamily\small\wt]
-          at ([xshift=-4.7cm,yshift={1.5cm-\i*0.75cm}]current page.east) {\i\quad\nm};}
+          at ([xshift=-4.7cm,yshift={1.5cm-\i*0.75cm}]current page.east) {\hyperlink{sec\i}{\color{white}\i\quad\nm}};}
     \end{tikzpicture}
   \end{frame}}}
 
@@ -182,7 +185,7 @@
     \centering\sffamily\bfseries\color{eskdeep}
     ``What did I do, and what does it say about me?''
   \end{keybox}
-  \medskip
+  \smallskip
 
   \textbf{Projects $\to$ Portfolio $\to$ Story.} My EIF work is a single
   Synthetic Dataset project, delivered in three parts:
@@ -194,16 +197,17 @@
   \medskip
 
   {\small This deck is a reflection on work that already exists and a map to its
-  files. It is not a new project, and it makes no claim of being perfect.}
+  files. It is not a new project, and it makes no claim of being perfect.
+  \emph{Click a section below to jump to it.}}
   \medskip
 
   \begin{center}
-  \begin{tikzpicture}[chip/.style={rounded corners=2pt,fill=eskteal,text=white,font=\sffamily\scriptsize\bfseries,inner sep=4pt,minimum width=2.4cm}]
-    \node[chip] (a) {1\quad About me};
-    \node[chip,right=0.15cm of a] (b) {2\quad My EIF journey};
-    \node[chip,right=0.15cm of b] (c) {3\quad Project portfolio};
-    \node[chip,right=0.15cm of c,fill=eskdeep] (d) {4\quad Reflection};
-    \node[chip,right=0.15cm of d,fill=eskindigo] (e) {5\quad What is next};
+  \begin{tikzpicture}[chip/.style={rounded corners=2pt,fill=eskteal,text=white,font=\sffamily\scriptsize\bfseries,inner sep=4pt}]
+    \node[chip] (a) {\chiplink{sec1}{1\quad About me}};
+    \node[chip,right=0.15cm of a] (b) {\chiplink{sec2}{2\quad My EIF journey}};
+    \node[chip,right=0.15cm of b] (c) {\chiplink{sec3}{3\quad Project portfolio}};
+    \node[chip,right=0.15cm of c,fill=eskdeep] (d) {\chiplink{sec4}{4\quad Reflection}};
+    \node[chip,right=0.15cm of d,fill=eskindigo] (e) {\chiplink{sec5}{5\quad What is next}};
   \end{tikzpicture}
   \end{center}
 \end{frame}
@@ -236,9 +240,10 @@
 
 \begin{frame}{Who I am}
   \begin{itemize}
-    \item I am \textbf{Matthew C. Batitay}, a Fellow in the \textbf{Eskwelabs
-          Innovation Fellowship (EIF)}, Data Innovation Track.
-    \item My work lives on GitHub as
+    \item I am \textbf{Matthew C. Batitay}, a \textbf{4th-year BS Statistics} student at the
+          \textbf{School of Statistics, UP Diliman}.
+    \item I am a Fellow in the \textbf{Eskwelabs Innovation Fellowship (EIF)}, Data
+          Innovation Track. My work lives on GitHub as
           \href{https://github.com/machew-b}{\texttt{machew-b}}, in one public
           repository: \gh{}{Student Retention Synthetic Data Generator}.
     \item In the fellowship I took on a \textbf{Synthetic Dataset} project: model a
@@ -248,6 +253,55 @@
     \item I chose \alert{student retention in Philippine higher education}: published
           attrition figures exist only in aggregate, and records show what a
           student does but not why a student leaves.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{What interests me, and what I do for fun}
+  \begin{minipage}[t]{0.485\textwidth}
+  \begin{qbox}{eskteal}{My field of interest}{3.8cm}
+    \small
+    \begin{itemize}\setlength\itemsep{4pt}
+      \item \textbf{Bayesian modeling}
+      \item \textbf{Non-parametric data analysis}
+      \item \textbf{LLM-based modeling}
+    \end{itemize}
+  \end{qbox}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.485\textwidth}
+  \begin{qbox}{eskindigo}{Outside of statistics}{3.8cm}
+    \small
+    \begin{itemize}\setlength\itemsep{4pt}
+      \item Solving Rubik's cubes, in any form
+      \item Playing Minecraft and Mobile Legends
+      \item Jogging
+      \item Embracing nature
+    \end{itemize}
+  \end{qbox}
+  \end{minipage}
+  \medskip
+
+  \begin{keybox}\centering\small
+    The Synthetic Dataset project is where I practised the modelling side of these
+    interests: a \key{hidden-state model} that I specified myself, and methods that I
+    graded against a \key{known truth}.
+  \end{keybox}
+\end{frame}
+
+\begin{frame}{Why I joined the EIF}
+  \small
+  \begin{itemize}\setlength\itemsep{4pt}
+    \item \key{To go beyond the classroom.} Much of my coursework starts from a prepared
+          dataset and a question that is already posed. I joined to see what the work
+          looks like when I have to build the data problem myself: choose a system, state
+          the assumptions, and decide how the result will be checked.
+    \item \key{To apply what I have learned.} I wanted to use my training in probability,
+          inference and modelling on a problem that matters: why students leave college in
+          the Philippines, and whether support for them works.
+    \item \key{To explore the data field.} The Data Innovation Track let me try a whole
+          workflow in one project (modelling, simulation, causal inference, prediction, and
+          writing for different readers) and see which parts I want to go deeper into.
+    \item \key{To work to a clear standard.} Three deliverables and a definition of done
+          pushed me to document every assumption and make the work checkable.
   \end{itemize}
 \end{frame}
 
@@ -285,7 +339,7 @@
     Python data stack & numpy, pandas, SciPy, statsmodels, scikit-learn, matplotlib & Both notebooks\\
     Reproducibility & Seeded random streams, SHA-256 of every table, pinned requirements & Generator; analytics Sec.~3\\
     Research and sourcing & Traced attrition figures to their original reports and cohorts & Whitepaper, Sec.~10\\
-    Technical writing & 29-page whitepaper, READMEs, 19-page LaTeX slide deck & All three folders\\
+    Technical writing & 27-page whitepaper, READMEs, 19-page LaTeX slide deck & All three folders\\
     Responsible data practice & Synthetic notice, no region names, regional tier kept out of the flagging model & Whitepaper, Sec.~13\\
     \bottomrule
   \end{tabular}
@@ -307,9 +361,9 @@
     \toprule
      & \textbf{Deliverable asked for} & \textbf{What I delivered}\\
     \midrule
-    \key{D1} & Data model document with 5+ tables and latent and observed relationships & Whitepaper (v17), 8 tables, hidden and recorded layers, 29 pages\\
-    \key{D2} & Notebook that generates a customisable number of rows across the tables & Generator notebook v1.0.1 and the 50,000-student dataset it produced\\
-    \key{D3} & Notebook and/or presentation showcasing analytics on the dataset & Analytics notebook (85 cells), executed HTML export and a 19-page slide deck\\
+    \key{D1} & Data model document with 5+ tables and latent and observed relationships & Whitepaper, 8 tables, hidden and recorded layers, 27 pages\\
+    \key{D2} & Notebook that generates a customisable number of rows across the tables & Generator notebook and the 50,000-student dataset it produced\\
+    \key{D3} & Notebook and/or presentation showcasing analytics on the dataset & Analytics notebook (85 cells) and a 19-page slide deck\\
     \bottomrule
   \end{tabular}
 \end{frame}
@@ -341,9 +395,9 @@
     box/.style={rounded corners=3pt,draw=eskteal,fill=paleteal,align=center,text width=2.2cm,minimum height=2.2cm,inner sep=3pt,font=\sffamily\scriptsize,text=ink},
     arr/.style={-{Latex[length=2mm]},eskteal,thick}]
     \node[box] (a) {\textbf{\normalsize 1}\\[1pt]\textbf{Choose the system}\\Why students leave, and what records miss};
-    \node[box,right=0.4cm of a] (b) {\textbf{\normalsize 2}\\[1pt]\textbf{Whitepaper v17}\\Eight tables, Eqs.~1--4, tagged parameters, validation plan};
-    \node[box,right=0.4cm of b] (c) {\textbf{\normalsize 3}\\[1pt]\textbf{Generator v1.0.1}\\50,000-student dataset, 29 checks, scorecard};
-    \node[box,right=0.4cm of c] (d) {\textbf{\normalsize 4}\\[1pt]\textbf{Analytics}\\85-cell notebook, HTML, 19-page deck, 11 scenarios};
+    \node[box,right=0.4cm of a] (b) {\textbf{\normalsize 2}\\[1pt]\textbf{Whitepaper}\\Eight tables, Eqs.~1--4, tagged parameters, validation plan};
+    \node[box,right=0.4cm of b] (c) {\textbf{\normalsize 3}\\[1pt]\textbf{Generator}\\50,000-student dataset, 29 checks, scorecard};
+    \node[box,right=0.4cm of c] (d) {\textbf{\normalsize 4}\\[1pt]\textbf{Analytics}\\85-cell notebook, 19-page deck, 11 scenarios};
     \node[box,right=0.4cm of d,fill=eskteal,text=white,draw=eskteal] (e) {\textbf{\normalsize 5}\\[1pt]\textbf{Final Culmination}\\This deck: story, reflection, next steps};
     \draw[arr] (a)--(b); \draw[arr] (b)--(c); \draw[arr] (c)--(d); \draw[arr] (d)--(e);
     \draw[dashed,softgray,-{Latex[length=2mm]},thick] (c.south) to[out=-90,in=-90,looseness=0.7]
@@ -374,29 +428,6 @@
     The held-out check passes only narrowly: 1.673 against a band of 1.2 to 1.7,
     with about 60\% of 20 replicate populations inside the band. Inverse-probability
     weighting swings from $-47\%$ to $+72\%$.
-  \end{qbox}
-  \end{minipage}
-\end{frame}
-
-\begin{frame}{The old and the new}
-  \begin{minipage}[t]{0.485\textwidth}
-  \begin{qbox}{softgray}{The old}{4.6cm}
-    \footnotesize
-    The whitepaper's Appendix A reports a \emph{pilot} implementation
-    (Mantel--Haenszel 25.5\%, held-out ratio 1.72, not passed).
-
-    Generator v1.0.0 kept its frozen calibration constants rounded and left some
-    structural counts untagged.
-  \end{qbox}
-  \end{minipage}\hfill
-  \begin{minipage}[t]{0.485\textwidth}
-  \begin{qbox}{eskteal}{The new}{4.6cm}
-    \footnotesize
-    Version 1.0.1 stores the calibration at full precision and tags every number.
-    The released dataset's numbers supersede the pilot's.
-
-    The analysis adds eleven recalibrated sensitivity scenarios, which answer the
-    question OF-1 left open, and a plain statement of what the results are not.
   \end{qbox}
   \end{minipage}
 \end{frame}
@@ -447,7 +478,7 @@
   \medskip
 
   \begin{keybox}\centering\small
-    Everything downstream is a test of whether an analyst can \key{recover that effect}.
+    Everything downstream is a test of whether a method can \key{recover that effect}.
   \end{keybox}
 \end{frame}
 
@@ -455,7 +486,7 @@
 \begin{frame}{Deliverable 1, Whitepaper (1/2): context and my role}
   \footnotesize
   {\itshape A Two-Layer Synthetic Data Generator for Studying Student Retention
-  Early-Warning Systems in Philippine Higher Education.} 29 pages, version 17.
+  Early-Warning Systems in Philippine Higher Education.} 27 pages.
   \smallskip
 
   \pfield{Problem / Context.} A data model with at least five tables and an explicit
@@ -513,7 +544,7 @@
 % ---------------------------------------------------------------- D2
 \begin{frame}{Deliverable 2, Generator (1/3): context and my role}
   \small
-  {\itshape Generator v1.0.1.} One notebook (36 cells), eight tables, 297,739 rows in each panel table.
+  {\itshape Generator notebook.} 36 cells, eight tables, 297,739 rows in each panel table.
   \medskip
 
   \pfield{Problem / Context.} A specification only counts if it can be run. D2 asks for a
@@ -540,8 +571,8 @@
   \begin{itemize}\setlength\itemsep{2pt}
     \item Wrote 29 integrity checks and a correlation test, a scorecard for every check
           in the whitepaper's validation table, an edge-case audit, and open flags OF-1 to OF-12.
-    \item Shipped v1.0.1 after finding that v1.0.0 kept its frozen calibration rounded
-          and left some counts untagged, so the default dataset reproduces exactly.
+    \item Stored the calibration constants at full precision and tagged every structural
+          count, so the default dataset reproduces exactly.
     \item Withheld the hidden state: baseline vulnerability, shocks and hazard are never
           exported, and no individual-level table carries a region name.
   \end{itemize}
@@ -603,19 +634,18 @@
 % ---------------------------------------------------------------- D3
 \begin{frame}{Deliverable 3, Analytics (1/3): context and my role}
   \small
-  {\itshape Analytics notebook and slide deck.} 85-cell notebook, executed HTML export,
+  {\itshape Analytics notebook and slide deck.} 85-cell notebook and a
   19-page deck (17 slides and 2 backup).
   \medskip
 
   \pfield{Problem / Context.} D3 asks for analytics on the dataset. I wanted more than a
-  tour of charts: because I know the truth behind the data, I could ask whether the
-  workflow a Student Success Analyst would normally follow reaches the right
-  conclusion, and where it does not.
+  tour of charts: because I know the truth behind the data, I could ask whether
+  standard methods reach the right conclusion, and where they do not.
   \medskip
 
   \pfield{My role and contributions}
   \begin{itemize}\setlength\itemsep{2pt}
-    \item Wrote the analysis so it sees only what an analyst would see. The hidden state
+    \item Wrote the analysis so that it uses only the exported tables. The hidden state
           is used only in labelled places, always to \emph{grade} a result.
     \item Copied the generator engine unchanged into the notebook and proved the copy
           faithful: it regenerates all eight tables with matching hashes.
@@ -639,8 +669,7 @@
   \medskip
 
   \pfield{Output.}
-  \gh{blob/main/results-and-discussion/student-retention-analytics.ipynb}{Analysis notebook},
-  executed \gh{blob/main/results-and-discussion/student-retention-analytics.html}{HTML export},
+  \gh{blob/main/results-and-discussion/student-retention-analytics.ipynb}{Analysis notebook}
   and the \gh{blob/main/results-and-discussion/student-retention-results-slides.pdf}{slide deck}
   with its LaTeX source, in \gh{tree/main/results-and-discussion}{\texttt{results-and-discussion/}}.
   \medskip
@@ -741,8 +770,8 @@
     \item The limitations are \alert{in the open}. Twelve generator flags and nine
           analysis flags are logged with a status, including the ones that remain
           unresolved.
-    \item The analysis is written from an analyst's point of view and only then graded
-          against the truth, the discipline I wanted a retention analyst to have.
+    \item The analysis works from the exported tables alone and is only then graded
+          against the truth, the discipline that keeps a result honest.
   \end{itemize}
 \end{frame}
 
@@ -751,9 +780,8 @@
   \begin{itemize}\setlength\itemsep{5pt}
     \item \key{Bring the whitepaper in line with the generator.} Its targeting figures
           (Sec.~8 and Table~4) should describe the realised behaviour, the appendix
-          should say the near-determinism follows from the chosen parameters, the title
-          page should carry a version line, and the pilot script that Appendix A mentions
-          should be added or the sentence reworded.
+          should say the near-determinism follows from the chosen parameters, and the
+          pilot script that Appendix A mentions should be added or the sentence reworded.
     \item \key{Close the sourcing question} on the 29.4\% figure against CHED's
           underlying data, if it can be obtained (OF-7).
     \item \key{Make the slide figures reproducible} by adding the script that draws
@@ -770,7 +798,7 @@
 
 \begin{frame}{Finishing this project, and extending the science}
   \small
-  \pfield{Finishing.} The first thing I would do is publish a whitepaper v18 that fixes
+  \pfield{Finishing.} The first thing I would do is revise the whitepaper to fix
   the inconsistencies listed above. After that I would resolve OF-7, add the figure
   script, and re-run the held-out check that the analysis did not repeat.
   \medskip
@@ -817,7 +845,7 @@
     Repository overview & \gh{blob/main/README.md}{\texttt{README.md}}\\
     D1 whitepaper & \gh{blob/main/whitepaper/student-retention-data-generator-model.pdf}{\texttt{whitepaper/student-retention-data-generator-model.pdf}}\\
     D2 generator and dataset & \gh{tree/main/synthetic-data-generator}{\texttt{synthetic-data-generator/}}\\
-    D3 notebook, HTML, slide deck & \gh{tree/main/results-and-discussion}{\texttt{results-and-discussion/}}\\
+    D3 notebook and slide deck & \gh{tree/main/results-and-discussion}{\texttt{results-and-discussion/}}\\
     This deck & \gh{tree/main/culminating-activity}{\texttt{culminating-activity/}}\\
     \bottomrule
   \end{tabular}
@@ -839,6 +867,8 @@
 % ---- Sources ----
 \begin{frame}[allowframebreaks]{Sources}
   \scriptsize
+  % plainnat sorts the list alphabetically by author surname (or organisation name),
+  % so the order follows from running bibtex; it does not depend on the order in references.bib
   \bibliographystyle{plainnat}
   \bibliography{references}
 \end{frame}
