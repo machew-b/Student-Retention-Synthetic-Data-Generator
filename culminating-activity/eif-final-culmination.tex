@@ -196,18 +196,16 @@
   \end{enumerate}
   \medskip
 
-  {\small This deck is a reflection on work that already exists and a map to its
-  files. It is not a new project, and it makes no claim of being perfect.
-  \emph{Click a section below to jump to it.}}
+  {\small This deck summarizes the work I have done so far in the Eskwelabs Innovation Fellowship, from the whitepaper to the generator to the analysis, and points to where each piece lives in the repository.}
   \medskip
 
   \begin{center}
   \begin{tikzpicture}[chip/.style={rounded corners=2pt,fill=eskteal,text=white,font=\sffamily\scriptsize\bfseries,inner sep=4pt}]
-    \node[chip] (a) {\chiplink{sec1}{1\quad About me}};
-    \node[chip,right=0.15cm of a] (b) {\chiplink{sec2}{2\quad My EIF journey}};
-    \node[chip,right=0.15cm of b] (c) {\chiplink{sec3}{3\quad Project portfolio}};
-    \node[chip,right=0.15cm of c,fill=eskdeep] (d) {\chiplink{sec4}{4\quad Reflection}};
-    \node[chip,right=0.15cm of d,fill=eskindigo] (e) {\chiplink{sec5}{5\quad What is next}};
+    \node[chip] (a) {\chiplink{sec1}{1 About me}};
+    \node[chip,right=0.15cm of a] (b) {\chiplink{sec2}{2 My EIF journey}};
+    \node[chip,right=0.15cm of b] (c) {\chiplink{sec3}{3 Project portfolio}};
+    \node[chip,right=0.15cm of c,fill=eskdeep] (d) {\chiplink{sec4}{4 Reflection}};
+    \node[chip,right=0.15cm of d,fill=eskindigo] (e) {\chiplink{sec5}{5 What is next}};
   \end{tikzpicture}
   \end{center}
 \end{frame}
@@ -226,10 +224,10 @@
   \medskip
 
   \begin{center}
-  \begin{tikzpicture}
-    \node[draw=eskdeep,rounded corners=2pt,text width=3.9cm,align=center,inner sep=5pt,font=\sffamily\small] (l) {\textbf{LOCKED}\\[1pt]\footnotesize fixed by design};
-    \node[draw=eskteal,rounded corners=2pt,text width=3.9cm,align=center,inner sep=5pt,font=\sffamily\small,right=0.3cm of l] (c) {\textbf{CALIBRATED}\\[1pt]\footnotesize set to reproduce a cited statistic};
-    \node[draw=eskorange,rounded corners=2pt,text width=3.9cm,align=center,inner sep=5pt,font=\sffamily\small,right=0.3cm of c] (a) {\textbf{ASSUMED}\\[1pt]\footnotesize a stated modelling choice, no citation};
+    \begin{tikzpicture}[tag/.style={rounded corners=2pt,text width=3.9cm,minimum height=1.6cm,align=center,inner sep=5pt,font=\sffamily\small}]
+    \node[tag,draw=eskdeep] (l) {\textbf{LOCKED}\\[1pt]\footnotesize fixed by design};
+    \node[tag,draw=eskteal,right=0.3cm of l] (c) {\textbf{CALIBRATED}\\[1pt]\footnotesize set to reproduce a cited statistic};
+    \node[tag,draw=eskorange,right=0.3cm of c] (a) {\textbf{ASSUMED}\\[1pt]\footnotesize a stated modelling choice, no citation};
   \end{tikzpicture}
   \end{center}
 \end{frame}
@@ -250,9 +248,11 @@
           real-world system, encode its variables and relationships
           mathematically, and generate data with realistic correlations,
           drop-off and edge cases.
-    \item I chose \alert{student retention in Philippine higher education}: published
-          attrition figures exist only in aggregate, and records show what a
-          student does but not why a student leaves.
+        \item I chose \alert{student retention in Philippine higher education} because I noticed that published attrition figures exist only as
+          national and regional aggregates that do not all trace to the same cohort.
+          Institutional records show what a student does (grades, attendance,
+          financial-account status) but not why the student leaves, and no public
+          dataset links the two at the individual level.
   \end{itemize}
 \end{frame}
 
@@ -263,6 +263,7 @@
     \begin{itemize}\setlength\itemsep{4pt}
       \item \textbf{Bayesian modeling}
       \item \textbf{Non-parametric data analysis}
+      \item \textbf{Time series forecasting}
       \item \textbf{LLM-based modeling}
     \end{itemize}
   \end{qbox}
@@ -271,7 +272,7 @@
   \begin{qbox}{eskindigo}{Outside of statistics}{3.8cm}
     \small
     \begin{itemize}\setlength\itemsep{4pt}
-      \item Solving Rubik's cubes, in any form
+      \item Solving Rubik's cubes (of any form)
       \item Playing Minecraft and Mobile Legends
       \item Jogging
       \item Embracing nature
@@ -308,7 +309,7 @@
 \begin{frame}{How I work}
   \small
   Four habits run through all three deliverables, and each can be checked in
-  the repository rather than taken on my word.
+  the repository.
   \medskip
 
   \begin{itemize}
@@ -361,7 +362,7 @@
     \toprule
      & \textbf{Deliverable asked for} & \textbf{What I delivered}\\
     \midrule
-    \key{D1} & Data model document with 5+ tables and latent and observed relationships & Whitepaper, 8 tables, hidden and recorded layers, 27 pages\\
+    \key{D1} & Data model document with 5+ tables and latent and observed relationships & Whitepaper (a 27-page data model document), 8 tables, hidden and recorded layers\\
     \key{D2} & Notebook that generates a customisable number of rows across the tables & Generator notebook and the 50,000-student dataset it produced\\
     \key{D3} & Notebook and/or presentation showcasing analytics on the dataset & Analytics notebook (85 cells) and a 19-page slide deck\\
     \bottomrule
@@ -465,14 +466,12 @@
   is assigned from \emph{prior-term} signals, and the true effect is fixed at a
   risk ratio of exactly 0.70 (\ptag{LOCKED}, a design constant, not an empirical
   estimate). With $\sigma$ the logistic function:
-  \begin{align*}
+    \begin{align*}
     \text{risk}_{it} &= \sigma\bigl(\beta_0 + \beta\,k_{it}\bigr),
-      \quad k_{it} = \mathbb 1(\text{grade}_{i,t-1}<\tau_g) + \mathbb 1(\text{attend}_{i,t-1}<\tau_a) + \text{hold}_{i,t-1},\\
+      \quad k_{it} = \mathbf{1}(\text{grade}_{i,t-1}<\tau_g) + \mathbf{1}(\text{attend}_{i,t-1}<\tau_a) + \text{hold}_{i,t-1},\\
     h_{it} &= \sigma\bigl(\gamma_0 + \gamma_1 v_i + \gamma_2\,\text{shock}_{it}\bigr)\times\bigl(1 - 0.30\cdot\text{support}_{it}\bigr).
   \end{align*}
-  \vspace{-4pt}
-  Here $k_{it}$ counts the prior-term signals that fire. Support is drawn as
-  $\text{Bernoulli}(\text{risk}_{it})$ from term 2 onward, so it depends on observed
+  \vspace*{-4pt}Here $k_{it}$ counts the prior-term signals that fire. Support is drawn as $\text{Bernoulli}(\text{risk}_{it})$ from term 2\vspace*{4pt}\\ onward, so it depends on observed
   signals that also predict dropout; dropout is drawn as
   $\text{Bernoulli}(h_{it})$ with the true effect built into the second line.
   \medskip
@@ -638,8 +637,7 @@
   19-page deck (17 slides and 2 backup).
   \medskip
 
-  \pfield{Problem / Context.} D3 asks for analytics on the dataset. I wanted more than a
-  tour of charts: because I know the truth behind the data, I could ask whether
+  \pfield{Problem / Context.} D3 asks for analytics on the dataset. Note that because I know the truth behind the data, I could ask whether
   standard methods reach the right conclusion, and where they do not.
   \medskip
 
@@ -784,8 +782,6 @@
           pilot script that Appendix A mentions should be added or the sentence reworded.
     \item \key{Close the sourcing question} on the 29.4\% figure against CHED's
           underlying data, if it can be obtained (OF-7).
-    \item \key{Make the slide figures reproducible} by adding the script that draws
-          them to the repository.
     \item \key{Loosen the generator's simplifications.} A single homogeneous effect, no
           carry-over from support into later grades, and no unmeasured assignment
           confounders make the causal problem easier than a real one.
@@ -796,15 +792,12 @@
 \section{5~~What Is Next}
 \sectiondivider{5}{What is next}
 
-\begin{frame}{Finishing this project, and extending the science}
+\begin{frame}{Extending the science}
   \small
-  \pfield{Finishing.} The first thing I would do is revise the whitepaper to fix
-  the inconsistencies listed above. After that I would resolve OF-7, add the figure
-  script, and re-run the held-out check that the analysis did not repeat.
+  The analysis notebook already names the open questions:
   \medskip
 
-  \pfield{Extending.} The analysis notebook already names the open questions:
-  \begin{itemize}\setlength\itemsep{1pt}
+  \begin{itemize}\setlength\itemsep{4pt}
     \item \textbf{Heterogeneous effects.} Let the support effect differ by student,
           which breaks the assumption that ranking by risk is optimal.
     \item \textbf{The cost of building overlap into a rollout.} I recommend a small
