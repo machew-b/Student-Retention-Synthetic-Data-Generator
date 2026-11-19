@@ -45,7 +45,7 @@ pdflatex student-retention-data-generator-model.tex
 I rebuilt it this way from the committed source and got a 27-page PDF with the same text as the committed one. The two figures are regenerated with `python fig1_pipeline.py` and `python fig2_dag.py` from inside `figures/` (matplotlib only). Both reproduce the committed PNGs byte for byte.
 
 ## Appendix A (pilot) versus the production generator
-Appendix A reports a **pilot implementation** of one admissible instantiation of the specification. The paper is explicit that the pilot "is a feasibility check of the specification, not the production generator", and that it implements only the core mechanism (Phases 1 to 5) and omits the non-core attributes of Appendix B. The released dataset comes from the **production generator** (`synthetic-data-generator/`, seed 193), which implements the full schema. The two share the same forms and parameters, but they are separate runs, so their realised numbers differ.
+Appendix A reports a **pilot implementation** of one admissible instantiation of the specification. The paper is explicit that the pilot "is a feasibility check of the specification, not the production generator", and that it implements only the core mechanism (Phases 1 to 5) and omits the non-core attributes of Appendix B. The released dataset comes from the **production generator** (seed 193), which implements the full schema. The two share the same forms and parameters, but they are separate runs, so their realised numbers differ.
 
 | Quantity | Appendix A pilot | Production generator |
 |---|---|---|
@@ -65,7 +65,7 @@ Appendix A reports a **pilot implementation** of one admissible instantiation of
 **What differs, and how to read it.** The point estimates differ by amounts of the size that run-to-run variation produces: the Mantel–Haenszel estimate of the pilot (25.5%) and of the production run (32.2%) are about 1.5 standard deviations apart, where the SD across populations is about 4.4 points in both. The held-out verdict differs because the ratio sits at the edge of the pre-specified band: 1.72 is just outside it and 1.673 just inside, which is the fragility that the generator notebook records as open flag OF-2. I did not trace the exact source of the differences between the two runs, because the pilot script is not in this repository.
 
 **Which numbers to quote.**
-* When describing the released dataset, the generator, or Deliverable 3, quote the **production** numbers. They are in `../synthetic-data-generator/output/validation_scorecard.csv` and are re-derived from the CSV files in `../results-and-discussion/`.
+* When describing the released dataset, the generator, or Deliverable 3, quote the **production** numbers. They are in [validation_scorecard.csv](../synthetic-data-generator/output/validation_scorecard.csv) and are re-derived from the CSV files in [results-and-discussion](../results-and-discussion/).
 * Quote the Appendix A numbers only when describing the pilot.
 
 **One item that is not in the repository.** Appendix A says "a script reproducing the results accompanies this paper". That pilot script is not included here. The production generator notebook is the implementation to run.
@@ -74,4 +74,4 @@ Appendix A reports a **pilot implementation** of one admissible instantiation of
 I checked the paper against the released dataset. The Appendix B Table 8 schema matches the exported CSV headers exactly, and the dataset satisfies every Appendix B.2 integrity rule (unique keys, contiguous terms, no rows after dropout, risk score empty only in term 1, no support in term 1, valid value ranges, no region names). Citations in the generator and Deliverable 3 documents to Section 10 (calibration), Section 11 (validation), Section 12 (edge cases), Section 13.3 (regional framing), Table 4, Table 5, Table 8 and Appendix B.3 point to the right places.
 
 ## Citation sources behind the calibration
-CPBRD (2025), EDCOM II (2024, 2025) and CHED (2025) are traced in Section 10 and listed in `references.bib`. The generator README lists the sources it uses directly.
+CPBRD (2025), EDCOM II (2024, 2025) and CHED (2025) are traced in Section 10 and listed in [references.bib](../whitepaper/references.bib). The generator README lists the sources it uses directly.

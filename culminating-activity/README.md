@@ -60,6 +60,6 @@ It needs the packages `beamer`, `lmodern`, `tcolorbox`, `tikz`, `natbib`, `micro
 ## Conventions
 * **Synthetic status is stated on every slide**, in the footer, and in a notice near the start of the deck.
 * **Provenance tags** (`LOCKED`, `CALIBRATED`, `ASSUMED`) are used wherever a model parameter is quoted, as in the rest of the repository.
-* **Numbers are the generator's (seed 193), not the whitepaper pilot's.** See the [`overview`](../whitepaper/README.md) of the whitepaper for the reconciliation.
+* **Numbers are the generator's (seed 193), not the whitepaper pilot's.** See the [overview](../whitepaper/README.md) of the whitepaper for the reconciliation.
 * **Navigation.** The overview chips on the "What this deck is" slide and the section list on every divider slide are links: click a section to jump to it. The PDF bookmarks list the five sections too.
 * **Links** in the PDF point to files on the `main` branch of this repository.
