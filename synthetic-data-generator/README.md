@@ -3,7 +3,7 @@
 > ⚠️ **All data produced here is synthetic.** It describes the behaviour of a generative model calibrated to cited *aggregate* statistics. It is **not** a measurement of any real student or population. Do not report any number derived from it as an empirical finding.
 
 ## What this is
-I built a generator for a synthetic student cohort in which a **hidden** state (baseline vulnerability plus per-term acute shocks) drives both the **recorded** institutional data (grades, attendance, financial holds, support) and the eventual dropout. This mirrors what a Student Success Analyst can and cannot see. Support is assigned using prior-term records only, so a naive comparison of treated and untreated students is **confounded**. I fixed the true support effect by design (a 30 % relative hazard reduction) so that any analysis can be scored against a known answer.
+I built a generator for a synthetic student cohort in which a **hidden** state (baseline vulnerability plus per-term acute shocks) drives both the **recorded** institutional data (grades, attendance, financial holds, support) and the eventual dropout. This mirrors what an institution's records can and cannot show. Support is assigned using prior-term records only, so a naive comparison of treated and untreated students is **confounded**. I fixed the true support effect by design (a 30 % relative hazard reduction) so that any analysis can be scored against a known answer.
 
 ## Folder layout
 ```

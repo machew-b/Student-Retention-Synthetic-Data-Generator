@@ -12,7 +12,7 @@ The model is implemented in [synthetic-data-generator](../synthetic-data-generat
 whitepaper/
 ├── README.md
 ├── student-retention-data-generator-model.tex   # the paper (LaTeX source)
-├── student-retention-data-generator-model.pdf   # the rendered paper (29 pages)
+├── student-retention-data-generator-model.pdf   # the rendered paper (27 pages)
 ├── references.bib                               # bibliography
 └── figures/
     ├── fig1_pipeline.png   fig1_pipeline.py     # Figure 1 and the script that draws it
@@ -42,7 +42,7 @@ bibtex   student-retention-data-generator-model
 pdflatex student-retention-data-generator-model.tex
 pdflatex student-retention-data-generator-model.tex
 ```
-I rebuilt it this way from the committed source and got a 29-page PDF with the same text as the committed one. The two figures are regenerated with `python fig1_pipeline.py` and `python fig2_dag.py` from inside `figures/` (matplotlib only). Both reproduce the committed PNGs byte for byte.
+I rebuilt it this way from the committed source and got a 27-page PDF with the same text as the committed one. The two figures are regenerated with `python fig1_pipeline.py` and `python fig2_dag.py` from inside `figures/` (matplotlib only). Both reproduce the committed PNGs byte for byte.
 
 ## Appendix A (pilot) versus the production generator
 Appendix A reports a **pilot implementation** of one admissible instantiation of the specification. The paper is explicit that the pilot "is a feasibility check of the specification, not the production generator", and that it implements only the core mechanism (Phases 1 to 5) and omits the non-core attributes of Appendix B. The released dataset comes from the **production generator** (`synthetic-data-generator/`, version 1.0.1, seed 193), which implements the full schema. The two share the same forms and parameters, but they are separate runs, so their realised numbers differ.
