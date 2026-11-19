@@ -20,10 +20,10 @@ synthetic-data-generator/
 
 ## Quick start
 1. Install the packages with `pip install -r requirements.txt` (or `pip install numpy pandas scipy statsmodels matplotlib jupyter`).
-2. Open `student-retention-data-generator.ipynb`, edit the `CONFIG` cell (`N_STUDENTS`, `MASTER_SEED`, …), and **Run All**.
-3. A full run takes about 30–50 s at N = 50,000 (about 15–30 s with `RECALIBRATE=False`), depending on hardware. Outputs are written to `output/` inside this folder (`synthetic-data-generator/output/`), even if Jupyter is launched from the repository root.
+2. Open [student-retention-data-generator.ipynb](../synthetic-data-generator/student-retention-data-generator.ipynb), edit the `CONFIG` cell (`N_STUDENTS`, `MASTER_SEED`, …), and **Run All**.
+3. A full run takes about 30–50 s at N = 50,000 (about 15–30 s with `RECALIBRATE=False`), depending on hardware. Outputs are written to [output](../synthetic-data-generator/output/) inside this folder, even if Jupyter is launched from the repository root.
 
-I tested with Python 3.12.3, numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, statsmodels 0.15.0 and matplotlib 3.10.8, which are the versions pinned in `requirements.txt`. Other versions are untested.
+I tested with Python 3.12.3, numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, statsmodels 0.15.0 and matplotlib 3.10.8, which are the versions pinned in [requirements.txt](../synthetic-data-generator/requirements.txt). Other versions are untested.
 
 | Setting | Meaning |
 |---|---|
@@ -47,7 +47,7 @@ Panel tables have one row per student per term, for terms 1…Tᵢ only (no rows
 | `SupportInterventions` | student × term | `risk_score` (null in term 1), `intervention` (always false in term 1) |
 | `PersistenceOutcomes` | student × term | `dropout_flag`, `attrition_flag` (rolled-up) |
 
-Other outputs: `metadata.json` (seed, versions, row counts, SHA-256 of every table), `parameter_log.csv` (every parameter with its tag), `validation_scorecard.csv`, `diagnostics.png` and `DATASET_NOTICE.txt`.
+Other outputs: [metadata.json](../synthetic-data-generator/output/metadata.json) (seed, versions, row counts, SHA-256 of every table), [parameter_log.csv](../synthetic-data-generator/output/parameter_log.csv) (every parameter with its tag), [validation_scorecard.csv](../synthetic-data-generator/output/validation_scorecard.csv), [diagnostics.png](../synthetic-data-generator/output/diagnostics.png) and [DATASET_NOTICE.txt](../synthetic-data-generator/output/DATASET_NOTICE.txt).
 
 **Deliberately absent:** I never export baseline vulnerability, shock indicators or the hazard. No individual-level table carries a region name, only the two-tier label (whitepaper Sec. 13.3). The `Regions` table names the source regions only inside its `target_source` citation text.
 

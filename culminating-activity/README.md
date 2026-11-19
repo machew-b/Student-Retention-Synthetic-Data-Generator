@@ -3,7 +3,7 @@
 > ⚠️ **Everything numerical in this folder is synthetic.** The numbers describe the behaviour of a generative model calibrated to cited *aggregate* statistics. None of them measures any real Philippine student or institution, and none should be reported as an empirical finding.
 
 ## What this is
-The EIF Final Culmination is not a new project. It is a portfolio of my EIF work, a reflection on my growth, and a way to present my contributions, built around one question: *what did I do, and what does it say about me?* `eif-final-culmination.pdf` is that story as a **39-slide deck** (16:9). It has five parts, each opened by a divider slide:
+The EIF Final Culmination is not a new project. It is a portfolio of my EIF work, a reflection on my growth, and a way to present my contributions, built around one question: *what did I do, and what does it say about me?* `eif-final-culmination.pdf` is that story as a **39-slide deck**. It has five parts, each opened by a divider slide:
 
 | Part | What it contains |
 |---|---|

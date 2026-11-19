@@ -65,7 +65,7 @@ Appendix A reports a **pilot implementation** of one admissible instantiation of
 **What differs, and how to read it.** The point estimates differ by amounts of the size that run-to-run variation produces: the Mantel–Haenszel estimate of the pilot (25.5%) and of the production run (32.2%) are about 1.5 standard deviations apart, where the SD across populations is about 4.4 points in both. The held-out verdict differs because the ratio sits at the edge of the pre-specified band: 1.72 is just outside it and 1.673 just inside, which is the fragility that the generator notebook records as open flag OF-2. I did not trace the exact source of the differences between the two runs, because the pilot script is not in this repository.
 
 **Which numbers to quote.**
-* When describing the released dataset, the generator, or Deliverable 3, quote the **production** numbers. They are in [validation_scorecard.csv](../synthetic-data-generator/output/validation_scorecard.csv) and are re-derived from the CSV files in [results-and-discussion](../results-and-discussion/).
+* When describing the released dataset, the generator, or the analyses, quote the **production** numbers. They are in [validation_scorecard.csv](../synthetic-data-generator/output/validation_scorecard.csv) and are re-derived from the CSV files in [results-and-discussion](../results-and-discussion/).
 * Quote the Appendix A numbers only when describing the pilot.
 
 **One item that is not in the repository.** Appendix A says "a script reproducing the results accompanies this paper". That pilot script is not included here. The production generator notebook is the implementation to run.

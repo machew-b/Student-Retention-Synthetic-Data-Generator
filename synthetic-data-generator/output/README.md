@@ -1,6 +1,6 @@
 # output/
 
-This folder holds everything that `../student-retention-data-generator.ipynb` writes. The files here come from the default run (N = 50,000 students, seed 193).
+This folder holds everything that [generator](../student-retention-data-generator.ipynb) writes. The files here come from the default run (N = 50,000 students, seed 193).
 
 > ⚠️ **All data here is synthetic.** It describes the behaviour of a generative model, not any real student or population.
 
@@ -15,4 +15,4 @@ This folder holds everything that `../student-retention-data-generator.ipynb` wr
 | `diagnostics.png` | Diagnostic figure |
 | `DATASET_NOTICE.txt` | Synthetic-data notice |
 
-To regenerate these files, run the notebook. The table hashes in `metadata.json` let you check that a regenerated copy is identical (same platform and library versions).
+To regenerate these files, run the notebook. The table hashes in [metadata.json](../output/metadata.json) let you check that a regenerated copy is identical (same platform and library versions).

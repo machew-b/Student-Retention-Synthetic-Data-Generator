@@ -15,7 +15,7 @@ I analyse the generated sythetic dataset from its exported tables only, and I us
 | 9 | Who is flagged, who is missed, what do false flags cost? | 63.7 % of dropout events occur in terms with a clean record and no support. At equal capacity a model-ranked list would avert an expected 18 % more dropouts than the actual rule, and still only 66 % of an unattainable oracle. |
 | 10 | How robust is this? | Eleven recalibrated scenarios. Mantel–Haenszel stays near 30 %. IPW only stabilises once all signal cells contain both arms. The predictable part of dropout is capped by baseline vulnerability, not by shocks. |
 
-The slide deck (`student-retention-results-slides.pdf`) presents the same chain of evidence in 17 slides (plus two backup slides). Its figures (`figures/s1` to `s7`) are redrawn at slide size from the executed notebook, and its tables (`figures/table_*.tex`) are generated from the notebook's outputs.
+The [slide deck](../results-and-discussion/student-retention-results-slides.pdf) presents the same chain of evidence in 17 slides (plus two backup slides). Its figures (`figures/s1` to `s7`) are redrawn at slide size from the executed notebook, and its tables (`figures/table_*.tex`) are generated from the notebook's outputs.
 
 Section 11 turns this into eight recommendations about how to build and evaluate a retention programme. Section 12 lists every limitation and open flag.
 
@@ -35,14 +35,14 @@ results-and-discussion/
 
 ## Quick start
 1. Install the packages with `pip install -r requirements.txt`.
-2. Open `student-retention-analytics.ipynb` from the repository root or from this folder, and **Run All**. It reads the exported CSV files in `../synthetic-data-generator/output/`, so Deliverable 2 does not need to be re-run first.
+2. Open [student-retention-analytics.ipynb](../results-and-discussion/student-retention-analytics.ipynb) from the repository root or from this folder, and **Run All**. It reads the exported CSV files in the [outputs](../synthetic-data-generator/output/), so Deliverable 2 does not need to be re-run first.
 3. A full run takes about 10 to 15 minutes. Two switches in the first code cell help: `FAST_MODE` for a quick smoke test (not comparable with the scorecard) and `RUN_SENSITIVITY = False` to skip Sec. 10.
 
-I tested with Python 3.12.3, numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, statsmodels 0.15.0, matplotlib 3.10.8 and scikit-learn 1.8.0 (pinned in `requirements.txt`). Other versions are untested.
+I tested with Python 3.12.3, numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, statsmodels 0.15.0, matplotlib 3.10.8 and scikit-learn 1.8.0 (pinned in [requirements.txt](../results-and-discussion/requirements.txt)). Other versions are untested.
 
 ## How it is built
 * **The analysis uses only what the exported tables contain.** Sections 5 to 9.1 use the exported tables only. The hidden state (baseline vulnerability, shocks, hazard) is used in three groups of clearly labelled places, always to *grade* the analysis: the validation checks (Sec. 4.4, Sec. 4.6), the prediction ceilings and policy values (Sec. 6.4, Sec. 9.2), and the new-population sensitivity runs (Sec. 10).
-* **The generator engine is copied unchanged** into Sec. 3, and the notebook proves the copy is faithful: it regenerates all eight tables with SHA-256 hashes equal to `metadata.json`, and its calibration loop returns the recorded (δ, γ0). If the hash check fails on your platform, the notebook says so and skips only the steps that need exact row alignment.
+* **The generator engine is copied unchanged** into Sec. 3, and the notebook proves the copy is faithful: it regenerates all eight tables with SHA-256 hashes equal to [metadata.json](../synthetic-data-generator/output/metadata.json), and its calibration loop returns the recorded (δ, γ0). If the hash check fails on your platform, the notebook says so and skips only the steps that need exact row alignment.
 * **No leakage.** A feature for student *i* in term *t* uses only entry attributes and records from terms 1 to *t*−1. A guard in the code rejects outcome columns, current-term columns and the regional tier. The one model that breaks the rule (a labelled "leaky contrast") is only there to show how much apparent skill current-term data would add.
 * **Validation is grouped by student** (5-fold), with the same folds for every model, fixed hyperparameters and no tuning on the evaluation data.
 * **Every choice I add carries a tag** (`LOCKED`, `CALIBRATED` or `ASSUMED`) in a small D3 registry that mirrors the generator's, and Sec. 12 prints it.
@@ -57,4 +57,4 @@ I tested with Python 3.12.3, numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, statsmodel
 * Bitwise reproducibility holds only on the same platform and library versions.
 
 ## Citations
-Methods: Law (2015); James, Witten, Hastie & Tibshirani (2013); Gelman, Hill & Vehtari (2020); Peters, Janzing & Schölkopf (2017). Practitioner framing for prediction as decision support: Lopez-Muñoz, Gonzalez Serrano & Sanchez-Ferreira (2026), *Journal of Information Technology Education: Research* 25, https://doi.org/10.28945/5776 (confirmed by web search while writing the notebook). The generator's calibration sources are listed in `../synthetic-data-generator/README.md` and whitepaper Sec. 10.
+Methods: Law (2015); James, Witten, Hastie & Tibshirani (2013); Gelman, Hill & Vehtari (2020); Peters, Janzing & Schölkopf (2017). Practitioner framing for prediction as decision support: Lopez-Muñoz, Gonzalez Serrano & Sanchez-Ferreira (2026), *Journal of Information Technology Education: Research* 25, https://doi.org/10.28945/5776 (confirmed by web search while writing the notebook). The generator's calibration sources are listed in the [generator README](../synthetic-data-generator/README.md) and whitepaper Sec. 10.
