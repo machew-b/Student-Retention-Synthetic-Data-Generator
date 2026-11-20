@@ -10,12 +10,12 @@
     "gamma0": -2.67315408286656
   },
   "versions": {
-    "python": "3.14.2",
+    "python": "3.14.7",
     "numpy": "2.4.4",
     "pandas": "3.0.2",
     "scipy": "1.17.1",
     "statsmodels": "0.15.0",
-    "platform": "Linux-6.8.0-1070-azure-x86_64-with-glibc2.39"
+    "platform": "Windows-11-10.0.26200-SP0"
   },
   "rows": {
     "Regions": 2,
@@ -28,14 +28,14 @@
     "PersistenceOutcomes": 297739
   },
   "sha256": {
-    "Regions": "67d90c667f8352088090883e6f4d56ada871c94e0701006a01d419833c78e8f6",
-    "Students": "05907fc078f2363dd63eb5ad67a6122a20c4d8cd4ec9d33d57f30ae06c7a7033",
-    "Enrollments": "89de4fc50439ddbfa71e1118cc5a2b13afcf67ebcfb09134c3e9af8eddf00801",
-    "CourseGrades": "67e6d1b702dc625e6ac683fd6797d549c63cd4f75b0065a8ed464789e486994a",
-    "AttendanceRecords": "854f8b8ebd3d03013929953639f68ef9aee371a3360e6c0c5e37b30cea3cb2c6",
-    "FinancialHolds": "cc91a7ac06f2d7bc6a08125563e57f0988c4d50ce7b666ed326d7cc03d29c68e",
-    "SupportInterventions": "ac9af4576d751a28436deefde26dc49c28d7b9ad5173167df48dc0a17e56c9b9",
-    "PersistenceOutcomes": "432d8944d2a06b52cfec1804f900d5e03a35acb1083300612c51145171842ad3"
+    "Regions": "fe3422edfd6f09f80c333dd38bb1fce5bf9bf55b2678376726b832426482d911",
+    "Students": "d63fb04b469371257cadaab7b161257aaa566d8279224333d2861d295681d53b",
+    "Enrollments": "4d09a60b88a258d2ca534a034269a9cbff3b61b134df0ed6a16d6c95bfb21623",
+    "CourseGrades": "88997316874160e21cf7e14c2abe13b31b70973f4b84a1af55570763fb735a22",
+    "AttendanceRecords": "b802c316a27a27ef699a8cd987ec08377919ed65b3ba5692cbae9710c21b1fc8",
+    "FinancialHolds": "1b53984035bedb06cf9a69c5ea6b9b4c40af8bf5fea82ed42290a399c38828a7",
+    "SupportInterventions": "66ee8dd072c3e712440d7c54c682a74eb11c2ec7577449fdb05772a2a5eaf9f8",
+    "PersistenceOutcomes": "54dd107365d47ec6b06613aa1e89e3d7f4fb437f12c22ea1a4e53c742d6c1463"
   },
   "reproducibility": "Bitwise reproducible only on the same platform and library versions; across platforms equivalence is statistical (whitepaper App. B.3 #5)."
 }
