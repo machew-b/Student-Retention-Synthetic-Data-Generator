@@ -38,18 +38,27 @@ The recommendations and the full list of limitations are in the results and disc
 ```
 pip install -r results-and-discussion/requirements.txt
 ```
-1. **Regenerate the dataset (optional, about 30 to 50 seconds):** run [student-retention-data-generator.ipynb](results-and-discussion/student-retention-analytics.ipynb). The committed dataset is already there.
+1. **Regenerate the dataset (optional, about 30 to 50 seconds):** run [student-retention-data-generator.ipynb](synthetic-data-generator/student-retention-data-generator.ipynb). The committed dataset is already there.
 2. **Re-run the analysis (about 10 to 15 minutes):** run [student-retention-analytics.ipynb](results-and-discussion/student-retention-analytics.ipynb). It reads the committed CSV files, so step 1 is not required.
 3. **Rebuild the PDFs (optional):** `pdflatex` in [results-and-discussion](results-and-discussion/) for the slides (run twice), and `pdflatex`, `bibtex`, `pdflatex`, `pdflatex` in [whitepaper](whitepaper/) for the paper and in [culminating-activity](culminating-activity/) for the Final Culmination deck (the deck loads three figures from the other folders, so keep the repository layout intact).
 
-I tested with Python 3.12.3, numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, statsmodels 0.15.0, matplotlib 3.10.8 and scikit-learn 1.8.0. Results are bitwise reproducible on the same platform and library versions, and statistically equivalent elsewhere. If a file hash check fails on your machine (often a line-ending effect on Windows), the notebooks say so and continue.
+The committed outputs were generated with Python 3.14.2 on Linux, using numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, statsmodels 0.15.0, matplotlib 3.10.8 and scikit-learn 1.8.0. These versions need Python 3.11 or later, and other versions are untested. Results are bitwise reproducible on the same platform and library versions, and statistically equivalent elsewhere. If a file hash check fails on your machine (often a line-ending effect on Windows), the notebooks say so and continue.
 
 ## Conventions used throughout
-* **Provenance tags.** Every number that drives the model is tagged `LOCKED` (fixed by design), `CALIBRATED` (set to reproduce a cited statistic) or `ASSUMED` (a stated modelling choice). The generator logs all 60 of its parameters in [parameter_log.csv](synthetic-data-generator/output/parameter_log), and analysis logs the choices it adds.
+* **Provenance tags.** Every number that drives the model is tagged `LOCKED` (fixed by design), `CALIBRATED` (set to reproduce a cited statistic) or `ASSUMED` (a stated modelling choice). The generator logs all 60 of its parameters in [parameter_log.csv](synthetic-data-generator/output/parameter_log.csv), and analysis logs the choices it adds.
 * **Calibration is not validation.** Matching the two tier targets shows only that the calibration loop converged. The checks with independent content are the correlation structure, the confounding check and the recoverability check.
 * **Open flags.** The limitations I know of are logged with a status (`OPEN`, `NOTED` or `RESOLVED`): flags OF-1 to OF-12 in the generator notebook, and DF-1 to DF-9 in the Deliverable 3 notebook.
 * **No regional naming.** No individual-level table carries a region name; students carry only a two-tier label, `high` or `typical` (whitepaper Section 13.3).
-* **Synthetic status is stated everywhere.** The dataset ships with a usage notice, the analysis notebook prints a synthetic-data banner with its results, every notebook figure title carries one, and so does the footer of every slide.
+* **Synthetic status is stated everywhere.** The dataset ships with a usage notice, the analysis notebook prints a synthetic-data banner with its results, every notebook figure title carries one, and both slide decks open with a synthetic-data notice.
 
 ## A note on consistency across the documents
 The whitepaper's Appendix A reports a **pilot** implementation, which gives different realised numbers from the released generator (for example the Mantel–Haenszel estimate and the held-out check). When describing the dataset, quote the generator's numbers. The reconciliation is in the whitepaper [README](whitepaper/README.md).
+
+## Use of AI
+I used **GitHub Copilot** as an assistant while building this repository. The design of the model, the choices behind it and the conclusions are mine. Copilot helped in three ways:
+
+* **Polishing the writing.** It helped me tighten and reword the prose in the whitepaper, the READMEs, the notebook descriptions and the slide decks.
+* **Statistical analysis.** It helped me work through methods used in the analysis, such as discrete-time hazard (logistic) modelling, Mantel–Haenszel risk-ratio estimation, cluster-robust Poisson regression, inverse-probability weighting (Hajek and Horvitz–Thompson), student-grouped cross-validation with gradient-boosted trees, permutation importance and calibration checks, and the sensitivity analysis over the `ASSUMED` parameters.
+* **Interpretation and next steps.** It helped me read the results, check that each conclusion follows from the evidence, and think through limitations and follow-up steps.
+
+I do not ask anyone to take the results on trust. The notebooks regenerate the dataset bit for bit, re-derive the validation checks from the exported CSV files, and score every method against the known true effect, so each number can be checked against the code that produced it.

@@ -23,7 +23,7 @@ synthetic-data-generator/
 2. Open [student-retention-data-generator.ipynb](../synthetic-data-generator/student-retention-data-generator.ipynb), edit the `CONFIG` cell (`N_STUDENTS`, `MASTER_SEED`, …), and **Run All**.
 3. A full run takes about 30–50 s at N = 50,000 (about 15–30 s with `RECALIBRATE=False`), depending on hardware. Outputs are written to [output](../synthetic-data-generator/output/) inside this folder, even if Jupyter is launched from the repository root.
 
-I tested with Python 3.12.3, numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, statsmodels 0.15.0 and matplotlib 3.10.8, which are the versions pinned in [requirements.txt](../synthetic-data-generator/requirements.txt). Other versions are untested.
+The committed dataset was generated with Python 3.14.2 on Linux, using numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, statsmodels 0.15.0 and matplotlib 3.10.8, which are the versions pinned in [requirements.txt](../synthetic-data-generator/requirements.txt). These versions need Python 3.11 or later, and other versions are untested.
 
 | Setting | Meaning |
 |---|---|

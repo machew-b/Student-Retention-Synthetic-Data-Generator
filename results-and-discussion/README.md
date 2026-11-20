@@ -3,7 +3,7 @@
 > ⚠️ **Everything here is synthetic.** Every number describes the behaviour of a generative model calibrated to cited *aggregate* statistics. None of it measures any real Philippine student or institution, and none of it says what any real institution should do.
 
 ## What this is
-I analyse the generated sythetic dataset from its exported tables only, and I use the hidden ground truth only to grade the analysis. Because I know the support programme cuts the dropout hazard by exactly 30 %, I can say whether each method gets the right answer, not just whether it produces an answer. The notebook covers six questions:
+I analyse the generated synthetic dataset from its exported tables only, and I use the hidden ground truth only to grade the analysis. Because I know the support programme cuts the dropout hazard by exactly 30 %, I can say whether each method gets the right answer, not just whether it produces an answer. The notebook covers six questions:
 
 | Sec. | Question | Headline (synthetic data) |
 |---|---|---|
@@ -38,7 +38,7 @@ results-and-discussion/
 2. Open [student-retention-analytics.ipynb](../results-and-discussion/student-retention-analytics.ipynb) from the repository root or from this folder, and **Run All**. It reads the exported CSV files in the [outputs](../synthetic-data-generator/output/), so Deliverable 2 does not need to be re-run first.
 3. A full run takes about 10 to 15 minutes. Two switches in the first code cell help: `FAST_MODE` for a quick smoke test (not comparable with the scorecard) and `RUN_SENSITIVITY = False` to skip Sec. 10.
 
-I tested with Python 3.12.3, numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, statsmodels 0.15.0, matplotlib 3.10.8 and scikit-learn 1.8.0 (pinned in [requirements.txt](../results-and-discussion/requirements.txt)). Other versions are untested.
+The committed outputs were generated with Python 3.14.2 on Linux, using numpy 2.4.4, pandas 3.0.2, scipy 1.17.1, statsmodels 0.15.0, matplotlib 3.10.8 and scikit-learn 1.8.0 (pinned in [requirements.txt](../results-and-discussion/requirements.txt)). These versions need Python 3.11 or later, and other versions are untested.
 
 ## How it is built
 * **The analysis uses only what the exported tables contain.** Sections 5 to 9.1 use the exported tables only. The hidden state (baseline vulnerability, shocks, hazard) is used in three groups of clearly labelled places, always to *grade* the analysis: the validation checks (Sec. 4.4, Sec. 4.6), the prediction ceilings and policy values (Sec. 6.4, Sec. 9.2), and the new-population sensitivity runs (Sec. 10).

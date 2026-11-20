@@ -11,7 +11,7 @@ The EIF Final Culmination is not a new project. It is a portfolio of my EIF work
 | 2. My EIF Journey | The track and its three deliverables, how I met the programme's definition of done, the path through the work, and "the good and the bad". |
 | 3. Project Portfolio | The project at a glance, then each deliverable on its own slides with **Problem / Context**, **Role and Contributions**, **Output** (links and figures) and **Skills Demonstrated**. |
 | 4. Reflection | What I learned, what challenged me, what I am proud of, and what I would improve. |
-| 5. What Is Next | How I would finish this project, extend it, and what real use would require, plus a table of where everything is. |
+| 5. What Is Next | How I would extend this project, what real use would require, plus a table of where everything is. |
 
 The deck opens with a short orientation and a synthetic-data notice, closes with a summary slide, and ends with the sources it cites.
 
@@ -35,7 +35,7 @@ There is no `figures/` folder on purpose. The deck reuses three figures that alr
 The journey diagram and the provenance-tag chips are drawn in TikZ inside the `.tex`, so they need no image files.
 
 ## Design
-The deck is built on a Beamer template with a section tab in the header, a three-part footer, a rounded key-box and a shadowed title block, restyled with the Eskwelabs gradient: sage-mint at the top, through teal and deep teal, to a muted indigo. The gradient fills the title, divider and closing slides, and a slim strip of it runs across the top of every content slide. Brand orange marks alerts and brand blue marks key results. All colours are defined once, near the top of the `.tex`.
+The deck is built on a Beamer template with a section tab in the header, a footer, a rounded key-box and a shadowed title block, restyled with the Eskwelabs gradient: sage-mint at the top, through teal and deep teal, to a muted indigo. The gradient fills the title, divider and closing slides, and a slim strip of it runs across the top of every content slide. Brand orange marks alerts and brand blue marks key results. All colours are defined once, near the top of the `.tex`.
 
 ## Rebuilding the PDF
 From this folder, with a standard TeX Live or MiKTeX installation and **the repository layout intact** (the three figures above are loaded from the sibling folders):
@@ -58,7 +58,7 @@ It needs the packages `beamer`, `lmodern`, `tcolorbox`, `tikz`, `natbib`, `micro
 | Add reflection last; clarity, not perfection | The reflection is built from what the earlier slides show, and the limitations that remain are stated rather than hidden. |
 
 ## Conventions
-* **Synthetic status is stated on every slide**, in the footer, and in a notice near the start of the deck.
+* **Synthetic status is stated up front.** The deck opens with a dedicated synthetic-data notice, and the slides that present results are labelled as synthetic.
 * **Provenance tags** (`LOCKED`, `CALIBRATED`, `ASSUMED`) are used wherever a model parameter is quoted, as in the rest of the repository.
 * **Numbers are the generator's (seed 193), not the whitepaper pilot's.** See the [overview](../whitepaper/README.md) of the whitepaper for the reconciliation.
 * **Navigation.** The overview chips on the "What this deck is" slide and the section list on every divider slide are links: click a section to jump to it. The PDF bookmarks list the five sections too.
